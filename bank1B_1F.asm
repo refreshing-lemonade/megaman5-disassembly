@@ -17078,27 +17078,27 @@ code_1FFF24:
   JMP code_1FFEAB                           ; $1FFF3A |
 
 code_1FFF3D:
-  STA $F5                                   ; $1FFF3D |
-  STA $F6                                   ; $1FFF3F |
-  INC $F6                                   ; $1FFF41 |
+  STA $F5                                   ; $1FFF3D |\  convenience: use A as parameter
+  STA $F6                                   ; $1FFF3F | | $8000-$9FFF will select bank A
+  INC $F6                                   ; $1FFF41 |/  $A000-$BFFF will select A+1
 code_1FFF43:
-  INC $F7                                   ; $1FFF43 |
-  LDA #$06                                  ; $1FFF45 |
-  STA $F2                                   ; $1FFF47 |
-  STA $8000                                 ; $1FFF49 |
-  LDA $F5                                   ; $1FFF4C |
-  STA $F3                                   ; $1FFF4E |
-  STA $8001                                 ; $1FFF50 |
-  LDA #$07                                  ; $1FFF53 |
-  STA $F2                                   ; $1FFF55 |
-  STA $8000                                 ; $1FFF57 |
-  LDA $F6                                   ; $1FFF5A |
-  STA $F4                                   ; $1FFF5C |
-  STA $8001                                 ; $1FFF5E |
-  DEC $F7                                   ; $1FFF61 |
-  LDA $F8                                   ; $1FFF63 |
-  BNE code_1FFF68                           ; $1FFF65 |
-  RTS                                       ; $1FFF67 |
+  INC $F7                                   ; $1FFF43 | flag on "selecting PRG bank"
+  LDA #$06                                  ; $1FFF45 |\
+  STA $F2                                   ; $1FFF47 | |
+  STA $8000                                 ; $1FFF49 | | select the bank in $F5
+  LDA $F5                                   ; $1FFF4C | | as $8000-$9FFF
+  STA $F3                                   ; $1FFF4E | | also mirror in $F3
+  STA $8001                                 ; $1FFF50 |/
+  LDA #$07                                  ; $1FFF53 |\
+  STA $F2                                   ; $1FFF55 | |
+  STA $8000                                 ; $1FFF57 | | select the bank in $F6
+  LDA $F6                                   ; $1FFF5A | | as $A000-$BFFF
+  STA $F4                                   ; $1FFF5C | | also mirror in $F4
+  STA $8001                                 ; $1FFF5E |/
+  DEC $F7                                   ; $1FFF61 | flag selecting back off (done)
+  LDA $F8                                   ; $1FFF63 |\ if NMI and non-NMI race condition
+  BNE code_1FFF68                           ; $1FFF65 |/ we still need to play sounds
+  RTS                                       ; $1FFF67 | else just return
 
 code_1FFF68:
   LDA $F7                                   ; $1FFF68 |

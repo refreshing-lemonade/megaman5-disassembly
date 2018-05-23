@@ -80,17 +80,17 @@ code_17807D:
 code_1780A0:
   JSR code_1FFF22                           ; $1780A0 |
   JSR code_1EC2E5                           ; $1780A3 |
-  LDA $14                                   ; $1780A6 |
-  AND #$90                                  ; $1780A8 |
-  BNE code_1780D2                           ; $1780AA |
-  LDA $14                                   ; $1780AC |
-  AND #$2C                                  ; $1780AE |
-  BEQ code_1780BF                           ; $1780B0 |
-  LDA #$27                                  ; $1780B2 |
-  JSR code_1FEC5D                           ; $1780B4 |
-  LDA $0200                                 ; $1780B7 |
-  EOR #$10                                  ; $1780BA |
-  STA $0200                                 ; $1780BC |
+  LDA $14                                   ; $1780A6 |\
+  AND #$90                                  ; $1780A8 | | pressing start or A?
+  BNE code_1780D2                           ; $1780AA |/
+  LDA $14                                   ; $1780AC |\
+  AND #$2C                                  ; $1780AE | | not pressing select/up/down?
+  BEQ code_1780BF                           ; $1780B0 |/
+  LDA #$27                                  ; $1780B2 |\ play cursor sound
+  JSR code_1FEC5D                           ; $1780B4 |/
+  LDA $0200                                 ; $1780B7 |\
+  EOR #$10                                  ; $1780BA | | switch cursor selection
+  STA $0200                                 ; $1780BC |/
 code_1780BF:
   LDA $10                                   ; $1780BF |
   SEC                                       ; $1780C1 |
@@ -151,45 +151,45 @@ code_1780E1:
   STA $14                                   ; $17813C |
   STA $9D                                   ; $17813E |
 code_178140:
-  LDA $14                                   ; $178140 |
-  AND #$90                                  ; $178142 |
-  BEQ code_178149                           ; $178144 |
-  JMP code_1781CD                           ; $178146 |
+  LDA $14                                   ; $178140 |\
+  AND #$90                                  ; $178142 | | pressing A or start?
+  BEQ check_direction                       ; $178144 | | load stage
+  JMP code_1781CD                           ; $178146 |/
 
-code_178149:
-  LDA $14                                   ; $178149 |
-  AND #$0F                                  ; $17814B |
-  BEQ code_17818A                           ; $17814D |
-  AND #$03                                  ; $17814F |
-  BEQ code_178168                           ; $178151 |
-  AND #$01                                  ; $178153 |
-  TAY                                       ; $178155 |
-  LDA $11                                   ; $178156 |
-  CLC                                       ; $178158 |
-  ADC $8D90,y                               ; $178159 |
-  STA $11                                   ; $17815C |
-  CMP #$03                                  ; $17815E |
-  BCC code_178168                           ; $178160 |
-  CLC                                       ; $178162 |
-  ADC $8D92,y                               ; $178163 |
-  STA $11                                   ; $178166 |
-code_178168:
-  LDA $14                                   ; $178168 |
-  AND #$0C                                  ; $17816A |
-  BEQ code_178185                           ; $17816C |
-  AND #$04                                  ; $17816E |
-  LSR                                       ; $178170 |
-  LSR                                       ; $178171 |
-  TAY                                       ; $178172 |
-  LDA $10                                   ; $178173 |
-  CLC                                       ; $178175 |
-  ADC $8D90,y                               ; $178176 |
-  STA $10                                   ; $178179 |
-  CMP #$03                                  ; $17817B |
-  BCC code_178185                           ; $17817D |
-  CLC                                       ; $17817F |
-  ADC $8D92,y                               ; $178180 |
-  STA $10                                   ; $178183 |
+check_direction:
+  LDA $14                                   ; $178149 |\  if NO directional buttons pressed
+  AND #$0F                                  ; $17814B | | skip all this
+  BEQ code_17818A                           ; $17814D |/
+  AND #$03                                  ; $17814F |\
+  BEQ check_up_down                         ; $178151 | | if left/right is pressed
+  AND #$01                                  ; $178153 | | store which one in y reg
+  TAY                                       ; $178155 |/
+  LDA $11                                   ; $178156 |\
+  CLC                                       ; $178158 | | add 1 or subtract 1 to
+  ADC $8D90,y                               ; $178159 | | X coord of cursor
+  STA $11                                   ; $17815C |/
+  CMP #$03                                  ; $17815E |\
+  BCC check_up_down                         ; $178160 | | if coordinate < 0 or > 2
+  CLC                                       ; $178162 | | handle wraparound by adding
+  ADC $8D92,y                               ; $178163 | | or subtracting 3
+  STA $11                                   ; $178166 |/
+check_up_down:
+  LDA $14                                   ; $178168 |\
+  AND #$0C                                  ; $17816A | |
+  BEQ code_178185                           ; $17816C | | if up/down is pressed
+  AND #$04                                  ; $17816E | | store which one in y reg
+  LSR                                       ; $178170 | |
+  LSR                                       ; $178171 | |
+  TAY                                       ; $178172 |/
+  LDA $10                                   ; $178173 |\
+  CLC                                       ; $178175 | | add 1 or subtract 1 to
+  ADC $8D90,y                               ; $178176 | | Y coord of cursor
+  STA $10                                   ; $178179 |/
+  CMP #$03                                  ; $17817B |\
+  BCC code_178185                           ; $17817D | | if coordinate < 0 or > 2
+  CLC                                       ; $17817F | | handle wraparound by adding
+  ADC $8D92,y                               ; $178180 | | or subtracting 3
+  STA $10                                   ; $178183 |/
 code_178185:
   LDA #$27                                  ; $178185 |
   JSR code_1FEC5D                           ; $178187 |
