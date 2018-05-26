@@ -20782,7 +20782,7 @@ code_0EA1CD:
   BNE code_0EA21C                           ; $0EA1E2 |
   LDA #$0F                                  ; $0EA1E4 |
   STA $F5                                   ; $0EA1E6 |
-  JSR code_1FFF43                           ; $0EA1E8 |
+  JSR select_PRG_banks                      ; $0EA1E8 |
   LDY $6C                                   ; $0EA1EB |
   LDA $8000,y                               ; $0EA1ED |
   STA $00                                   ; $0EA1F0 |
@@ -20807,7 +20807,7 @@ code_0EA20B:
   BPL code_0EA202                           ; $0EA20F |
   LDA #$17                                  ; $0EA211 |
   STA $F5                                   ; $0EA213 |
-  JSR code_1FFF43                           ; $0EA215 |
+  JSR select_PRG_banks                      ; $0EA215 |
   INC $25                                   ; $0EA218 |
   INC $6C                                   ; $0EA21A |
 code_0EA21C:
@@ -20844,7 +20844,7 @@ code_0EA253:
 code_0EA254:
   LDA #$0F                                  ; $0EA254 |
   STA $F5                                   ; $0EA256 |
-  JSR code_1FFF43                           ; $0EA258 |
+  JSR select_PRG_banks                      ; $0EA258 |
   LDA $8000,y                               ; $0EA25B |
   STA $08                                   ; $0EA25E |
   LDA $8028,y                               ; $0EA260 |
@@ -20877,7 +20877,7 @@ code_0EA278:
   BNE code_0EA278                           ; $0EA297 |
   LDA #$17                                  ; $0EA299 |
   STA $F5                                   ; $0EA29B |
-  JMP code_1FFF43                           ; $0EA29D |
+  JMP select_PRG_banks                      ; $0EA29D |
 
 code_0EA2A0:
   INY                                       ; $0EA2A0 |

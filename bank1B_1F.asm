@@ -3346,7 +3346,7 @@ code_1C801A:
   CMP $F6                                   ; $1C801D |
   BEQ code_1C8026                           ; $1C801F |
   STA $F6                                   ; $1C8021 |
-  JSR code_1FFF43                           ; $1C8023 |
+  JSR select_PRG_banks                      ; $1C8023 |
 code_1C8026:
   LDA $0588,x                               ; $1C8026 |
   STA $00                                   ; $1C8029 |
@@ -3425,7 +3425,7 @@ code_1C809D:
   LDA #$00                                  ; $1C80AE |
   STA $F6                                   ; $1C80B0 |
 code_1C80B2:
-  JSR code_1FFF43                           ; $1C80B2 |
+  JSR select_PRG_banks                      ; $1C80B2 |
   LDA $32                                   ; $1C80B5 |
   CMP #$01                                  ; $1C80B7 |
   BEQ code_1C80BF                           ; $1C80B9 |
@@ -3614,7 +3614,7 @@ code_1C821B:
 code_1C8225:
   PLA                                       ; $1C8225 |
   STA $F6                                   ; $1C8226 |
-  JSR code_1FFF43                           ; $1C8228 |
+  JSR select_PRG_banks                      ; $1C8228 |
   RTS                                       ; $1C822B |
 
 code_1C822C:
@@ -3847,13 +3847,13 @@ code_1C83FC:
   PHA                                       ; $1C8405 |
   LDA $32                                   ; $1C8406 |
   STA $F6                                   ; $1C8408 |
-  JSR code_1FFF43                           ; $1C840A |
+  JSR select_PRG_banks                      ; $1C840A |
   LDY $0300,x                               ; $1C840D |
   LDA $A800,y                               ; $1C8410 |
   STA $10                                   ; $1C8413 |
   PLA                                       ; $1C8415 |
   STA $F6                                   ; $1C8416 |
-  JSR code_1FFF43                           ; $1C8418 |
+  JSR select_PRG_banks                      ; $1C8418 |
   LDA $10                                   ; $1C841B |
   AND #$80                                  ; $1C841D |
 code_1C841F:
@@ -11136,7 +11136,7 @@ code_1EC737:
 code_1EC747:
   LDA $F1                                   ; $1EC747 |
   STA $F6                                   ; $1EC749 |
-  JMP code_1FFF43                           ; $1EC74B |
+  JMP select_PRG_banks                      ; $1EC74B |
 
 code_1EC74E:
   STA $07                                   ; $1EC74E |
@@ -11515,7 +11515,7 @@ code_1ECB4D:
   JSR code_1ED4E2                           ; $1ECB53 |
   PLA                                       ; $1ECB56 |
   STA $F6                                   ; $1ECB57 |
-  JSR code_1FFF43                           ; $1ECB59 |
+  JSR select_PRG_banks                      ; $1ECB59 |
 code_1ECB5C:
   JMP code_1ECD10                           ; $1ECB5C |
 
@@ -11609,7 +11609,7 @@ code_1ECBFE:
   LDA $F6                                   ; $1ECC09 |
   PHA                                       ; $1ECC0B |
   LDA #$12                                  ; $1ECC0C |
-  JSR code_1FFF3D                           ; $1ECC0E |
+  JSR select_PRG_banks_A                    ; $1ECC0E |
   JSR code_1EDF5E                           ; $1ECC11 |
   LDA $0558                                 ; $1ECC14 |
   CMP #$1D                                  ; $1ECC17 |
@@ -11619,7 +11619,7 @@ code_1ECBFE:
 code_1ECC20:
   PLA                                       ; $1ECC20 |
   STA $F6                                   ; $1ECC21 |
-  JSR code_1FFF43                           ; $1ECC23 |
+  JSR select_PRG_banks                      ; $1ECC23 |
   LDA #$01                                  ; $1ECC26 |
   STA $0300                                 ; $1ECC28 |
   LDA #$00                                  ; $1ECC2B |
@@ -11729,11 +11729,11 @@ code_1ECCDF:
   LDA $F6                                   ; $1ECCEA |
   PHA                                       ; $1ECCEC |
   LDA #$12                                  ; $1ECCED |
-  JSR code_1FFF3D                           ; $1ECCEF |
+  JSR select_PRG_banks_A                    ; $1ECCEF |
   JSR code_1EDF5E                           ; $1ECCF2 |
   PLA                                       ; $1ECCF5 |
   STA $F6                                   ; $1ECCF6 |
-  JSR code_1FFF43                           ; $1ECCF8 |
+  JSR select_PRG_banks                      ; $1ECCF8 |
   LDA #$01                                  ; $1ECCFB |
   STA $0300                                 ; $1ECCFD |
   LDA #$00                                  ; $1ECD00 |
@@ -12028,11 +12028,11 @@ code_1ECF01:
   LDA $F6                                   ; $1ECF0E |
   PHA                                       ; $1ECF10 |
   LDA #$12                                  ; $1ECF11 |
-  JSR code_1FFF3D                           ; $1ECF13 |
+  JSR select_PRG_banks_A                    ; $1ECF13 |
   JSR code_1EDF5E                           ; $1ECF16 |
   PLA                                       ; $1ECF19 |
   STA $F6                                   ; $1ECF1A |
-  JSR code_1FFF43                           ; $1ECF1C |
+  JSR select_PRG_banks                      ; $1ECF1C |
   LDA #$01                                  ; $1ECF1F |
   STA $0300                                 ; $1ECF21 |
   LDA #$00                                  ; $1ECF24 |
@@ -12136,7 +12136,7 @@ code_1ECFBF:
   JSR code_1ED583                           ; $1ECFCD |
   PLA                                       ; $1ECFD0 |
   STA $F6                                   ; $1ECFD1 |
-  JSR code_1FFF43                           ; $1ECFD3 |
+  JSR select_PRG_banks                      ; $1ECFD3 |
   JMP code_1ECFE5                           ; $1ECFD6 |
 
 code_1ECFD9:
@@ -12145,7 +12145,7 @@ code_1ECFD9:
   JSR code_1ED674                           ; $1ECFDC |
   PLA                                       ; $1ECFDF |
   STA $F6                                   ; $1ECFE0 |
-  JSR code_1FFF43                           ; $1ECFE2 |
+  JSR select_PRG_banks                      ; $1ECFE2 |
 code_1ECFE5:
   LDX $11                                   ; $1ECFE5 |
   LDA $25                                   ; $1ECFE7 |
@@ -12514,7 +12514,7 @@ code_1ED33A:
 code_1ED364:
   LDA $26                                   ; $1ED364 |
   STA $F6                                   ; $1ED366 |
-  JSR code_1FFF43                           ; $1ED368 |
+  JSR select_PRG_banks                      ; $1ED368 |
   LDY #$0F                                  ; $1ED36B |
 code_1ED36D:
   LDA $A988,y                               ; $1ED36D |
@@ -12583,7 +12583,7 @@ code_1ED3F0:
   JSR code_1FEC5B                           ; $1ED3F8 |
   LDA #$01                                  ; $1ED3FB |
   STA $F5                                   ; $1ED3FD |
-  JSR code_1FFF43                           ; $1ED3FF |
+  JSR select_PRG_banks                      ; $1ED3FF |
   LDY $50                                   ; $1ED402 |
   LDA $85F1,y                               ; $1ED404 |
   STA $ED                                   ; $1ED407 |
@@ -12609,7 +12609,7 @@ code_1ED3F0:
   STA $3C                                   ; $1ED435 |
   LDA #$0B                                  ; $1ED437 |
   STA $F5                                   ; $1ED439 |
-  JSR code_1FFF43                           ; $1ED43B |
+  JSR select_PRG_banks                      ; $1ED43B |
   JSR $814D                                 ; $1ED43E |
   LDA $26                                   ; $1ED441 |
   CMP #$0E                                  ; $1ED443 |
@@ -12637,7 +12637,7 @@ code_1ED460:
   STA $F6                                   ; $1ED46C |
   PLA                                       ; $1ED46E |
   STA $F5                                   ; $1ED46F |
-  JMP code_1FFF43                           ; $1ED471 |
+  JMP select_PRG_banks                      ; $1ED471 |
 
 code_1ED474:
   LDA $26                                   ; $1ED474 |
@@ -12648,7 +12648,7 @@ code_1ED474:
   BNE code_1ED4B1                           ; $1ED47E |
   LDA #$1B                                  ; $1ED480 |
   STA $F5                                   ; $1ED482 |
-  JSR code_1FFF43                           ; $1ED484 |
+  JSR select_PRG_banks                      ; $1ED484 |
   LDY #$36                                  ; $1ED487 |
   LDX #$28                                  ; $1ED489 |
   STX $43                                   ; $1ED48B |
@@ -13010,7 +13010,7 @@ code_1ED76A:
   CMP $F6                                   ; $1ED76A |
   BEQ code_1ED773                           ; $1ED76C |
   STA $F6                                   ; $1ED76E |
-  JSR code_1FFF43                           ; $1ED770 |
+  JSR select_PRG_banks                      ; $1ED770 |
 code_1ED773:
   LDA #$00                                  ; $1ED773 |
   STA $01                                   ; $1ED775 |
@@ -13036,7 +13036,7 @@ code_1ED7A3:
   CMP $F6                                   ; $1ED7A5 |
   BEQ code_1ED7AE                           ; $1ED7A7 |
   STA $F6                                   ; $1ED7A9 |
-  JSR code_1FFF43                           ; $1ED7AB |
+  JSR select_PRG_banks                      ; $1ED7AB |
 code_1ED7AE:
   CPY #$80                                  ; $1ED7AE |
   BCC code_1ED7B4                           ; $1ED7B0 |
@@ -13111,7 +13111,7 @@ code_1ED829:
   PHA                                       ; $1ED82B |
   LDA $27                                   ; $1ED82C |
   STA $F6                                   ; $1ED82E |
-  JSR code_1FFF43                           ; $1ED830 |
+  JSR select_PRG_banks                      ; $1ED830 |
   LDA $07D0                                 ; $1ED833 |
   STA $07D5                                 ; $1ED836 |
   LDA $07D1                                 ; $1ED839 |
@@ -13157,7 +13157,7 @@ code_1ED873:
   STA $07DE                                 ; $1ED898 |
   PLA                                       ; $1ED89B |
   STA $F6                                   ; $1ED89C |
-  JSR code_1FFF43                           ; $1ED89E |
+  JSR select_PRG_banks                      ; $1ED89E |
   RTS                                       ; $1ED8A1 |
 
 code_1ED8A2:
@@ -13503,7 +13503,7 @@ code_1EDB06:
   STA $F6                                   ; $1EDB1B |
   PLA                                       ; $1EDB1D |
   STA $F5                                   ; $1EDB1E |
-  JMP code_1FFF43                           ; $1EDB20 |
+  JMP select_PRG_banks                      ; $1EDB20 |
 
 code_1EDB23:
   LDA $F5                                   ; $1EDB23 |
@@ -13525,7 +13525,7 @@ code_1EDB2D:
   STA $F6                                   ; $1EDB3E |
   PLA                                       ; $1EDB40 |
   STA $F5                                   ; $1EDB41 |
-  JMP code_1FFF43                           ; $1EDB43 |
+  JMP select_PRG_banks                      ; $1EDB43 |
 
   LDX #$AF                                  ; $1EDB46 |
   TXS                                       ; $1EDB48 |
@@ -13733,7 +13733,7 @@ code_1EDC20:
   STA $F5                                   ; $1EDE17 |
   LDA #$0C                                  ; $1EDE19 |
   STA $F6                                   ; $1EDE1B |
-  JSR code_1FFF43                           ; $1EDE1D |
+  JSR select_PRG_banks                      ; $1EDE1D |
   JSR $8000                                 ; $1EDE20 |
   LDX #$00                                  ; $1EDE23 |
   STX $14                                   ; $1EDE25 |
@@ -13798,26 +13798,26 @@ code_1EDE89:
   STA $F5                                   ; $1EDE9B |
   LDA #$08                                  ; $1EDE9D |
   STA $F6                                   ; $1EDE9F |
-  JSR code_1FFF43                           ; $1EDEA1 |
+  JSR select_PRG_banks                      ; $1EDEA1 |
   LDA #$29                                  ; $1EDEA4 |
   JSR code_1FEC5D                           ; $1EDEA6 |
   JSR $8000                                 ; $1EDEA9 |
 code_1EDEAC:
   LDA #$1B                                  ; $1EDEAC |
-  JSR code_1FFF3D                           ; $1EDEAE |
+  JSR select_PRG_banks_A                    ; $1EDEAE |
   JSR $8000                                 ; $1EDEB1 |
   LDA #$1C                                  ; $1EDEB4 |
-  JSR code_1FFF3D                           ; $1EDEB6 |
+  JSR select_PRG_banks_A                    ; $1EDEB6 |
   JSR $8000                                 ; $1EDEB9 |
   LDA $26                                   ; $1EDEBC |
   STA $F6                                   ; $1EDEBE |
-  JSR code_1FFF43                           ; $1EDEC0 |
+  JSR select_PRG_banks                      ; $1EDEC0 |
   JSR code_1EC9DD                           ; $1EDEC3 |
   LDA #$1B                                  ; $1EDEC6 |
   STA $F5                                   ; $1EDEC8 |
   LDA $26                                   ; $1EDECA |
   STA $F6                                   ; $1EDECC |
-  JSR code_1FFF43                           ; $1EDECE |
+  JSR select_PRG_banks                      ; $1EDECE |
   JSR $988A                                 ; $1EDED1 |
   JSR code_1EDA31                           ; $1EDED4 |
   LDA $FC                                   ; $1EDED7 |
@@ -14068,7 +14068,7 @@ code_1FE08F:
   LDA $E33B,y                               ; $1FE092 |
   CMP $F5                                   ; $1FE095 |
   BEQ code_1FE09C                           ; $1FE097 |
-  JSR code_1FFF3D                           ; $1FE099 |
+  JSR select_PRG_banks_A                    ; $1FE099 |
 code_1FE09C:
   LDA $0528,x                               ; $1FE09C |
   AND #$70                                  ; $1FE09F |
@@ -16388,13 +16388,13 @@ code_1FF32D:
   STA $F5                                   ; $1FF335 |
   LDA $26                                   ; $1FF337 |
   STA $F6                                   ; $1FF339 |
-  JSR code_1FFF43                           ; $1FF33B |
+  JSR select_PRG_banks                      ; $1FF33B |
   JSR $8000                                 ; $1FF33E |
   PLA                                       ; $1FF341 |
   STA $F6                                   ; $1FF342 |
   PLA                                       ; $1FF344 |
   STA $F5                                   ; $1FF345 |
-  JMP code_1FFF43                           ; $1FF347 |
+  JMP select_PRG_banks                      ; $1FF347 |
 
 code_1FF34A:
   LDA $F5                                   ; $1FF34A |
@@ -16409,7 +16409,7 @@ code_1FF34A:
   STA $F6                                   ; $1FF35B |
   PLA                                       ; $1FF35D |
   STA $F5                                   ; $1FF35E |
-  JMP code_1FFF43                           ; $1FF360 |
+  JMP select_PRG_banks                      ; $1FF360 |
 
 code_1FF363:
   INC $95                                   ; $1FF363 |
@@ -16434,7 +16434,7 @@ code_1FF36F:
   STA $F6                                   ; $1FF386 |
   PLA                                       ; $1FF388 |
   STA $F5                                   ; $1FF389 |
-  JSR code_1FFF43                           ; $1FF38B |
+  JSR select_PRG_banks                      ; $1FF38B |
   JMP code_1FFF22                           ; $1FF38E |
 
 code_1FF391:
@@ -16462,7 +16462,7 @@ code_1FF39D:
   STA $F6                                   ; $1FF3B4 |
   PLA                                       ; $1FF3B6 |
   STA $F5                                   ; $1FF3B7 |
-  JSR code_1FFF43                           ; $1FF3B9 |
+  JSR select_PRG_banks                      ; $1FF3B9 |
   JMP code_1FFF22                           ; $1FF3BC |
 
 code_1FF3BF:
@@ -17009,9 +17009,9 @@ code_1FFEC4:
   JMP ($0093)                               ; $1FFEE0 |
 
 code_1FFEE3:
-  LDA $82,x                                 ; $1FFEE3 |
-  TAX                                       ; $1FFEE5 |
-  TXS                                       ; $1FFEE6 |
+  LDA $82,x                                 ; $1FFEE3 |\  copy low byte of address
+  TAX                                       ; $1FFEE5 | | into stack pointer
+  TXS                                       ; $1FFEE6 |/  
   LDA $91                                   ; $1FFEE7 |
   BNE code_1FFEEE                           ; $1FFEE9 |
   JSR code_1EC2E5                           ; $1FFEEB |
@@ -17058,6 +17058,7 @@ code_1FFF1B:
   BNE code_1FFF1B                           ; $1FFF1F |
   RTS                                       ; $1FFF21 |
 
+; seems to be the "main" for the game, runs every frame
 code_1FFF22:
   LDA #$01                                  ; $1FFF22 |
 code_1FFF24:
@@ -17077,11 +17078,13 @@ code_1FFF24:
   STX $82,y                                 ; $1FFF38 |
   JMP code_1FFEAB                           ; $1FFF3A |
 
-code_1FFF3D:
+; convenience: use A
+select_PRG_banks_A:
   STA $F5                                   ; $1FFF3D |\  convenience: use A as parameter
   STA $F6                                   ; $1FFF3F | | $8000-$9FFF will select bank A
   INC $F6                                   ; $1FFF41 |/  $A000-$BFFF will select A+1
-code_1FFF43:
+; selects PRG banks based on $F5 and $F6
+select_PRG_banks:
   INC $F7                                   ; $1FFF43 | flag on "selecting PRG bank"
   LDA #$06                                  ; $1FFF45 |\
   STA $F2                                   ; $1FFF47 | |
@@ -17139,7 +17142,7 @@ code_1FFFA6:
   STA $F8                                   ; $1FFFAB |
   LDX $A7                                   ; $1FFFAD |
   LDY $A8                                   ; $1FFFAF |
-  JMP code_1FFF43                           ; $1FFFB1 |
+  JMP select_PRG_banks                      ; $1FFFB1 |
 
 code_1FFFB4:
   INC $F8                                   ; $1FFFB4 |

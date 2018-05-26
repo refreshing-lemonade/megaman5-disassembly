@@ -14,7 +14,7 @@ org $8000
   BNE code_178029                           ; $178010 |
   LDA #$0E                                  ; $178012 |
   STA $F6                                   ; $178014 |
-  JSR code_1FFF43                           ; $178016 |
+  JSR select_PRG_banks                      ; $178016 |
   JMP $A000                                 ; $178019 |
 
 code_17801C:
