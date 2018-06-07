@@ -657,13 +657,13 @@ code_1B851C:
   LDA #$E8                                  ; $1B8520 |
   STA $93                                   ; $1B8522 |
   LDA #$02                                  ; $1B8524 |
-  JSR code_1FFEF3                           ; $1B8526 |
+  JSR init_subsystem                        ; $1B8526 |
   LDA #$03                                  ; $1B8529 |
-  JSR code_1FFF03                           ; $1B852B |
+  JSR kill_subsystem                        ; $1B852B |
   LDA #$01                                  ; $1B852E |
-  JSR code_1FFF03                           ; $1B8530 |
-  LDA #$00                                  ; $1B8533 |
-  JMP code_1FFF0B                           ; $1B8535 |
+  JSR kill_subsystem                        ; $1B8530 |
+  LDA #$00                                  ; $1B8533 | pointless LDA, gets overwritten
+  JMP kill_current_subsystem                ; $1B8535 |
 
 code_1B8538:
   RTS                                       ; $1B8538 |
@@ -1250,13 +1250,13 @@ code_1B89D3:
   LDA #$E8                                  ; $1B89DB |
   STA $93                                   ; $1B89DD |
   LDA #$02                                  ; $1B89DF |
-  JSR code_1FFEF3                           ; $1B89E1 |
+  JSR init_subsystem                        ; $1B89E1 |
   LDA #$03                                  ; $1B89E4 |
-  JSR code_1FFF03                           ; $1B89E6 |
+  JSR kill_subsystem                        ; $1B89E6 |
   LDA #$01                                  ; $1B89E9 |
-  JSR code_1FFF03                           ; $1B89EB |
-  LDA #$00                                  ; $1B89EE |
-  JMP code_1FFF0B                           ; $1B89F0 |
+  JSR kill_subsystem                        ; $1B89EB |
+  LDA #$00                                  ; $1B89EE | pointless LDA, gets overwritten
+  JMP kill_current_subsystem                ; $1B89F0 |
 
   LDA $0540                                 ; $1B89F3 |
   BNE code_1B8A38                           ; $1B89F6 |
@@ -8554,7 +8554,7 @@ code_1DAEE0:
   JSR code_1FEC5D                           ; $1DAEEC |
   JSR code_1FF363                           ; $1DAEEF |
   LDA #$03                                  ; $1DAEF2 |
-  JSR code_1FFF24                           ; $1DAEF4 |
+  JSR async_next_frame.a                    ; $1DAEF4 |
   PLA                                       ; $1DAEF7 |
   TAX                                       ; $1DAEF8 |
   DEC $5A                                   ; $1DAEF9 |
@@ -8752,7 +8752,7 @@ code_1DB073:
   STA $0378,x                               ; $1DB0A0 |
   LDA #$00                                  ; $1DB0A3 |
   STA $95                                   ; $1DB0A5 |
-  JSR code_1FFF22                           ; $1DB0A7 |
+  JSR async_next_frame                      ; $1DB0A7 |
   INC $95                                   ; $1DB0AA |
   RTS                                       ; $1DB0AC |
 
@@ -10224,22 +10224,22 @@ code_1EC107:
   LDX #$FF                                  ; $1EC109 |
   STX $90                                   ; $1EC10B |
   INX                                       ; $1EC10D |
-  LDY #$04                                  ; $1EC10E |
-code_1EC110:
-  LDA $80,x                                 ; $1EC110 |
-  CMP #$01                                  ; $1EC112 |
-  BNE code_1EC11E                           ; $1EC114 |
-  DEC $81,x                                 ; $1EC116 |
-  BNE code_1EC11E                           ; $1EC118 |
-  LDA #$04                                  ; $1EC11A |
-  STA $80,x                                 ; $1EC11C |
-code_1EC11E:
-  INX                                       ; $1EC11E |
-  INX                                       ; $1EC11F |
-  INX                                       ; $1EC120 |
-  INX                                       ; $1EC121 |
-  DEY                                       ; $1EC122 |
-  BNE code_1EC110                           ; $1EC123 |
+  LDY #$04                                  ; $1EC10E | loop through 4 subsystems
+.loop_subsystem:
+  LDA $80,x                                 ; $1EC110 |\
+  CMP #$01                                  ; $1EC112 | | if it has already been processed
+  BNE .next_subsystem                       ; $1EC114 |/
+  DEC $81,x                                 ; $1EC116 |\ then dec & check delay timer
+  BNE .next_subsystem                       ; $1EC118 |/
+  LDA #$04                                  ; $1EC11A |\ if no delay on the timer,
+  STA $80,x                                 ; $1EC11C |/ reset it to needs processing
+.next_subsystem:
+  INX                                       ; $1EC11E |\
+  INX                                       ; $1EC11F | | next subsystem in table
+  INX                                       ; $1EC120 | |
+  INX                                       ; $1EC121 |/
+  DEY                                       ; $1EC122 | dec loop counter
+  BNE .loop_subsystem                       ; $1EC123 |
   LDA $9A                                   ; $1EC125 |
   CMP #$04                                  ; $1EC127 |
   BEQ code_1EC140                           ; $1EC129 |
@@ -10679,7 +10679,7 @@ code_1EC421:
   LDA $0E                                   ; $1EC42F |
 code_1EC431:
   PHA                                       ; $1EC431 |
-  JSR code_1FFF22                           ; $1EC432 |
+  JSR async_next_frame                      ; $1EC432 |
   PLA                                       ; $1EC435 |
   SEC                                       ; $1EC436 |
   SBC #$01                                  ; $1EC437 |
@@ -11624,7 +11624,7 @@ code_1ECC20:
   STA $0300                                 ; $1ECC28 |
   LDA #$00                                  ; $1ECC2B |
   STA $95                                   ; $1ECC2D |
-  JSR code_1FFF22                           ; $1ECC2F |
+  JSR async_next_frame                      ; $1ECC2F |
   INC $95                                   ; $1ECC32 |
   LDA $FC                                   ; $1ECC34 |
   BEQ code_1ECC3B                           ; $1ECC36 |
@@ -11738,7 +11738,7 @@ code_1ECCDF:
   STA $0300                                 ; $1ECCFD |
   LDA #$00                                  ; $1ECD00 |
   STA $95                                   ; $1ECD02 |
-  JSR code_1FFF22                           ; $1ECD04 |
+  JSR async_next_frame                      ; $1ECD04 |
   INC $95                                   ; $1ECD07 |
   LDA $FC                                   ; $1ECD09 |
   BNE code_1ECC8E                           ; $1ECD0B |
@@ -12037,7 +12037,7 @@ code_1ECF01:
   STA $0300                                 ; $1ECF21 |
   LDA #$00                                  ; $1ECF24 |
   STA $95                                   ; $1ECF26 |
-  JSR code_1FFF22                           ; $1ECF28 |
+  JSR async_next_frame                      ; $1ECF28 |
   PLA                                       ; $1ECF2B |
   STA $11                                   ; $1ECF2C |
   INC $95                                   ; $1ECF2E |
@@ -12314,7 +12314,7 @@ code_1ED125:
 code_1ED12F:
   LDA #$00                                  ; $1ED12F |
   STA $95                                   ; $1ED131 |
-  JSR code_1FFF22                           ; $1ED133 |
+  JSR async_next_frame                      ; $1ED133 |
   INC $95                                   ; $1ED136 |
   INC $9D                                   ; $1ED138 |
   LDA $9D                                   ; $1ED13A |
@@ -12415,7 +12415,7 @@ code_1ED1D9:
 code_1ED1F6:
   LDA #$00                                  ; $1ED1F6 |
   STA $95                                   ; $1ED1F8 |
-  JSR code_1FFF22                           ; $1ED1FA |
+  JSR async_next_frame                      ; $1ED1FA |
   INC $95                                   ; $1ED1FD |
   INC $9D                                   ; $1ED1FF |
   LDA $9D                                   ; $1ED201 |
@@ -12482,7 +12482,7 @@ code_1ED311:
   JSR code_1EC38F                           ; $1ED31A |
   JSR code_1EC39D                           ; $1ED31D |
   JSR code_1EC3B8                           ; $1ED320 |
-  JSR code_1FFF22                           ; $1ED323 |
+  JSR async_next_frame                      ; $1ED323 |
   JSR code_1EC2D1                           ; $1ED326 |
   JSR code_1FF3F2                           ; $1ED329 |
   LDA $F9                                   ; $1ED32C |
@@ -12621,7 +12621,7 @@ code_1ED3F0:
 code_1ED450:
   JSR code_1ED474                           ; $1ED450 |
   JSR code_1EC2DB                           ; $1ED453 |
-  JSR code_1FFF22                           ; $1ED456 |
+  JSR async_next_frame                      ; $1ED456 |
   LDA #$00                                  ; $1ED459 |
   STA $1B                                   ; $1ED45B |
   JMP code_1EC3EB                           ; $1ED45D |
@@ -13518,7 +13518,7 @@ code_1EDB2D:
   JSR code_1EDA47                           ; $1EDB30 |
   PLA                                       ; $1EDB33 |
   STA $10                                   ; $1EDB34 |
-  JSR code_1FFF22                           ; $1EDB36 |
+  JSR async_next_frame                      ; $1EDB36 |
   LDA $1E                                   ; $1EDB39 |
   BNE code_1EDB2D                           ; $1EDB3B |
   PLA                                       ; $1EDB3D |
@@ -13547,7 +13547,7 @@ code_1EDB5D:
   DEY                                       ; $1EDB60 |
   BNE code_1EDB5D                           ; $1EDB61 |
   JSR code_1EDB6C                           ; $1EDB63 |
-  JSR code_1FFF22                           ; $1EDB66 |
+  JSR async_next_frame                      ; $1EDB66 |
   JMP code_1EDB49                           ; $1EDB69 |
 
 code_1EDB6C:
@@ -13720,7 +13720,7 @@ code_1EDC20:
   LDA #$46                                  ; $1EDDF8 |
   STA $93                                   ; $1EDDFA |
   LDA #$01                                  ; $1EDDFC |
-  JSR code_1FFEF3                           ; $1EDDFE |
+  JSR init_subsystem                        ; $1EDDFE |
   LDA #$00                                  ; $1EDE01 |
   STA $F9                                   ; $1EDE03 |
   STA $29                                   ; $1EDE05 |
@@ -13767,8 +13767,8 @@ code_1EDC20:
   LDA #$70                                  ; $1EDE64 |
   STA $93                                   ; $1EDE66 |
   LDA #$00                                  ; $1EDE68 |
-  JSR code_1FFEF3                           ; $1EDE6A |
-  JMP code_1FFF0B                           ; $1EDE6D |
+  JSR init_subsystem                        ; $1EDE6A |
+  JMP kill_current_subsystem                ; $1EDE6D |
 
   LDX #$DF                                  ; $1EDE70 |
   TXS                                       ; $1EDE72 |
@@ -13782,7 +13782,7 @@ code_1EDE73:
 code_1EDE7F:
   LDA $A0                                   ; $1EDE7F |
   BEQ code_1EDE89                           ; $1EDE81 |
-  JSR code_1FFF22                           ; $1EDE83 |
+  JSR async_next_frame                      ; $1EDE83 |
   JMP code_1EDE73                           ; $1EDE86 |
 
 code_1EDE89:
@@ -13881,7 +13881,7 @@ code_1EDF1A:
   PLA                                       ; $1EDF44 |
   STA $EC                                   ; $1EDF45 |
 code_1EDF47:
-  JSR code_1FFF22                           ; $1EDF47 |
+  JSR async_next_frame                      ; $1EDF47 |
   INC $95                                   ; $1EDF4A |
   JMP code_1EDE73                           ; $1EDF4C |
 
@@ -14500,20 +14500,20 @@ code_1FE455:
   LDA #$E8                                  ; $1FE472 |
   STA $93                                   ; $1FE474 |
   LDA #$02                                  ; $1FE476 |
-  JSR code_1FFEF3                           ; $1FE478 |
+  JSR init_subsystem                        ; $1FE478 |
   LDA #$00                                  ; $1FE47B |
-  JSR code_1FFF03                           ; $1FE47D |
+  JSR kill_subsystem                        ; $1FE47D |
   LDA #$01                                  ; $1FE480 |
-  JSR code_1FFF03                           ; $1FE482 |
-  LDA #$03                                  ; $1FE485 |
-  JMP code_1FFF0B                           ; $1FE487 |
+  JSR kill_subsystem                        ; $1FE482 |
+  LDA #$03                                  ; $1FE485 | pointless LDA, gets overwritten
+  JMP kill_current_subsystem                ; $1FE487 |
 
 code_1FE48A:
   LDA $15                                   ; $1FE48A |
   AND #$01                                  ; $1FE48C |
   BEQ code_1FE490                           ; $1FE48E |
 code_1FE490:
-  JSR code_1FFF22                           ; $1FE490 |
+  JSR async_next_frame                      ; $1FE490 |
   JMP code_1FE43E                           ; $1FE493 |
 
   db $01, $02, $03, $04, $05, $06, $07, $08 ; $1FE496 |
@@ -14718,7 +14718,7 @@ code_1FE5CF:
   STA $05F9                                 ; $1FE605 |
   STA $05FA                                 ; $1FE608 |
   STA $05FB                                 ; $1FE60B |
-  JSR code_1FFF22                           ; $1FE60E |
+  JSR async_next_frame                      ; $1FE60E |
   JMP code_1FE4D4                           ; $1FE611 |
 
   db $28, $80, $28, $88, $28, $98, $28, $A0 ; $1FE614 |
@@ -16416,7 +16416,7 @@ code_1FF363:
   JSR code_1FF34A                           ; $1FF365 |
   LDA #$00                                  ; $1FF368 |
   STA $95                                   ; $1FF36A |
-  JMP code_1FFF22                           ; $1FF36C |
+  JMP async_next_frame                      ; $1FF36C |
 
 code_1FF36F:
   LDA $F5                                   ; $1FF36F |
@@ -16435,7 +16435,7 @@ code_1FF36F:
   PLA                                       ; $1FF388 |
   STA $F5                                   ; $1FF389 |
   JSR select_PRG_banks                      ; $1FF38B |
-  JMP code_1FFF22                           ; $1FF38E |
+  JMP async_next_frame                      ; $1FF38E |
 
 code_1FF391:
   LDA $F5                                   ; $1FF391 |
@@ -16463,7 +16463,7 @@ code_1FF39D:
   PLA                                       ; $1FF3B6 |
   STA $F5                                   ; $1FF3B7 |
   JSR select_PRG_banks                      ; $1FF3B9 |
-  JMP code_1FFF22                           ; $1FF3BC |
+  JMP async_next_frame                      ; $1FF3BC |
 
 code_1FF3BF:
   LDY #$03                                  ; $1FF3BF |
@@ -16900,25 +16900,25 @@ RESET:
   DEX                                       ; $1FFE17 |
   TXS                                       ; $1FFE18 |
   LDX #$04                                  ; $1FFE19 |
-code_1FFE1B:
+.code_1FFE1B:
   LDA $2002                                 ; $1FFE1B |
-  BPL code_1FFE1B                           ; $1FFE1E |
-code_1FFE20:
+  BPL .code_1FFE1B                          ; $1FFE1E |
+.code_1FFE20:
   LDA $2002                                 ; $1FFE20 |
-  BMI code_1FFE20                           ; $1FFE23 |
+  BMI .code_1FFE20                          ; $1FFE23 |
   DEX                                       ; $1FFE25 |
-  BNE code_1FFE1B                           ; $1FFE26 |
+  BNE .code_1FFE1B                          ; $1FFE26 |
   LDA $2002                                 ; $1FFE28 |
   LDA #$10                                  ; $1FFE2B |
   TAY                                       ; $1FFE2D |
-code_1FFE2E:
+.code_1FFE2E:
   STA $2006                                 ; $1FFE2E |
   STA $2006                                 ; $1FFE31 |
   EOR #$10                                  ; $1FFE34 |
   DEY                                       ; $1FFE36 |
-  BNE code_1FFE2E                           ; $1FFE37 |
+  BNE .code_1FFE2E                          ; $1FFE37 |
   TYA                                       ; $1FFE39 |
-code_1FFE3A:
+.code_1FFE3A:
   STA $0000,y                               ; $1FFE3A |
   STA $0100,y                               ; $1FFE3D |
   STA $0200,y                               ; $1FFE40 |
@@ -16928,24 +16928,24 @@ code_1FFE3A:
   STA $0600,y                               ; $1FFE4C |
   STA $0700,y                               ; $1FFE4F |
   DEY                                       ; $1FFE52 |
-  BNE code_1FFE3A                           ; $1FFE53 |
+  BNE .code_1FFE3A                          ; $1FFE53 |
   LDX #$07                                  ; $1FFE55 |
   LDA #$88                                  ; $1FFE57 |
-code_1FFE59:
+.code_1FFE59:
   STA $DC,x                                 ; $1FFE59 |
   DEX                                       ; $1FFE5B |
-  BPL code_1FFE59                           ; $1FFE5C |
+  BPL .code_1FFE59                          ; $1FFE5C |
   LDA #$18                                  ; $1FFE5E |
   STA $FE                                   ; $1FFE60 |
   LDA #$01                                  ; $1FFE62 |
   JSR code_1FFFB7                           ; $1FFE64 |
   LDX #$05                                  ; $1FFE67 |
   LDA #$00                                  ; $1FFE69 |
-code_1FFE6B:
+.code_1FFE6B:
   STX $8000                                 ; $1FFE6B |
   STA $8001                                 ; $1FFE6E |
   DEX                                       ; $1FFE71 |
-  BPL code_1FFE6B                           ; $1FFE72 |
+  BPL .code_1FFE6B                          ; $1FFE72 |
   JSR code_1EC38F                           ; $1FFE74 |
   LDA #$20                                  ; $1FFE77 |
   LDX #$00                                  ; $1FFE79 |
@@ -16960,7 +16960,7 @@ code_1FFE6B:
   LDA #$E8                                  ; $1FFE8D |
   STA $93                                   ; $1FFE8F |
   LDA #$02                                  ; $1FFE91 |
-  JSR code_1FFEF3                           ; $1FFE93 |
+  JSR init_subsystem                        ; $1FFE93 |
   LDA #$88                                  ; $1FFE96 |
   STA $E4                                   ; $1FFE98 |
   STA $9B                                   ; $1FFE9A |
@@ -16971,112 +16971,129 @@ code_1FFE6B:
   LDA #$9C                                  ; $1FFEA5 |
   STA $B0                                   ; $1FFEA7 |
   STA $BA                                   ; $1FFEA9 |
-code_1FFEAB:
+.check_subsystems:
   LDX #$FF                                  ; $1FFEAB |
   TXS                                       ; $1FFEAD |
-code_1FFEAE:
+.init_subsystem_loop:
   LDX #$00                                  ; $1FFEAE |
   STX $90                                   ; $1FFEB0 |
-  LDY #$04                                  ; $1FFEB2 |
-code_1FFEB4:
-  LDA $80,x                                 ; $1FFEB4 |
-  CMP #$04                                  ; $1FFEB6 |
-  BCS code_1FFEC4                           ; $1FFEB8 |
-  INX                                       ; $1FFEBA |
-  INX                                       ; $1FFEBB |
-  INX                                       ; $1FFEBC |
-  INX                                       ; $1FFEBD |
-  DEY                                       ; $1FFEBE |
-  BNE code_1FFEB4                           ; $1FFEBF |
-  JMP code_1FFEAE                           ; $1FFEC1 |
-
-code_1FFEC4:
+  LDY #$04                                  ; $1FFEB2 | loop counter: 4 subsystems
+.subsystem_loop:
+  LDA $80,x                                 ; $1FFEB4 |\  if subsystem status is
+  CMP #$04                                  ; $1FFEB6 | | needs processing or needs init,
+  BCS .process_subsystem                    ; $1FFEB8 |/  go ahead and process it
+  INX                                       ; $1FFEBA |\
+  INX                                       ; $1FFEBB | | next subsystem
+  INX                                       ; $1FFEBC | |
+  INX                                       ; $1FFEBD |/
+  DEY                                       ; $1FFEBE | dec loop counter
+  BNE .subsystem_loop                       ; $1FFEBF |
+  JMP .init_subsystem_loop                  ; $1FFEC1 | just keep looping and checking
+.process_subsystem:
   LDA $90                                   ; $1FFEC4 |
-  BNE code_1FFEAE                           ; $1FFEC6 |
-  DEY                                       ; $1FFEC8 |
-  TYA                                       ; $1FFEC9 |
-  EOR #$03                                  ; $1FFECA |
-  STA $91                                   ; $1FFECC |
+  BNE .init_subsystem_loop                  ; $1FFEC6 |
+  DEY                                       ; $1FFEC8 |\
+  TYA                                       ; $1FFEC9 | | Y was subsystem loop counter
+  EOR #$03                                  ; $1FFECA | | Y - 1 flipped (loops count down)
+  STA $91                                   ; $1FFECC |/  -> current index
   LDY $80,x                                 ; $1FFECE |
-  LDA #$02                                  ; $1FFED0 |
-  STA $80,x                                 ; $1FFED2 |
-  CPY #$08                                  ; $1FFED4 |
-  BNE code_1FFEE3                           ; $1FFED6 |
-  LDA $82,x                                 ; $1FFED8 |
-  STA $93                                   ; $1FFEDA |
-  LDA $83,x                                 ; $1FFEDC |
-  STA $94                                   ; $1FFEDE |
-  JMP ($0093)                               ; $1FFEE0 |
+  LDA #$02                                  ; $1FFED0 |\ flag as currently processing
+  STA $80,x                                 ; $1FFED2 |/ this subsystem
+  CPY #$08                                  ; $1FFED4 |\ $08 means init, $04 main
+  BNE .main_subsystem                       ; $1FFED6 |/
+  LDA $82,x                                 ; $1FFED8 |\  else init
+  STA $93                                   ; $1FFEDA | | store init address
+  LDA $83,x                                 ; $1FFEDC | | -> $93-$94
+  STA $94                                   ; $1FFEDE | | and jump to it to start off
+  JMP ($0093)                               ; $1FFEE0 |/  subsystem loop
+.main_subsystem:
+  LDA $82,x                                 ; $1FFEE3 |\
+  TAX                                       ; $1FFEE5 | | restore stack pointer
+  TXS                                       ; $1FFEE6 |/
+  LDA $91                                   ; $1FFEE7 |\  for index $00
+  BNE .ret_subsystem                        ; $1FFEE9 | | (first one, main gameplay)
+  JSR code_1EC2E5                           ; $1FFEEB |/  call ???
+.ret_subsystem:
+  PLA                                       ; $1FFEEE |\
+  TAY                                       ; $1FFEEF | | restore X & Y
+  PLA                                       ; $1FFEF0 | |
+  TAX                                       ; $1FFEF1 |/
+  RTS                                       ; $1FFEF2 | return to subsystem code
 
-code_1FFEE3:
-  LDA $82,x                                 ; $1FFEE3 |\  copy low byte of address
-  TAX                                       ; $1FFEE5 | | into stack pointer
-  TXS                                       ; $1FFEE6 |/  
-  LDA $91                                   ; $1FFEE7 |
-  BNE code_1FFEEE                           ; $1FFEE9 |
-  JSR code_1EC2E5                           ; $1FFEEB |
-code_1FFEEE:
-  PLA                                       ; $1FFEEE |
-  TAY                                       ; $1FFEEF |
-  PLA                                       ; $1FFEF0 |
-  TAX                                       ; $1FFEF1 |
-  RTS                                       ; $1FFEF2 |
-
-code_1FFEF3:
-  JSR code_1FFF17                           ; $1FFEF3 |
-  LDA $93                                   ; $1FFEF6 |
-  STA $82,x                                 ; $1FFEF8 |
-  LDA $94                                   ; $1FFEFA |
-  STA $83,x                                 ; $1FFEFC |
-  LDA #$08                                  ; $1FFEFE |
-  STA $80,x                                 ; $1FFF00 |
+; marks a subsystem as needs initialization
+; and sets init address for it
+; parameters:
+; A: subsystem index
+; $93-$94: init address for subsystem
+init_subsystem:
+  JSR subsystem_offset.a                    ; $1FFEF3 | grab offset from index
+  LDA $93                                   ; $1FFEF6 |\
+  STA $82,x                                 ; $1FFEF8 | | store init address
+  LDA $94                                   ; $1FFEFA | | in subsystem table
+  STA $83,x                                 ; $1FFEFC |/  from params
+  LDA #$08                                  ; $1FFEFE |\ mark as needs initialization
+  STA $80,x                                 ; $1FFF00 |/
   RTS                                       ; $1FFF02 |
 
-code_1FFF03:
-  JSR code_1FFF17                           ; $1FFF03 |
-  LDA #$00                                  ; $1FFF06 |
-  STA $80,x                                 ; $1FFF08 |
+; turns a subsystem inactive
+; parameters:
+; A: subsystem index
+kill_subsystem:
+  JSR subsystem_offset.a                    ; $1FFF03 | grab offset from index
+  LDA #$00                                  ; $1FFF06 |\ mark as inactive
+  STA $80,x                                 ; $1FFF08 |/ KILL
   RTS                                       ; $1FFF0A |
 
-code_1FFF0B:
-  JSR code_1FFF15                           ; $1FFF0B |
-  LDA #$00                                  ; $1FFF0E |
-  STA $80,x                                 ; $1FFF10 |
-  JMP code_1FFEAB                           ; $1FFF12 |
+kill_current_subsystem:
+  JSR subsystem_offset                      ; $1FFF0B | grab current offset
+  LDA #$00                                  ; $1FFF0E |\ mark as inactive
+  STA $80,x                                 ; $1FFF10 |/ KILL
+  JMP RESET.check_subsystems                ; $1FFF12 | also go on to subsystem processing
 
-code_1FFF15:
+; converts subsystem index to usable offset
+; parameters:
+; $91 (or A, see below): index
+; returns:
+; X: offset (index * 4)
+subsystem_offset:
   LDA $91                                   ; $1FFF15 |
-code_1FFF17:
-  ASL                                       ; $1FFF17 |
-  ASL                                       ; $1FFF18 |
-  TAX                                       ; $1FFF19 |
+; for using your own A rather than $91
+.a:
+  ASL                                       ; $1FFF17 |\ structure is 4 bytes per entry
+  ASL                                       ; $1FFF18 |/ so left shift twice to get offset
+  TAX                                       ; $1FFF19 | return in X
   RTS                                       ; $1FFF1A |
 
 code_1FFF1B:
-  JSR code_1FFF22                           ; $1FFF1B |
+  JSR async_next_frame                      ; $1FFF1B |
   DEX                                       ; $1FFF1E |
   BNE code_1FFF1B                           ; $1FFF1F |
   RTS                                       ; $1FFF21 |
 
-; seems to be the "main" for the game, runs every frame
-code_1FFF22:
+; main "asynchronous" call to handle
+; multiple subsystems simultaneously per frame
+; call this at the end of your subsystem's loop
+; this will just do anything else that still needs
+; processing and then return on the next frame, fresh
+async_next_frame:
   LDA #$01                                  ; $1FFF22 |
-code_1FFF24:
+; use A instead of $01 as parameter
+.a:
   STA $93                                   ; $1FFF24 |
-  TXA                                       ; $1FFF26 |
-  PHA                                       ; $1FFF27 |
-  TYA                                       ; $1FFF28 |
-  PHA                                       ; $1FFF29 |
-  JSR code_1FFF15                           ; $1FFF2A |
-  LDA $93                                   ; $1FFF2D |
-  STA $81,x                                 ; $1FFF2F |
-  LDA #$01                                  ; $1FFF31 |
-  STA $80,x                                 ; $1FFF33 |
-  TXA                                       ; $1FFF35 |
-  TAY                                       ; $1FFF36 |
-  TSX                                       ; $1FFF37 |
-  STX $82,y                                 ; $1FFF38 |
-  JMP code_1FFEAB                           ; $1FFF3A |
+  TXA                                       ; $1FFF26 |\
+  PHA                                       ; $1FFF27 | | preserve X & Y
+  TYA                                       ; $1FFF28 | |
+  PHA                                       ; $1FFF29 |/
+  JSR subsystem_offset                      ; $1FFF2A | grab offset from subsystem index
+  LDA $93                                   ; $1FFF2D |\ update delay timer
+  STA $81,x                                 ; $1FFF2F |/ current -> table
+  LDA #$01                                  ; $1FFF31 |\ flag current subsystem byte 1
+  STA $80,x                                 ; $1FFF33 |/ as "already processed"
+  TXA                                       ; $1FFF35 |\
+  TAY                                       ; $1FFF36 | | preserve subsystem stack pointer
+  TSX                                       ; $1FFF37 | | in byte 3 of table
+  STX $82,y                                 ; $1FFF38 |/
+  JMP RESET.check_subsystems                ; $1FFF3A |
 
 ; convenience: use A
 select_PRG_banks_A:
