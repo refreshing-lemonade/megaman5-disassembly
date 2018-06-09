@@ -11295,6 +11295,8 @@ code_1EC7E6:
   db $0B, $00, $08, $00, $00, $F8, $00, $01 ; $1EC9CF |
   db $00, $FA, $08, $00, $00, $05           ; $1EC9D7 |
 
+; large routine handles screen transitions and maybe
+; other camera updates
 code_1EC9DD:
   LDA $26                                   ; $1EC9DD |
   CMP #$01                                  ; $1EC9DF |
@@ -11562,10 +11564,10 @@ code_1ECB96:
   INC $24                                   ; $1ECBB0 |
   DEC $25                                   ; $1ECBB2 |
 code_1ECBB4:
-  LDA $FC                                   ; $1ECBB4 |
-  CLC                                       ; $1ECBB6 |
-  ADC #$04                                  ; $1ECBB7 |
-  STA $FC                                   ; $1ECBB9 |
+  LDA $FC                                   ; $1ECBB4 |\
+  CLC                                       ; $1ECBB6 | | scroll right by 4
+  ADC #$04                                  ; $1ECBB7 | |
+  STA $FC                                   ; $1ECBB9 |/
   LDA $F9                                   ; $1ECBBB |
   ADC #$00                                  ; $1ECBBD |
   STA $F9                                   ; $1ECBBF |
@@ -11624,11 +11626,11 @@ code_1ECC20:
   STA $0300                                 ; $1ECC28 |
   LDA #$00                                  ; $1ECC2B |
   STA $95                                   ; $1ECC2D |
-  JSR async_next_frame                      ; $1ECC2F |
-  INC $95                                   ; $1ECC32 |
-  LDA $FC                                   ; $1ECC34 |
-  BEQ code_1ECC3B                           ; $1ECC36 |
-  JMP code_1ECBB4                           ; $1ECC38 |
+  JSR async_next_frame                      ; $1ECC2F |\
+  INC $95                                   ; $1ECC32 | | async gameloop here
+  LDA $FC                                   ; $1ECC34 | | if screen transition not
+  BEQ code_1ECC3B                           ; $1ECC36 | | done, keep looping
+  JMP code_1ECBB4                           ; $1ECC38 |/
 
 code_1ECC3B:
   PLA                                       ; $1ECC3B |
@@ -11637,7 +11639,7 @@ code_1ECC3B:
 code_1ECC41:
   LDA #$00                                  ; $1ECC41 |
   STA $35                                   ; $1ECC43 |
-  RTS                                       ; $1ECC45 |
+  RTS                                       ; $1ECC45 | right screen transition done
 
 code_1ECC46:
   JMP code_1ECD10                           ; $1ECC46 |
@@ -11677,10 +11679,10 @@ code_1ECC49:
   DEC $24                                   ; $1ECC8A |
   INC $25                                   ; $1ECC8C |
 code_1ECC8E:
-  LDA $FC                                   ; $1ECC8E |
-  SEC                                       ; $1ECC90 |
-  SBC #$04                                  ; $1ECC91 |
-  STA $FC                                   ; $1ECC93 |
+  LDA $FC                                   ; $1ECC8E |\
+  SEC                                       ; $1ECC90 | | scroll left by 4
+  SBC #$04                                  ; $1ECC91 | |
+  STA $FC                                   ; $1ECC93 |/
   LDA $F9                                   ; $1ECC95 |
   SBC #$00                                  ; $1ECC97 |
   STA $F9                                   ; $1ECC99 |
@@ -11738,13 +11740,13 @@ code_1ECCDF:
   STA $0300                                 ; $1ECCFD |
   LDA #$00                                  ; $1ECD00 |
   STA $95                                   ; $1ECD02 |
-  JSR async_next_frame                      ; $1ECD04 |
-  INC $95                                   ; $1ECD07 |
-  LDA $FC                                   ; $1ECD09 |
-  BNE code_1ECC8E                           ; $1ECD0B |
+  JSR async_next_frame                      ; $1ECD04 |\
+  INC $95                                   ; $1ECD07 | | async gameloop here
+  LDA $FC                                   ; $1ECD09 | | if screen transition
+  BNE code_1ECC8E                           ; $1ECD0B |/  not done, keep looping
   STA $35                                   ; $1ECD0D |
 code_1ECD0F:
-  RTS                                       ; $1ECD0F |
+  RTS                                       ; $1ECD0F | left screen transition done
 
 code_1ECD10:
   LDA $FC                                   ; $1ECD10 |
@@ -11973,10 +11975,10 @@ code_1ECEA3:
   LDA $28                                   ; $1ECEA3 |
   AND #$04                                  ; $1ECEA5 |
   BEQ code_1ECED3                           ; $1ECEA7 |
-  LDA $FA                                   ; $1ECEA9 |
-  CLC                                       ; $1ECEAB |
-  ADC #$04                                  ; $1ECEAC |
-  STA $FA                                   ; $1ECEAE |
+  LDA $FA                                   ; $1ECEA9 |\
+  CLC                                       ; $1ECEAB | | scroll down by 4
+  ADC #$04                                  ; $1ECEAC | |
+  STA $FA                                   ; $1ECEAE |/
   CMP #$F0                                  ; $1ECEB0 |
   BCC code_1ECEB8                           ; $1ECEB2 |
   ADC #$0F                                  ; $1ECEB4 |
@@ -11995,10 +11997,10 @@ code_1ECEB8:
   JMP code_1ECF01                           ; $1ECED0 |
 
 code_1ECED3:
-  LDA $FA                                   ; $1ECED3 |
-  SEC                                       ; $1ECED5 |
-  SBC #$04                                  ; $1ECED6 |
-  STA $FA                                   ; $1ECED8 |
+  LDA $FA                                   ; $1ECED3 |\
+  SEC                                       ; $1ECED5 | | scroll up by 4
+  SBC #$04                                  ; $1ECED6 | |
+  STA $FA                                   ; $1ECED8 |/
   BCS code_1ECEE0                           ; $1ECEDA |
   SBC #$0F                                  ; $1ECEDC |
   STA $FA                                   ; $1ECEDE |
@@ -12037,15 +12039,16 @@ code_1ECF01:
   STA $0300                                 ; $1ECF21 |
   LDA #$00                                  ; $1ECF24 |
   STA $95                                   ; $1ECF26 |
-  JSR async_next_frame                      ; $1ECF28 |
+  JSR async_next_frame                      ; $1ECF28 | async gameloop
   PLA                                       ; $1ECF2B |
   STA $11                                   ; $1ECF2C |
   INC $95                                   ; $1ECF2E |
   LDA $FA                                   ; $1ECF30 |
   STA $45                                   ; $1ECF32 |
-  BEQ code_1ECF39                           ; $1ECF34 |
-  JMP code_1ECEA3                           ; $1ECF36 |
+  BEQ code_1ECF39                           ; $1ECF34 |\ if screen transition not
+  JMP code_1ECEA3                           ; $1ECF36 |/ done, keep looping
 
+; at this point, vertical screen transition done
 code_1ECF39:
   LDA $0378                                 ; $1ECF39 |
   AND #$F8                                  ; $1ECF3C |
@@ -13830,8 +13833,8 @@ code_1EDEAC:
   STA $3F                                   ; $1EDEE7 |
   LDA $0330                                 ; $1EDEE9 |
   STA $3C                                   ; $1EDEEC |
-  LDA $0348                                 ; $1EDEEE |
-  STA $3D                                   ; $1EDEF1 |
+  LDA $0348                                 ; $1EDEEE |\ store "live" screen number
+  STA $3D                                   ; $1EDEF1 |/ -> current screen number
   CMP $69                                   ; $1EDEF3 |
   BCC code_1EDEF9                           ; $1EDEF5 |
   STA $69                                   ; $1EDEF7 |
