@@ -10087,12 +10087,12 @@ bank $1E
 org $C000
 
 NMI:
-  PHP                                       ; $1EC000 |
-  PHA                                       ; $1EC001 |
-  TXA                                       ; $1EC002 |
-  PHA                                       ; $1EC003 |
-  TYA                                       ; $1EC004 |
-  PHA                                       ; $1EC005 |
+  PHP                                       ; $1EC000 |\
+  PHA                                       ; $1EC001 | | preserve status,
+  TXA                                       ; $1EC002 | | X, Y, and A
+  PHA                                       ; $1EC003 | |
+  TYA                                       ; $1EC004 | |
+  PHA                                       ; $1EC005 |/
   LDA $F0                                   ; $1EC006 |
   BEQ code_1EC00D                           ; $1EC008 |
   JMP code_1EC107                           ; $1EC00A |
@@ -10155,9 +10155,9 @@ code_1EC060:
   STA $2000                                 ; $1EC078 |
 code_1EC07B:
   LDA $18                                   ; $1EC07B |
-  BEQ code_1EC0AC                           ; $1EC07D |
+  BEQ select_CHR_banks                      ; $1EC07D |
   LDA $60                                   ; $1EC07F |
-  BNE code_1EC0AC                           ; $1EC081 |
+  BNE select_CHR_banks                      ; $1EC081 |
   LDX #$00                                  ; $1EC083 |
   STX $18                                   ; $1EC085 |
   LDA $2002                                 ; $1EC087 |
@@ -10176,14 +10176,14 @@ code_1EC094:
   STY $2006                                 ; $1EC0A3 |
   STY $2006                                 ; $1EC0A6 |
   STY $2006                                 ; $1EC0A9 |
-code_1EC0AC:
-  LDX #$05                                  ; $1EC0AC |
-code_1EC0AE:
-  STX $8000                                 ; $1EC0AE |
-  LDA $EA,x                                 ; $1EC0B1 |
-  STA $8001                                 ; $1EC0B3 |
-  DEX                                       ; $1EC0B6 |
-  BPL code_1EC0AE                           ; $1EC0B7 |
+select_CHR_banks:
+  LDX #$05                                  ; $1EC0AC | $00-$05 are MMC3's CHR banks
+loop_CHR_banks:
+  STX $8000                                 ; $1EC0AE | loop index -> bank select register
+  LDA $EA,x                                 ; $1EC0B1 |\ table value at $EA
+  STA $8001                                 ; $1EC0B3 |/ -> bank data
+  DEX                                       ; $1EC0B6 |\ continue loop until after $00
+  BPL loop_CHR_banks                        ; $1EC0B7 |/
   LDA $F2                                   ; $1EC0B9 |
   STA $8000                                 ; $1EC0BB |
 code_1EC0BE:
@@ -10254,13 +10254,13 @@ code_1EC12B:
   LDA #$47                                  ; $1EC13B |
   STA $0106,x                               ; $1EC13D |
 code_1EC140:
-  PLA                                       ; $1EC140 |
-  TAY                                       ; $1EC141 |
-  PLA                                       ; $1EC142 |
-  TAX                                       ; $1EC143 |
-  PLA                                       ; $1EC144 |
-  PLP                                       ; $1EC145 |
-  RTI                                       ; $1EC146 |
+  PLA                                       ; $1EC140 |\
+  TAY                                       ; $1EC141 | |
+  PLA                                       ; $1EC142 | | restore status,
+  TAX                                       ; $1EC143 | | X, Y, and A
+  PLA                                       ; $1EC144 | | and return from interrupt
+  PLP                                       ; $1EC145 | |
+  RTI                                       ; $1EC146 |/
 
   PHP                                       ; $1EC147 |
   PHP                                       ; $1EC148 |
