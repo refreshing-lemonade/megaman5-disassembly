@@ -5852,7 +5852,6 @@ code_03A648:
 bank $04
 org $A000
 
-
   JSR $84A6                                 ; $04A000 |
   BCS code_04A019                           ; $04A003 |
   LDA #$80                                  ; $04A005 |
@@ -6359,27 +6358,27 @@ code_04A43D:
   STA $0468,x                               ; $04A455 |
   LDA #$30                                  ; $04A458 |
   STA $0480,x                               ; $04A45A |
-  LDA $E4                                   ; $04A45D |
-  ADC $E5                                   ; $04A45F |
-  STA $E6                                   ; $04A461 |
-  AND #$07                                  ; $04A463 |
-  TAY                                       ; $04A465 |
-  LDA $A612,y                               ; $04A466 |
-  STA $0378,x                               ; $04A469 |
-  LSR                                       ; $04A46C |
-  LSR                                       ; $04A46D |
-  LSR                                       ; $04A46E |
-  LSR                                       ; $04A46F |
-  TAY                                       ; $04A470 |
-  LDA $A61F,y                               ; $04A471 |
-  STA $00                                   ; $04A474 |
-  LDA $E4                                   ; $04A476 |
-  ADC $E6                                   ; $04A478 |
-  STA $E5                                   ; $04A47A |
-  AND $00                                   ; $04A47C |
-  TAY                                       ; $04A47E |
-  LDA $A61A,y                               ; $04A47F |
-  STA $0330,x                               ; $04A482 |
+  LDA $E4                                   ; $04A45D |\
+  ADC $E5                                   ; $04A45F | | Wily capsule RNG roll
+  STA $E6                                   ; $04A461 | | for next spawn Y position
+  AND #$07                                  ; $04A463 | | out of 0-7 (8 poss.)
+  TAY                                       ; $04A465 |/
+  LDA wily_capsule_spawn_y_pos,y            ; $04A466 |\ random index into Y table
+  STA $0378,x                               ; $04A469 |/ -> Wily capsule Y position
+  LSR                                       ; $04A46C |\
+  LSR                                       ; $04A46D | | Y position >> 4
+  LSR                                       ; $04A46E | | used as index
+  LSR                                       ; $04A46F | | for modulus value
+  TAY                                       ; $04A470 |/
+  LDA wily_capsule_spawn_x_modulus-3,y      ; $04A471 |\ load from modulus table
+  STA $00                                   ; $04A474 |/ using Y >> 4 as index
+  LDA $E4                                   ; $04A476 |\
+  ADC $E6                                   ; $04A478 | | RNG roll & modulus value
+  STA $E5                                   ; $04A47A | | gives us the index
+  AND $00                                   ; $04A47C | | for X position
+  TAY                                       ; $04A47E |/
+  LDA wily_capsule_spawn_x_pos,y            ; $04A47F |\ random index into X table
+  STA $0330,x                               ; $04A482 |/ -> Wily capsule X position
   JSR code_04A553                           ; $04A485 |
   BNE code_04A4E9                           ; $04A488 |
   LDA #$00                                  ; $04A48A |
@@ -6529,10 +6528,25 @@ code_04A583:
   db $48, $EC, $30, $14, $28, $EC, $40, $2C ; $04A5F6 |
   db $0F, $30, $2C, $13, $0F, $30, $36, $13 ; $04A5FE |
   db $0F, $30, $27, $17, $0F, $0F, $20, $11 ; $04A606 |
-  db $0F, $20, $24, $14, $38, $48, $58, $68 ; $04A60E |
-  db $78, $88, $98, $38, $30, $D0, $50, $B0 ; $04A616 |
-  db $70, $90, $50, $B0, $07, $07, $07, $07 ; $04A61E |
-  db $03, $03, $01, $00, $E0, $00, $20, $E0 ; $04A626 |
+  db $0F, $20, $24, $14                     ; $04A60E |
+
+; possible Y positions capsule spawns at
+wily_capsule_spawn_y_pos:
+  db $38, $48, $58, $68, $78, $88, $98, $38 ; $04A612 |
+
+; possible X positions capsule spawns at
+wily_capsule_spawn_x_pos:
+  db $30, $D0, $50, $B0, $70, $90, $50, $B0 ; $04A61A |
+
+; indexed with Y position >> 4
+; this table restricts the range of RNG indices
+; for X spawning based on Y position
+; generally speaking, lower spawns have more
+; restricted X possibilities
+wily_capsule_spawn_x_modulus:
+  db $07, $07, $07, $07, $03, $03, $01      ; $04A622 |
+
+  db $00, $E0, $00, $20, $E0                ; $04A629 |
   db $00, $20, $00, $0C, $08, $04, $00, $04 ; $04A62E |
   db $00, $0C, $08, $01, $01, $01, $01, $01 ; $04A636 |
   db $01, $01, $01, $02, $02, $02, $04, $04 ; $04A63E |

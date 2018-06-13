@@ -13530,28 +13530,33 @@ code_1EDB2D:
   STA $F5                                   ; $1EDB41 |
   JMP select_PRG_banks                      ; $1EDB43 |
 
-  LDX #$AF                                  ; $1EDB46 |
+; subsystem 1, global
+; never is turned off or changed
+; handles some miscellaneous junk
+; like RNG
+subsystem_1:
+  LDX #$AF                                  ; $1EDB46 | stack hack
   TXS                                       ; $1EDB48 |
-code_1EDB49:
-  LDX #$00                                  ; $1EDB49 |
-  LDY #$04                                  ; $1EDB4B |
-  LDA $E4,x                                 ; $1EDB4D |
-  AND #$02                                  ; $1EDB4F |
-  STA $00                                   ; $1EDB51 |
-  LDA $E5,x                                 ; $1EDB53 |
-  AND #$02                                  ; $1EDB55 |
-  EOR $00                                   ; $1EDB57 |
-  CLC                                       ; $1EDB59 |
-  BEQ code_1EDB5D                           ; $1EDB5A |
-  SEC                                       ; $1EDB5C |
-code_1EDB5D:
-  ROR $E4,x                                 ; $1EDB5D |
-  INX                                       ; $1EDB5F |
-  DEY                                       ; $1EDB60 |
-  BNE code_1EDB5D                           ; $1EDB61 |
+.loop:
+  LDX #$00                                  ; $1EDB49 | RNG index
+  LDY #$04                                  ; $1EDB4B | RNG loop counter
+  LDA $E4,x                                 ; $1EDB4D |\
+  AND #$02                                  ; $1EDB4F | | take second to lowest bit
+  STA $00                                   ; $1EDB51 | | of $E4 and $E5
+  LDA $E5,x                                 ; $1EDB53 | | XOR them together
+  AND #$02                                  ; $1EDB55 | |
+  EOR $00                                   ; $1EDB57 |/
+  CLC                                       ; $1EDB59 |\  if both bits are on or both off,
+  BEQ .loop_RNG                             ; $1EDB5A | | carry cleared for rotate
+  SEC                                       ; $1EDB5C |/  else carry set for rotate
+.loop_RNG:
+  ROR $E4,x                                 ; $1EDB5D | rotate right with random carry
+  INX                                       ; $1EDB5F |\
+  DEY                                       ; $1EDB60 | | rotate all 4 RNG addresses
+  BNE .loop_RNG                             ; $1EDB61 |/  $E4~$E7
   JSR code_1EDB6C                           ; $1EDB63 |
-  JSR async_next_frame                      ; $1EDB66 |
-  JMP code_1EDB49                           ; $1EDB69 |
+  JSR async_next_frame                      ; $1EDB66 |\ async gameloop
+  JMP .loop                                 ; $1EDB69 |/
 
 code_1EDB6C:
   LDA $19                                   ; $1EDB6C |
@@ -13718,12 +13723,12 @@ code_1EDC20:
   CLI                                       ; $1EDDEF |
   LDA #$01                                  ; $1EDDF0 |
   STA $96                                   ; $1EDDF2 |
-  LDA #$DB                                  ; $1EDDF4 |
-  STA $94                                   ; $1EDDF6 |
-  LDA #$46                                  ; $1EDDF8 |
-  STA $93                                   ; $1EDDFA |
-  LDA #$01                                  ; $1EDDFC |
-  JSR init_subsystem                        ; $1EDDFE |
+  LDA #subsystem_1>>8                       ; $1EDDF4 |\
+  STA $94                                   ; $1EDDF6 | | init global subsystem 1
+  LDA #subsystem_1                          ; $1EDDF8 | |
+  STA $93                                   ; $1EDDFA | |
+  LDA #$01                                  ; $1EDDFC | |
+  JSR init_subsystem                        ; $1EDDFE |/
   LDA #$00                                  ; $1EDE01 |
   STA $F9                                   ; $1EDE03 |
   STA $29                                   ; $1EDE05 |
