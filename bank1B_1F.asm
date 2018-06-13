@@ -5159,9 +5159,9 @@ code_1C91DC:
   STA $0450,y                               ; $1C91FA |
   LDA #$4B                                  ; $1C91FD |
   JSR code_1FEAA4                           ; $1C91FF |
-  LDA $E6                                   ; $1C9202 |
-  ADC $E4                                   ; $1C9204 |
-  STA $E6                                   ; $1C9206 |
+  LDA $E6                                   ; $1C9202 |\  roll RNG for Star Man's
+  ADC $E4                                   ; $1C9204 | | falling rock position
+  STA $E6                                   ; $1C9206 |/
   CMP #$E0                                  ; $1C9208 |
   BCC code_1C920F                           ; $1C920A |
   SEC                                       ; $1C920C |
@@ -5176,10 +5176,10 @@ code_1C920F:
   ADC #$00                                  ; $1C921D |
   STA $0348,y                               ; $1C921F |
   STY $0E                                   ; $1C9222 |
-  LDA $E6                                   ; $1C9224 |
-  AND #$03                                  ; $1C9226 |
-  ADC #$07                                  ; $1C9228 |
-  TAY                                       ; $1C922A |
+  LDA $E6                                   ; $1C9224 |\
+  AND #$03                                  ; $1C9226 | | roll RNG for ???
+  ADC #$07                                  ; $1C9228 | | falling rock index
+  TAY                                       ; $1C922A |/
   CPY #$0A                                  ; $1C922B |
   BCC code_1C9230                           ; $1C922D |
   DEY                                       ; $1C922F |
@@ -6287,11 +6287,11 @@ code_1C9B75:
 code_1C9B76:
   LDA #$20                                  ; $1C9B76 |
   STA $0468,x                               ; $1C9B78 |
-  LDA $E6                                   ; $1C9B7B |
-  ADC $E7                                   ; $1C9B7D |
-  STA $E7                                   ; $1C9B7F |
-  AND #$01                                  ; $1C9B81 |
-  BEQ code_1C9B86                           ; $1C9B83 |
+  LDA $E6                                   ; $1C9B7B |\
+  ADC $E7                                   ; $1C9B7D | | underwater MET
+  STA $E7                                   ; $1C9B7F | | RNG roll
+  AND #$01                                  ; $1C9B81 | | 50/50 chance to branch
+  BEQ code_1C9B86                           ; $1C9B83 |/
   RTS                                       ; $1C9B85 |
 
 code_1C9B86:
@@ -6980,20 +6980,27 @@ code_1DA1AC:
   JMP code_1FEC4A                           ; $1DA1C1 |
 
 code_1DA1C4:
-  LDA $E6                                   ; $1DA1C4 |
-  ADC $E7                                   ; $1DA1C6 |
-  STA $E6                                   ; $1DA1C8 |
-  AND #$01                                  ; $1DA1CA |
-  TAY                                       ; $1DA1CC |
-  LDA $A1E4,y                               ; $1DA1CD |
-  STA $03A8,x                               ; $1DA1D0 |
-  LDA $A1E0,y                               ; $1DA1D3 |
-  STA $03D8,x                               ; $1DA1D6 |
-  LDA $A1E2,y                               ; $1DA1D9 |
-  STA $03F0,x                               ; $1DA1DC |
+  LDA $E6                                   ; $1DA1C4 |\  RNG roll:
+  ADC $E7                                   ; $1DA1C6 | | random index into speed
+  STA $E6                                   ; $1DA1C8 | | table for mini METs
+  AND #$01                                  ; $1DA1CA | | only 2 possibilities
+  TAY                                       ; $1DA1CC |/
+  LDA mini_MET_x_speeds_lo,y                ; $1DA1CD |\ X velocity
+  STA $03A8,x                               ; $1DA1D0 |/
+  LDA mini_MET_y_speeds_lo,y                ; $1DA1D3 |\
+  STA $03D8,x                               ; $1DA1D6 | | Y velocity
+  LDA mini_MET_y_speeds_hi,y                ; $1DA1D9 | | (high and low)
+  STA $03F0,x                               ; $1DA1DC |/
   RTS                                       ; $1DA1DF |
 
-  db $D4, $77, $02, $03, $58, $48           ; $1DA1E0 |
+mini_MET_y_speeds_lo:
+  db $D4, $77                               ; $1DA1E0 |
+
+mini_MET_y_speeds_hi:
+  db $02, $03                               ; $1DA1E2 |
+
+mini_MET_x_speeds_lo:
+  db $58, $48                               ; $1DA1E4 |
 
   LDA $03A8,x                               ; $1DA1E6 |
   STA $03D8,x                               ; $1DA1E9 |
@@ -7746,13 +7753,13 @@ code_1DA800:
   CMP #$E8                                  ; $1DA803 |
   BCC code_1DA82D                           ; $1DA805 |
 code_1DA807:
-  LDA $E6                                   ; $1DA807 |
-  ADC $E5                                   ; $1DA809 |
-  STA $E6                                   ; $1DA80B |
-  AND #$03                                  ; $1DA80D |
-  TAY                                       ; $1DA80F |
-  LDA $A82E,y                               ; $1DA810 |
-  STA $0468,x                               ; $1DA813 |
+  LDA $E6                                   ; $1DA807 |\  RNG roll:
+  ADC $E5                                   ; $1DA809 | | random index into
+  STA $E6                                   ; $1DA80B | | timer values for new
+  AND #$03                                  ; $1DA80D | | falling crystal spawn
+  TAY                                       ; $1DA80F |/  4 possibilities
+  LDA falling_crystal_timer,y               ; $1DA810 |\ random timer value
+  STA $0468,x                               ; $1DA813 |/ -> wildcard 1 (timer)
   LDA $0528,x                               ; $1DA816 |
   ORA #$04                                  ; $1DA819 |
   STA $0528,x                               ; $1DA81B |
@@ -7765,6 +7772,10 @@ code_1DA807:
 code_1DA82D:
   RTS                                       ; $1DA82D |
 
+; # of frames to wait until a new falling crystal
+; spawns at a certain location
+; this table is randomly selected from, 1/4 chance each value
+falling_crystal_timer:
   db $0A, $3C, $78, $0A                     ; $1DA82E |
 
   LDA $0480,x                               ; $1DA832 |
@@ -8358,12 +8369,12 @@ code_1DAD2C:
   STA $0420,y                               ; $1DAD53 |
   LDA $0438,x                               ; $1DAD56 |
   STA $0438,y                               ; $1DAD59 |
-  LDA $E5                                   ; $1DAD5C |
-  ADC $E7                                   ; $1DAD5E |
-  STA $E7                                   ; $1DAD60 |
-  AND #$07                                  ; $1DAD62 |
-  TAX                                       ; $1DAD64 |
-  LDA $ADC4,x                               ; $1DAD65 |
+  LDA $E5                                   ; $1DAD5C |\  RNG roll:
+  ADC $E7                                   ; $1DAD5E | | random index
+  STA $E7                                   ; $1DAD60 | | for Eddie item drop
+  AND #$07                                  ; $1DAD62 | | BASED EDDIE
+  TAX                                       ; $1DAD64 |/  8 possibilities
+  LDA eddie_item_drops,x                    ; $1DAD65 |
   LDX $0F                                   ; $1DAD68 |
   JSR code_1FEAA4                           ; $1DAD6A |
   LDA #$23                                  ; $1DAD6D |
@@ -8405,6 +8416,12 @@ code_1DAD90:
   BEQ code_1DAD7B                           ; $1DADBF |
   JMP code_1FF2C4                           ; $1DADC1 |
 
+; the items Eddie can drop
+; 3/8 chance: ???
+; 2/8 chance: ???
+; 2/8 chance: large ammo container
+; 1/8 chance: ???
+eddie_item_drops:
   db $78, $74, $76, $72, $78, $74, $76, $78 ; $1DADC4 |
 
   LDY $0468,x                               ; $1DADCC |
@@ -8481,9 +8498,9 @@ code_1DAE58:
   BNE code_1DAE58                           ; $1DAE5E |
   LDA $2F                                   ; $1DAE60 |
   BMI code_1DAE58                           ; $1DAE62 |
-  LDA $E6                                   ; $1DAE64 |
-  ADC $E7                                   ; $1DAE66 |
-  ADC $00                                   ; $1DAE68 |
+  LDA $E6                                   ; $1DAE64 |\
+  ADC $E7                                   ; $1DAE66 | | enemy drop RNG roll
+  ADC $00                                   ; $1DAE68 |/
   SBC $9D                                   ; $1DAE6A |
   STA $E6                                   ; $1DAE6C |
   ADC $01                                   ; $1DAE6E |

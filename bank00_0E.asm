@@ -2728,11 +2728,11 @@ code_02A066:
   BNE code_02A0CF                           ; $02A06A |
   LDA #$D2                                  ; $02A06C |
   STA $0468,x                               ; $02A06E |
-  LDA $E4                                   ; $02A071 |
-  ADC $E7                                   ; $02A073 |
-  AND #$03                                  ; $02A075 |
-  BEQ code_02A07B                           ; $02A077 |
-  LDA #$01                                  ; $02A079 |
+  LDA $E4                                   ; $02A071 |\  Big Pets
+  ADC $E7                                   ; $02A073 | | RNG roll
+  AND #$03                                  ; $02A075 | | minimum 1
+  BEQ code_02A07B                           ; $02A077 | | if zero, make 1
+  LDA #$01                                  ; $02A079 |/  (bias towards 1)
 code_02A07B:
   STA $11                                   ; $02A07B |
   STA $12                                   ; $02A07D |
@@ -2751,11 +2751,11 @@ code_02A07F:
   STA $03D8,y                               ; $02A09A |
   LDA #$02                                  ; $02A09D |
   STA $03F0,y                               ; $02A09F |
-  LDA $E4                                   ; $02A0A2 |
-  ADC $E5                                   ; $02A0A4 |
-  STA $E4                                   ; $02A0A6 |
-  AND #$07                                  ; $02A0A8 |
-  TAX                                       ; $02A0AA |
+  LDA $E4                                   ; $02A0A2 |\  Big Pets
+  ADC $E5                                   ; $02A0A4 | | RNG roll: random index
+  STA $E4                                   ; $02A0A6 | | 8 possibilities
+  AND #$07                                  ; $02A0A8 | | for ???
+  TAX                                       ; $02A0AA |/
   LDA $A283,x                               ; $02A0AB |
   CMP $12                                   ; $02A0AE |
   BNE code_02A0BA                           ; $02A0B0 |
@@ -3026,11 +3026,11 @@ code_02A26E:
   STA $0330,x                               ; $02A309 |
   LDA #$58                                  ; $02A30C |
   STA $0378,x                               ; $02A30E |
-  LDA $E4                                   ; $02A311 |
-  AND #$03                                  ; $02A313 |
-  TAY                                       ; $02A315 |
-  LDA $A5FF,y                               ; $02A316 |
-  STA $04E0,x                               ; $02A319 |
+  LDA $E4                                   ; $02A311 |\  Circring Q9
+  AND #$03                                  ; $02A313 | | RNG roll: random index
+  TAY                                       ; $02A315 |/  into ???
+  LDA $A5FF,y                               ; $02A316 |\ random ??? value
+  STA $04E0,x                               ; $02A319 |/ -> wildcard 6
   LDA #$3E                                  ; $02A31C |
   STA $0588,x                               ; $02A31E |
   LDA #$A3                                  ; $02A321 |
@@ -3161,13 +3161,13 @@ code_02A42F:
   STA $0408,x                               ; $02A439 |
   DEC $04E0,x                               ; $02A43C |
   BNE code_02A458                           ; $02A43F |
-  LDA $E4                                   ; $02A441 |
-  ADC $E5                                   ; $02A443 |
-  STA $E5                                   ; $02A445 |
-  AND #$03                                  ; $02A447 |
-  TAY                                       ; $02A449 |
-  LDA $A5FF,y                               ; $02A44A |
-  STA $04E0,x                               ; $02A44D |
+  LDA $E4                                   ; $02A441 |\  Circring Q9
+  ADC $E5                                   ; $02A443 | | RNG roll
+  STA $E5                                   ; $02A445 | | 4 possibilties
+  AND #$03                                  ; $02A447 | | random index into ???
+  TAY                                       ; $02A449 |/
+  LDA $A5FF,y                               ; $02A44A |\ random ??? value
+  STA $04E0,x                               ; $02A44D |/ -> wildcard 6
   INC $0540,x                               ; $02A450 |
   LDA #$F3                                  ; $02A453 |
   STA $0408,x                               ; $02A455 |
@@ -3385,13 +3385,13 @@ code_02A5A3:
   STA $0408,y                               ; $02A66E |
   TXA                                       ; $02A671 |
   STA $0468,y                               ; $02A672 |
-  LDA $E4                                   ; $02A675 |
-  ADC $E6                                   ; $02A677 |
-  STA $E6                                   ; $02A679 |
-  AND #$03                                  ; $02A67B |
-  TAY                                       ; $02A67D |
-  LDA $A7D5,y                               ; $02A67E |
-  STA $0468,x                               ; $02A681 |
+  LDA $E4                                   ; $02A675 |\  Wily Press
+  ADC $E6                                   ; $02A677 | | RNG roll
+  STA $E6                                   ; $02A679 | | 4 possibilities
+  AND #$03                                  ; $02A67B | | random index for ???
+  TAY                                       ; $02A67D |/
+  LDA $A7D5,y                               ; $02A67E |\ random ??? value
+  STA $0468,x                               ; $02A681 |/ -> wildcard 6
   LDA $A7D9,y                               ; $02A684 |
   STA $0480,x                               ; $02A687 |
   LDA #$00                                  ; $02A68A |
@@ -5956,12 +5956,12 @@ code_04A0D1:
   LDA $0528,y                               ; $04A0E0 |
   ORA #$08                                  ; $04A0E3 |
   STA $0528,y                               ; $04A0E5 |
-  LDA $E4                                   ; $04A0E8 |
-  CLC                                       ; $04A0EA |
-  ADC $E5                                   ; $04A0EB |
-  STA $E5                                   ; $04A0ED |
-  AND #$03                                  ; $04A0EF |
-  TAX                                       ; $04A0F1 |
+  LDA $E4                                   ; $04A0E8 |\  Wily Machine 5
+  CLC                                       ; $04A0EA | | RNG roll
+  ADC $E5                                   ; $04A0EB | | random index for ???
+  STA $E5                                   ; $04A0ED | | 4 possibilities
+  AND #$03                                  ; $04A0EF | |
+  TAX                                       ; $04A0F1 |/
   LDA $A5AE,x                               ; $04A0F2 |
   JSR code_1FEAE9                           ; $04A0F5 |
   LDA $A5B2,x                               ; $04A0F8 |
@@ -9076,10 +9076,10 @@ org $A000
   DEC $0468,x                               ; $06A00B |
   BNE code_06A05D                           ; $06A00E |
 code_06A010:
-  LDA $E7                                   ; $06A010 |
-  ADC $E6                                   ; $06A012 |
-  ADC $9D                                   ; $06A014 |
-  STA $E4                                   ; $06A016 |
+  LDA $E7                                   ; $06A010 |\
+  ADC $E6                                   ; $06A012 | | Stone Man
+  ADC $9D                                   ; $06A014 | | RNG roll for ???
+  STA $E4                                   ; $06A016 |/
   JSR code_1FEC94                           ; $06A018 |
   CMP #$71                                  ; $06A01B |
   BCS code_06A03B                           ; $06A01D |
@@ -9099,9 +9099,9 @@ code_06A02D:
   BEQ code_06A041                           ; $06A037 |
   BNE code_06A05E                           ; $06A039 |
 code_06A03B:
-  LDA $E4                                   ; $06A03B |
-  AND #$03                                  ; $06A03D |
-  BEQ code_06A067                           ; $06A03F |
+  LDA $E4                                   ; $06A03B |\  RNG roll
+  AND #$03                                  ; $06A03D | | 25% chance to branch
+  BEQ code_06A067                           ; $06A03F |/
 code_06A041:
   LDA #$10                                  ; $06A041 |
   STA $0588,x                               ; $06A043 |
@@ -9443,10 +9443,10 @@ code_06A315:
   JMP code_1FEC4A                           ; $06A31C |
 
 code_06A31F:
-  LDA $E6                                   ; $06A31F |
-  SBC $E4                                   ; $06A321 |
-  AND #$03                                  ; $06A323 |
-  BNE code_06A32A                           ; $06A325 |
+  LDA $E6                                   ; $06A31F |\  Charge Man
+  SBC $E4                                   ; $06A321 | | RNG roll
+  AND #$03                                  ; $06A323 | | 25% chance not to branch
+  BNE code_06A32A                           ; $06A325 |/
   JMP code_06A21C                           ; $06A327 |
 
 code_06A32A:
@@ -9589,11 +9589,11 @@ code_06A3FC:
   RTS                                       ; $06A463 |
 
 code_06A464:
-  LDA $E7                                   ; $06A464 |
-  SBC $E4                                   ; $06A466 |
-  STA $E4                                   ; $06A468 |
-  AND #$01                                  ; $06A46A |
-  BNE code_06A480                           ; $06A46C |
+  LDA $E7                                   ; $06A464 |\  Gyro Man
+  SBC $E4                                   ; $06A466 | |
+  STA $E4                                   ; $06A468 | | 50/50 RNG roll
+  AND #$01                                  ; $06A46A | | to branch
+  BNE code_06A480                           ; $06A46C |/
   LDA #$93                                  ; $06A46E |
   STA $0588,x                               ; $06A470 |
   LDA #$A4                                  ; $06A473 |
@@ -11000,10 +11000,10 @@ code_07A30B:
 code_07A315:
   LDA $03F0,x                               ; $07A315 |
   BPL code_07A331                           ; $07A318 |
-  LDA $E6                                   ; $07A31A |
-  ADC $E5                                   ; $07A31C |
-  AND #$01                                  ; $07A31E |
-  BNE code_07A327                           ; $07A320 |
+  LDA $E6                                   ; $07A31A |\  Crystal Man
+  ADC $E5                                   ; $07A31C | | 50/50 RNG roll
+  AND #$01                                  ; $07A31E | | to branch
+  BNE code_07A327                           ; $07A320 |/
   LDA #$25                                  ; $07A322 |
   JMP code_1FEA98                           ; $07A324 |
 
@@ -11194,9 +11194,9 @@ code_07A474:
   STA $0378,y                               ; $07A49E |
   LDA $0480,x                               ; $07A4A1 |
   STA $00                                   ; $07A4A4 |
-  LDA $E7                                   ; $07A4A6 |
-  ADC $E4                                   ; $07A4A8 |
-  STA $E4                                   ; $07A4AA |
+  LDA $E7                                   ; $07A4A6 |\  Wave Man
+  ADC $E4                                   ; $07A4A8 | | RNG roll
+  STA $E4                                   ; $07A4AA |/  for wave spawn
 code_07A4AC:
   AND #$07                                  ; $07A4AC |
   TAX                                       ; $07A4AE |
@@ -11248,9 +11248,9 @@ code_07A4D9:
   STA $0588,x                               ; $07A50F |
   LDA #$A5                                  ; $07A512 |
   STA $05A0,x                               ; $07A514 |
-  LDA $E6                                   ; $07A517 |
-  AND #$01                                  ; $07A519 |
-  TAY                                       ; $07A51B |
+  LDA $E6                                   ; $07A517 |\  Wave Man
+  AND #$01                                  ; $07A519 | | RNG roll for ???
+  TAY                                       ; $07A51B |/
   JSR $854D                                 ; $07A51C |
   LDA #$29                                  ; $07A51F |
   JMP code_1FEA98                           ; $07A521 |
@@ -12465,11 +12465,11 @@ code_08A221:
   STA $05A0,x                               ; $08A233 |
   LDA $0540,x                               ; $08A236 |
   BEQ code_08A287                           ; $08A239 |
-  LDA $03F0,x                               ; $08A23B |
-  BPL code_08A28D                           ; $08A23E |
-  ADC $E7                                   ; $08A240 |
-  AND #$01                                  ; $08A242 |
-  BNE code_08A24C                           ; $08A244 |
+  LDA $03F0,x                               ; $08A23B |\
+  BPL code_08A28D                           ; $08A23E | | if Star Man is moving
+  ADC $E7                                   ; $08A240 | | up, add RNG + Y velocity
+  AND #$01                                  ; $08A242 | | 50 / 50 RNG roll to branch
+  BNE code_08A24C                           ; $08A244 |/
   JSR code_08A275                           ; $08A246 |
   JMP code_08A28D                           ; $08A249 |
 
@@ -12531,10 +12531,10 @@ code_08A29E:
   LDA $0300,y                               ; $08A2BC |
   CMP #$8E                                  ; $08A2BF |
   BNE code_08A2F0                           ; $08A2C1 |
-  LDA $E6                                   ; $08A2C3 |
-  ADC $E4                                   ; $08A2C5 |
-  AND #$03                                  ; $08A2C7 |
-  BEQ code_08A305                           ; $08A2C9 |
+  LDA $E6                                   ; $08A2C3 |\  Star Man
+  ADC $E4                                   ; $08A2C5 | | 25% RNG roll
+  AND #$03                                  ; $08A2C7 | | chance to branch
+  BEQ code_08A305                           ; $08A2C9 |/
   LDA #$02                                  ; $08A2CB |
   STA $03F0,x                               ; $08A2CD |
   LDA #$00                                  ; $08A2D0 |
@@ -13714,10 +13714,10 @@ code_09A138:
   JMP code_09A255                           ; $09A158 |
 
 code_09A15B:
-  ADC $E7                                   ; $09A15B |
-  STA $E6                                   ; $09A15D |
-  AND #$03                                  ; $09A15F |
-  BEQ code_09A184                           ; $09A161 |
+  ADC $E7                                   ; $09A15B |\  Dark Man 3
+  STA $E6                                   ; $09A15D | | RNG roll
+  AND #$03                                  ; $09A15F | | 25% chance to branch
+  BEQ code_09A184                           ; $09A161 |/
   LDA #$00                                  ; $09A163 |
   STA $03A8,x                               ; $09A165 |
   LDA #$01                                  ; $09A168 |
@@ -14078,11 +14078,11 @@ code_09A42E:
   JSR code_1FEC30                           ; $09A447 |
   DEC $0468,x                               ; $09A44A |
   BNE code_09A46D                           ; $09A44D |
-  LDA $E5                                   ; $09A44F |
-  ADC $E6                                   ; $09A451 |
-  STA $E5                                   ; $09A453 |
-  AND #$01                                  ; $09A455 |
-  BEQ code_09A46E                           ; $09A457 |
+  LDA $E5                                   ; $09A44F |\  Dark Man 4
+  ADC $E6                                   ; $09A451 | | RNG roll
+  STA $E5                                   ; $09A453 | | 50/50 chance
+  AND #$01                                  ; $09A455 | | to branch
+  BEQ code_09A46E                           ; $09A457 |/
   LDA #$03                                  ; $09A459 |
   STA $0480,x                               ; $09A45B |
   LDA #$49                                  ; $09A45E |
