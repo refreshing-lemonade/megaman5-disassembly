@@ -8417,10 +8417,10 @@ code_1DAD90:
   JMP code_1FF2C4                           ; $1DADC1 |
 
 ; the items Eddie can drop
-; 3/8 chance: ???
-; 2/8 chance: ???
+; 3/8 chance: extra life
+; 2/8 chance: large energy container
 ; 2/8 chance: large ammo container
-; 1/8 chance: ???
+; 1/8 chance: E tank
 eddie_item_drops:
   db $78, $74, $76, $72, $78, $74, $76, $78 ; $1DADC4 |
 
