@@ -3,6 +3,7 @@ header
 
 banksize $2000
 
+incsrc definitions.asm
 incsrc bank00_0E.asm
 incsrc bank0F_16.asm
 incsrc bank17_18.asm

@@ -332,17 +332,17 @@ code_178280:
   LDX #$01                                  ; $178289 |
 code_17828B:
   LDA #$6D                                  ; $17828B |
-  STA $0300,x                               ; $17828D |
+  STA {entity_type},x                       ; $17828D |
   LDA #$00                                  ; $178290 |
-  STA $0348,x                               ; $178292 |
-  STA $0390,x                               ; $178295 |
-  STA $0528,x                               ; $178298 |
+  STA {x_position_high},x                   ; $178292 |
+  STA {y_position_high},x                   ; $178295 |
+  STA {entity_display_flags},x              ; $178298 |
   LDA $8E50,x                               ; $17829B |
   JSR code_1FEA98                           ; $17829E |
   LDA #$68                                  ; $1782A1 |
-  STA $0378,x                               ; $1782A3 |
+  STA {y_position_low},x                    ; $1782A3 |
   LDA #$80                                  ; $1782A6 |
-  STA $0330,x                               ; $1782A8 |
+  STA {x_position_low},x                    ; $1782A8 |
   DEX                                       ; $1782AB |
   BPL code_17828B                           ; $1782AC |
   LDA #$C8                                  ; $1782AE |
@@ -376,7 +376,7 @@ code_1782D2:
   JSR code_178A3A                           ; $1782E9 |
 code_1782EC:
   JSR code_178A4A                           ; $1782EC |
-  LDA $0540                                 ; $1782EF |
+  LDA {animation_frame}                     ; $1782EF |
   CMP #$06                                  ; $1782F2 |
   BNE code_1782EC                           ; $1782F4 |
   LDX #$00                                  ; $1782F6 |
@@ -395,16 +395,16 @@ code_17830B:
   STY $18                                   ; $178311 |
 code_178313:
   LDA #$00                                  ; $178313 |
-  STA $0570                                 ; $178315 |
+  STA {animation_timer}                     ; $178315 |
   JSR code_178A4A                           ; $178318 |
   LDA $9D                                   ; $17831B |
   LSR                                       ; $17831D |
   AND #$07                                  ; $17831E |
   TAY                                       ; $178320 |
-  LDA $0528                                 ; $178321 |
+  LDA {entity_display_flags}                ; $178321 |
   AND #$FB                                  ; $178324 |
   ORA $8DC3,y                               ; $178326 |
-  STA $0528                                 ; $178329 |
+  STA {entity_display_flags}                ; $178329 |
   CPY #$07                                  ; $17832C |
   BNE code_178313                           ; $17832E |
   LDA $6C                                   ; $178330 |
@@ -428,10 +428,10 @@ code_178338:
 code_178351:
   JSR code_178A4A                           ; $178351 |
   LDY $6C                                   ; $178354 |
-  LDA $0540                                 ; $178356 |
+  LDA {animation_frame}                     ; $178356 |
   CMP $8DBB,y                               ; $178359 |
   BNE code_178351                           ; $17835C |
-  LDA $0558                                 ; $17835E |
+  LDA {animation_index}                     ; $17835E |
   CMP #$20                                  ; $178361 |
   BNE code_178385                           ; $178363 |
   LDX #$00                                  ; $178365 |
@@ -444,7 +444,7 @@ code_178351:
   STA $0379                                 ; $178375 |
 code_178378:
   LDA #$00                                  ; $178378 |
-  STA $0570                                 ; $17837A |
+  STA {animation_timer}                     ; $17837A |
   JSR code_178A4A                           ; $17837D |
   LDA $0301                                 ; $178380 |
   BNE code_178378                           ; $178383 |
@@ -1156,17 +1156,17 @@ code_178887:
   LDY #$98                                  ; $1788C3 |
   JSR code_1789FC                           ; $1788C5 |
   LDA #$01                                  ; $1788C8 |
-  STA $0300                                 ; $1788CA |
+  STA {entity_type}                         ; $1788CA |
   LDX #$00                                  ; $1788CD |
-  STX $0348                                 ; $1788CF |
-  STX $0390                                 ; $1788D2 |
-  STX $0528                                 ; $1788D5 |
+  STX {x_position_high}                     ; $1788CF |
+  STX {y_position_high}                     ; $1788D2 |
+  STX {entity_display_flags}                ; $1788D5 |
   LDA #$1B                                  ; $1788D8 |
   JSR code_1FEA98                           ; $1788DA |
   LDA #$6C                                  ; $1788DD |
-  STA $0378                                 ; $1788DF |
+  STA {y_position_low}                      ; $1788DF |
   LDA #$80                                  ; $1788E2 |
-  STA $0330                                 ; $1788E4 |
+  STA {x_position_low}                      ; $1788E4 |
   LDA #$57                                  ; $1788E7 |
   STA $FA                                   ; $1788E9 |
   LDA #$CE                                  ; $1788EB |
@@ -1219,8 +1219,8 @@ code_178937:
   STA $0F                                   ; $178946 |
 code_178948:
   JSR code_178A4A                           ; $178948 |
-  LDA $0540                                 ; $17894B |
-  ORA $0570                                 ; $17894E |
+  LDA {animation_frame}                     ; $17894B |
+  ORA {animation_timer}                     ; $17894E |
   BNE code_178925                           ; $178951 |
   DEC $0E                                   ; $178953 |
   BNE code_178925                           ; $178955 |
@@ -1255,8 +1255,8 @@ code_178971:
   STA $18                                   ; $17898B |
 code_17898D:
   JSR code_178A4A                           ; $17898D |
-  LDA $0540                                 ; $178990 |
-  ORA $0570                                 ; $178993 |
+  LDA {animation_frame}                     ; $178990 |
+  ORA {animation_timer}                     ; $178993 |
   BNE code_17895D                           ; $178996 |
   DEC $0E                                   ; $178998 |
   BNE code_17895D                           ; $17899A |
@@ -1390,7 +1390,7 @@ code_178A7D:
   STY $0A                                   ; $178A81 |
 code_178A83:
   LDA #$00                                  ; $178A83 |
-  STA $0570                                 ; $178A85 |
+  STA {animation_timer}                     ; $178A85 |
   JSR code_178A4A                           ; $178A88 |
   DEC $08                                   ; $178A8B |
   BNE code_178A83                           ; $178A8D |
@@ -1855,9 +1855,9 @@ code_179331:
   JSR code_1796BB                           ; $179331 |
   STY $18                                   ; $179334 |
   LDA #$B4                                  ; $179336 |
-  STA $0378                                 ; $179338 |
+  STA {y_position_low}                      ; $179338 |
   LDA #$38                                  ; $17933B |
-  STA $0330                                 ; $17933D |
+  STA {x_position_low}                      ; $17933D |
   JSR code_1EC39D                           ; $179340 |
   JSR code_1FF363                           ; $179343 |
   LDA #$00                                  ; $179346 |
@@ -1894,21 +1894,21 @@ code_179389:
   LDA $98D5,y                               ; $179389 |
   JSR code_1FEAA4                           ; $17938C |
   LDA #$00                                  ; $17938F |
-  STA $0528,y                               ; $179391 |
+  STA {entity_display_flags},y              ; $179391 |
   LDA #$6D                                  ; $179394 |
-  STA $0300,y                               ; $179396 |
+  STA {entity_type},y                       ; $179396 |
   LDA #$C0                                  ; $179399 |
-  STA $0330,y                               ; $17939B |
+  STA {x_position_low},y                    ; $17939B |
   LDA $98D7,y                               ; $17939E |
-  STA $0378,y                               ; $1793A1 |
+  STA {y_position_low},y                    ; $1793A1 |
   LDA #$80                                  ; $1793A4 |
-  STA $03A8,y                               ; $1793A6 |
+  STA {x_speed_frac},y                      ; $1793A6 |
   LDA #$00                                  ; $1793A9 |
-  STA $03C0,y                               ; $1793AB |
+  STA {x_speed},y                           ; $1793AB |
   LDA #$50                                  ; $1793AE |
-  STA $03D8,y                               ; $1793B0 |
+  STA {y_speed_frac},y                      ; $1793B0 |
   LDA #$00                                  ; $1793B3 |
-  STA $03F0,y                               ; $1793B5 |
+  STA {y_speed},y                           ; $1793B5 |
   DEY                                       ; $1793B8 |
   BNE code_179389                           ; $1793B9 |
   LDA #$3C                                  ; $1793BB |
@@ -1941,7 +1941,7 @@ code_179389:
   JSR code_1EDB23                           ; $1793FD |
 code_179400:
   LDX #$01                                  ; $179400 |
-  JSR code_1FE94A                           ; $179402 |
+  JSR apply_vertical_speed_up_alt           ; $179402 |
   JSR code_1FE90C                           ; $179405 |
   LDA $0379                                 ; $179408 |
   SEC                                       ; $17940B |
@@ -1962,23 +1962,23 @@ code_179400:
   LDA #$5D                                  ; $17942F |
   JSR code_1FEAA4                           ; $179431 |
   LDA #$6D                                  ; $179434 |
-  STA $0300,y                               ; $179436 |
+  STA {entity_type},y                       ; $179436 |
   LDA #$00                                  ; $179439 |
-  STA $0378,y                               ; $17943B |
-  STA $03D8,y                               ; $17943E |
+  STA {y_position_low},y                    ; $17943B |
+  STA {y_speed_frac},y                      ; $17943E |
   STA $03D9                                 ; $179441 |
   STA $03DA                                 ; $179444 |
   LDA #$03                                  ; $179447 |
-  STA $03F0,y                               ; $179449 |
+  STA {y_speed},y                           ; $179449 |
   STA $03F1                                 ; $17944C |
   STA $03F2                                 ; $17944F |
 code_179452:
   LDX #$03                                  ; $179452 |
-  JSR code_1FE92A                           ; $179454 |
+  JSR apply_vertical_speed_down_alt         ; $179454 |
   LDA #$54                                  ; $179457 |
-  CMP $0378,y                               ; $179459 |
+  CMP {y_position_low},y                    ; $179459 |
   BCS code_179461                           ; $17945C |
-  STA $0378,y                               ; $17945E |
+  STA {y_position_low},y                    ; $17945E |
 code_179461:
   JSR code_1795B6                           ; $179461 |
   LDA $037B                                 ; $179464 |
@@ -1989,7 +1989,7 @@ code_179461:
 code_179470:
   LDX #$03                                  ; $179470 |
 code_179472:
-  JSR code_1FE94A                           ; $179472 |
+  JSR apply_vertical_speed_up_alt           ; $179472 |
   DEX                                       ; $179475 |
   BNE code_179472                           ; $179476 |
   JSR code_1795B6                           ; $179478 |
@@ -2011,7 +2011,7 @@ code_179472:
   STA $0391                                 ; $17949F |
   STA $0392                                 ; $1794A2 |
   STA $0393                                 ; $1794A5 |
-  STA $0300                                 ; $1794A8 |
+  STA {entity_type}                         ; $1794A8 |
   LDA #$30                                  ; $1794AB |
   STA $0E                                   ; $1794AD |
   LDA #$F0                                  ; $1794AF |
@@ -2020,7 +2020,7 @@ code_179472:
 code_1794B6:
   LDX #$03                                  ; $1794B6 |
 code_1794B8:
-  JSR code_1FE94A                           ; $1794B8 |
+  JSR apply_vertical_speed_up_alt           ; $1794B8 |
   DEX                                       ; $1794BB |
   BNE code_1794B8                           ; $1794BC |
   JSR code_1795B6                           ; $1794BE |
@@ -2033,7 +2033,7 @@ code_1794B8:
   STA $03F3                                 ; $1794CF |
 code_1794D2:
   LDX #$03                                  ; $1794D2 |
-  JSR code_1FE94A                           ; $1794D4 |
+  JSR apply_vertical_speed_up_alt           ; $1794D4 |
   JSR code_1795B6                           ; $1794D7 |
   LDA $037B                                 ; $1794DA |
   CMP #$53                                  ; $1794DD |
@@ -2048,7 +2048,7 @@ code_1794E5:
   STA $0541                                 ; $1794EE |
 code_1794F1:
   LDX #$03                                  ; $1794F1 |
-  JSR code_1FE92A                           ; $1794F3 |
+  JSR apply_vertical_speed_down_alt         ; $1794F3 |
   JSR code_1795B6                           ; $1794F6 |
   LDA $037B                                 ; $1794F9 |
   CMP #$63                                  ; $1794FC |
