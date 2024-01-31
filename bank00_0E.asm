@@ -3205,7 +3205,7 @@ code_02A469:
   TYA                                       ; $02A498 |
   TAX                                       ; $02A499 |
   JSR code_1FEC16                           ; $02A49A |
-  JSR code_1FEC94                           ; $02A49D |
+  JSR distance_to_player                    ; $02A49D |
   LDY #$04                                  ; $02A4A0 |
 code_02A4A2:
   CMP $A5F0,y                               ; $02A4A2 |
@@ -3236,7 +3236,7 @@ code_02A4B9:
   STA $0378,y                               ; $02A4D3 |
   TYA                                       ; $02A4D6 |
   TAX                                       ; $02A4D7 |
-  JSR code_1FECC2                           ; $02A4D8 |
+  JSR get_angle_to_player                   ; $02A4D8 |
   TAY                                       ; $02A4DB |
   LDA #$28                                  ; $02A4DC |
   JSR code_1FF470                           ; $02A4DE |
@@ -3304,7 +3304,7 @@ code_02A515:
   STA $3A                                   ; $02A566 |
   LDA $03C0,x                               ; $02A568 |
   STA $3B                                   ; $02A56B |
-  JSR code_1FEC94                           ; $02A56D |
+  JSR distance_to_player                    ; $02A56D |
   CMP #$12                                  ; $02A570 |
   BCC code_02A578                           ; $02A572 |
   LDA #$00                                  ; $02A574 |
@@ -5017,7 +5017,7 @@ code_03A60E:
   STA $0408,y                               ; $03A638 |
   TYA                                       ; $03A63B |
   TAX                                       ; $03A63C |
-  JSR code_1FECC2                           ; $03A63D |
+  JSR get_angle_to_player                   ; $03A63D |
   TAY                                       ; $03A640 |
   LDA #$28                                  ; $03A641 |
   JSR code_1FF470                           ; $03A643 |
@@ -9080,7 +9080,7 @@ code_06A010:
   ADC $E6                                   ; $06A012 | | Stone Man
   ADC $9D                                   ; $06A014 | | RNG roll for ???
   STA $E4                                   ; $06A016 |/
-  JSR code_1FEC94                           ; $06A018 |
+  JSR distance_to_player                    ; $06A018 |
   CMP #$71                                  ; $06A01B |
   BCS code_06A03B                           ; $06A01D |
   CMP #$50                                  ; $06A01F |
@@ -9118,12 +9118,12 @@ code_06A05D:
   RTS                                       ; $06A05D |
 
 code_06A05E:
-  JSR code_1FEC94                           ; $06A05E |
+  JSR distance_to_player                    ; $06A05E |
   STA $01                                   ; $06A061 |
   LDY #$01                                  ; $06A063 |
   BNE code_06A06F                           ; $06A065 |
 code_06A067:
-  JSR code_1FEC94                           ; $06A067 |
+  JSR distance_to_player                    ; $06A067 |
   LSR                                       ; $06A06A |
   STA $01                                   ; $06A06B |
   LDY #$00                                  ; $06A06D |
@@ -9312,7 +9312,7 @@ code_06A1F1:
 
   JSR code_1FEC16                           ; $06A1F8 |
   JSR code_1FEC30                           ; $06A1FB |
-  JSR code_1FEC94                           ; $06A1FE |
+  JSR distance_to_player                    ; $06A1FE |
   CMP #$3D                                  ; $06A201 |
   BCS code_06A208                           ; $06A203 |
   JMP code_06A2D3                           ; $06A205 |
@@ -9354,7 +9354,7 @@ code_06A21C:
   STA $03C0,x                               ; $06A254 |
   LDA #$80                                  ; $06A257 |
   STA $0408,x                               ; $06A259 |
-  JSR code_1FEC94                           ; $06A25C |
+  JSR distance_to_player                    ; $06A25C |
   STA $00                                   ; $06A25F |
   LDA #$03                                  ; $06A261 |
   STA $01                                   ; $06A263 |
@@ -10891,7 +10891,7 @@ code_07A208:
   TYA                                       ; $07A20D |
   TAX                                       ; $07A20E |
   STA $0E                                   ; $07A20F |
-  JSR code_1FECC2                           ; $07A211 |
+  JSR get_angle_to_player                   ; $07A211 |
   TAY                                       ; $07A214 |
   LDA #$10                                  ; $07A215 |
   JSR code_1FF470                           ; $07A217 |
@@ -10934,7 +10934,7 @@ code_07A244:
   LDA $0540,x                               ; $07A290 |
   BEQ code_07A244                           ; $07A293 |
   JSR code_1FEC16                           ; $07A295 |
-  JSR code_1FEC94                           ; $07A298 |
+  JSR distance_to_player                    ; $07A298 |
   LDY #$00                                  ; $07A29B |
   CMP #$50                                  ; $07A29D |
   BCS code_07A2A2                           ; $07A29F |
@@ -11118,7 +11118,7 @@ code_07A3D2:
   STA $0E                                   ; $07A3FF |
   BNE code_07A3D2                           ; $07A401 |
 code_07A403:
-  JSR code_1FECC2                           ; $07A403 |
+  JSR get_angle_to_player                   ; $07A403 |
   STA $0E                                   ; $07A406 |
   JSR code_1FF16F                           ; $07A408 |
   BCS code_07A427                           ; $07A40B |
@@ -12225,7 +12225,7 @@ code_08A03E:
   STA $0588,x                               ; $08A040 |
   LDA #$A0                                  ; $08A043 |
   STA $05A0,x                               ; $08A045 |
-  JSR code_1FEC94                           ; $08A048 |
+  JSR distance_to_player                    ; $08A048 |
   LSR                                       ; $08A04B |
   STA $01                                   ; $08A04C |
   LDY #$02                                  ; $08A04E |
@@ -12345,7 +12345,7 @@ code_08A115:
   JSR code_1FEAF5                           ; $08A133 |
   TYA                                       ; $08A136 |
   TAX                                       ; $08A137 |
-  JSR code_1FEC94                           ; $08A138 |
+  JSR distance_to_player                    ; $08A138 |
   CMP #$20                                  ; $08A13B |
   BCC code_08A146                           ; $08A13D |
   LDY $0E                                   ; $08A13F |
@@ -12354,7 +12354,7 @@ code_08A115:
   SBC #$20                                  ; $08A144 |
 code_08A146:
   LDY #$00                                  ; $08A146 |
-  JSR $8550                                 ; $08A148 |
+  JSR catapult_aim_func_after_dist          ; $08A148 |
   LDX $0F                                   ; $08A14B |
   DEC $0E                                   ; $08A14D |
   BPL code_08A115                           ; $08A14F |
@@ -12378,7 +12378,7 @@ code_08A154:
   STA $0588,x                               ; $08A172 |
   LDA #$A0                                  ; $08A175 |
   STA $05A0,x                               ; $08A177 |
-  JSR code_1FEC94                           ; $08A17A |
+  JSR distance_to_player                    ; $08A17A |
   STA $01                                   ; $08A17D |
   LDY #$00                                  ; $08A17F |
   JSR $8592                                 ; $08A181 |
@@ -12439,7 +12439,7 @@ code_08A1CD:
   LDA #$3C                                  ; $08A1FD |
   JSR code_1FEA98                           ; $08A1FF |
 code_08A202:
-  JSR code_1FEC94                           ; $08A202 |
+  JSR distance_to_player                    ; $08A202 |
   STA $01                                   ; $08A205 |
   CMP #$50                                  ; $08A207 |
   BCC code_08A221                           ; $08A209 |
@@ -12629,7 +12629,7 @@ code_08A386:
   LDA $0540,y                               ; $08A38D |
   CMP #$02                                  ; $08A390 |
   BNE code_08A3AD                           ; $08A392 |
-  JSR code_1FECC2                           ; $08A394 |
+  JSR get_angle_to_player                   ; $08A394 |
   TAY                                       ; $08A397 |
   LDA #$08                                  ; $08A398 |
   JSR code_1FF470                           ; $08A39A |
@@ -13702,7 +13702,7 @@ code_09A138:
   BNE code_09A184                           ; $09A13A |
   JSR code_1FEC16                           ; $09A13C |
   JSR code_1FEC30                           ; $09A13F |
-  JSR code_1FEC94                           ; $09A142 |
+  JSR distance_to_player                    ; $09A142 |
   CMP #$40                                  ; $09A145 |
   BCS code_09A15B                           ; $09A147 |
   LDA #$4E                                  ; $09A149 |
@@ -13733,10 +13733,10 @@ code_09A15B:
   JMP code_09A238                           ; $09A181 |
 
 code_09A184:
-  JSR code_1FEC94                           ; $09A184 |
+  JSR distance_to_player                    ; $09A184 |
   LSR                                       ; $09A187 |
   LDY #$01                                  ; $09A188 |
-  JSR $8550                                 ; $09A18A |
+  JSR catapult_aim_func_after_dist          ; $09A18A |
   LDA #$4C                                  ; $09A18D |
   JSR code_1FEA98                           ; $09A18F |
   LDA #$9C                                  ; $09A192 |
@@ -13762,7 +13762,7 @@ code_09A1B2:
   BEQ code_09A1FF                           ; $09A1C1 |
   AND #$01                                  ; $09A1C3 |
   BNE code_09A1FE                           ; $09A1C5 |
-  JSR code_1FECC2                           ; $09A1C7 |
+  JSR get_angle_to_player                   ; $09A1C7 |
   STA $0E                                   ; $09A1CA |
   STX $0F                                   ; $09A1CC |
   JSR code_1FF16F                           ; $09A1CE |
@@ -13849,7 +13849,7 @@ code_09A255:
   CMP #$08                                  ; $09A269 |
   BNE code_09A254                           ; $09A26B |
   STX $0F                                   ; $09A26D |
-  JSR code_1FECC2                           ; $09A26F |
+  JSR get_angle_to_player                   ; $09A26F |
   SEC                                       ; $09A272 |
   SBC #$01                                  ; $09A273 |
   STA $0E                                   ; $09A275 |
@@ -13989,7 +13989,7 @@ code_09A37E:
   CMP #$04                                  ; $09A381 |
   BNE code_09A363                           ; $09A383 |
   STX $0F                                   ; $09A385 |
-  JSR code_1FECC2                           ; $09A387 |
+  JSR get_angle_to_player                   ; $09A387 |
   STA $0E                                   ; $09A38A |
   JSR code_1FF16F                           ; $09A38C |
   BCS code_09A363                           ; $09A38F |

@@ -4037,37 +4037,50 @@ code_1C8538:
   STA $0528,x                               ; $1C8549 |
   RTS                                       ; $1C854C |
 
-code_1C854D:
-  JSR code_1FEC94                           ; $1C854D |
-  PHA                                       ; $1C8550 |
-  LDA $857E,y                               ; $1C8551 |
-  STA $03D8,x                               ; $1C8554 |
-  LDA $8580,y                               ; $1C8557 |
-  STA $03F0,x                               ; $1C855A |
-  TYA                                       ; $1C855D |
-  ASL                                       ; $1C855E |
-  ASL                                       ; $1C855F |
-  TAY                                       ; $1C8560 |
-  PLA                                       ; $1C8561 |
-  CMP #$80                                  ; $1C8562 |
-  BCS code_1C8571                           ; $1C8564 |
-  INY                                       ; $1C8566 |
-  CMP #$50                                  ; $1C8567 |
-  BCS code_1C8571                           ; $1C8569 |
-  INY                                       ; $1C856B |
-  CMP #$20                                  ; $1C856C |
-  BCS code_1C8571                           ; $1C856E |
-  INY                                       ; $1C8570 |
+; Sets speed values for the current entity such that it catapults into the air,
+; roughly aiming at the target. It does this by picking a value from a table, depending on distance thresholds.
+; Example usage: Bomb Thrown's bombs, Toss Machine's projectiles, Wave Man's jumps.
+; Parameters:
+; A - distance to target
+; X - entity index
+; Y - arc variant (0 - low, 1 - high)
+catapult_aim_func:
+  JSR distance_to_player                    ; $1C854D | Get distance to player. Some calls (i.e. Napalm Man's bombs) jump to after this instruction in order to provide their own distance value
+catapult_aim_func_after_dist:
+  PHA                                       ; $1C8550 | 
+  LDA catapult_aim_func_yspeed_frac,y       ; $1C8551 | \
+  STA $03D8,x                               ; $1C8554 | | Set entity's vertical speed according to the arc variant chosen.
+  LDA catapult_aim_func_yspeed,y            ; $1C8557 | |
+  STA $03F0,x                               ; $1C855A | /
+  TYA                                       ; $1C855D | \ 
+  ASL                                       ; $1C855E | | Table has 4 horizontal speed values per arc variant, so multiply offset by 4
+  ASL                                       ; $1C855F | |
+  TAY                                       ; $1C8560 | /
+  PLA                                       ; $1C8561 | \
+  CMP #$80                                  ; $1C8562 | |
+  BCS code_1C8571                           ; $1C8564 | |
+  INY                                       ; $1C8566 | |
+  CMP #$50                                  ; $1C8567 | | Sequence of distance checks. 
+  BCS code_1C8571                           ; $1C8569 | | Increases offset into table for each distance greater than the given one.
+  INY                                       ; $1C856B | |
+  CMP #$20                                  ; $1C856C | |
+  BCS code_1C8571                           ; $1C856E | |
+  INY                                       ; $1C8570 | /
 code_1C8571:
-  LDA $8582,y                               ; $1C8571 |
-  STA $03A8,x                               ; $1C8574 |
-  LDA $858A,y                               ; $1C8577 |
-  STA $03C0,x                               ; $1C857A |
-  RTS                                       ; $1C857D |
-
-  db $AB, $12, $05, $07, $50, $35, $53, $B5 ; $1C857E |
-  db $A6, $C4, $0F, $90, $03, $02, $01, $00 ; $1C8586 |
-  db $02, $01, $01, $00                     ; $1C858E |
+  LDA catapult_aim_func_xspeed_frac,y       ; $1C8571 | \
+  STA $03A8,x                               ; $1C8574 | |
+  LDA catapult_aim_func_xspeed,y            ; $1C8577 | | Set entity's horizontal speed according to the offset.
+  STA $03C0,x                               ; $1C857A | |
+  RTS                                       ; $1C857D | /
+  
+catapult_aim_func_yspeed_frac:
+  db $AB, $12                               ; $1C857E |
+catapult_aim_func_yspeed:
+  db $05, $07                               ; $1C8580 |
+catapult_aim_func_xspeed_frac:
+  db $50, $35, $53, $B5, $A6, $C4, $0F, $90 ; $1C8582 |
+catapult_aim_func_xspeed:
+  db $03, $02, $01, $00, $02, $01, $01, $00 ; $1C858A |
 
   LDA $85B7,y                               ; $1C8592 |
   STA $03D8,x                               ; $1C8595 |
@@ -4361,10 +4374,10 @@ code_1C8B60:
   DEC $0468,x                               ; $1C8B6B |
   BNE code_1C8B60                           ; $1C8B6E |
 code_1C8B70:
-  JSR code_1FEC94                           ; $1C8B70 |
+  JSR distance_to_player                    ; $1C8B70 |
   CMP #$50                                  ; $1C8B73 |
   BCS code_1C8B60                           ; $1C8B75 |
-  JSR code_1FEC76                           ; $1C8B77 |
+  JSR vertical_distance_to_player           ; $1C8B77 |
   CMP #$20                                  ; $1C8B7A |
   BCS code_1C8B60                           ; $1C8B7C |
   LDA #$8D                                  ; $1C8B7E |
@@ -4518,10 +4531,10 @@ code_1C8CAF:
   JSR code_1C8DCA                           ; $1C8CC2 |
   JSR code_1FEC16                           ; $1C8CC5 |
   JSR code_1FEC30                           ; $1C8CC8 |
-  JSR code_1FEC94                           ; $1C8CCB |
+  JSR distance_to_player                    ; $1C8CCB |
   CMP #$60                                  ; $1C8CCE |
   BCS code_1C8CD9                           ; $1C8CD0 |
-  JSR code_1FEC76                           ; $1C8CD2 |
+  JSR vertical_distance_to_player           ; $1C8CD2 |
   CMP #$20                                  ; $1C8CD5 |
   BCC code_1C8CDE                           ; $1C8CD7 |
 code_1C8CD9:
@@ -4660,7 +4673,7 @@ code_1C8DE1:
   JMP code_1FEA65                           ; $1C8DE2 |
 
   JSR code_1FEA65                           ; $1C8DE5 |
-  JSR code_1FEC94                           ; $1C8DE8 |
+  JSR distance_to_player                    ; $1C8DE8 |
   CMP #$08                                  ; $1C8DEB |
   BCS code_1C8E56                           ; $1C8DED |
   LDA #$28                                  ; $1C8DEF |
@@ -4867,7 +4880,7 @@ code_1C8F9F:
   RTS                                       ; $1C8F9F |
 
   JSR code_1FEA65                           ; $1C8FA0 |
-  JSR code_1FECC2                           ; $1C8FA3 |
+  JSR get_angle_to_player                   ; $1C8FA3 |
   CMP #$06                                  ; $1C8FA6 |
   BEQ code_1C8FAE                           ; $1C8FA8 |
   CMP #$0A                                  ; $1C8FAA |
@@ -4925,7 +4938,7 @@ code_1C9010:
   JMP $A54D                                 ; $1C9018 |
 
   JSR code_1FEA65                           ; $1C901B |
-  JSR code_1FECC2                           ; $1C901E |
+  JSR get_angle_to_player                   ; $1C901E |
   CMP #$07                                  ; $1C9021 |
   BEQ code_1C9029                           ; $1C9023 |
   CMP #$09                                  ; $1C9025 |
@@ -5058,10 +5071,10 @@ code_1C912C:
 code_1C912D:
   JSR code_1FEA65                           ; $1C912D |
   JSR code_1FEA86                           ; $1C9130 |
-  JSR code_1FEC94                           ; $1C9133 |
+  JSR distance_to_player                    ; $1C9133 |
   CMP #$32                                  ; $1C9136 |
   BCS code_1C915E                           ; $1C9138 |
-  JSR code_1FEC76                           ; $1C913A |
+  JSR vertical_distance_to_player           ; $1C913A |
   CMP #$32                                  ; $1C913D |
   BCS code_1C915E                           ; $1C913F |
   LDA $0480,x                               ; $1C9141 |
@@ -5073,7 +5086,7 @@ code_1C914B:
   BNE code_1C919D                           ; $1C914E |
   LDA #$1E                                  ; $1C9150 |
   STA $0480,x                               ; $1C9152 |
-  JSR code_1FECC2                           ; $1C9155 |
+  JSR get_angle_to_player                   ; $1C9155 |
   TAY                                       ; $1C9158 |
   LDA #$20                                  ; $1C9159 |
   JMP code_1FF470                           ; $1C915B |
@@ -5235,7 +5248,7 @@ code_1C9278:
   STA $05A0,x                               ; $1C9299 |
   LDA #$01                                  ; $1C929C |
   STA $0540,x                               ; $1C929E |
-  JSR code_1FECC2                           ; $1C92A1 |
+  JSR get_angle_to_player                   ; $1C92A1 |
   CMP #$08                                  ; $1C92A4 |
   BNE code_1C92B8                           ; $1C92A6 |
   LDA #$CF                                  ; $1C92A8 |
@@ -5315,7 +5328,7 @@ code_1C9330:
   LDA $04C8,x                               ; $1C9341 |
   CMP #$3C                                  ; $1C9344 |
   BNE code_1C92CE                           ; $1C9346 |
-  JSR code_1FECC2                           ; $1C9348 |
+  JSR get_angle_to_player                   ; $1C9348 |
   TAY                                       ; $1C934B |
   LDA #$18                                  ; $1C934C |
   JSR code_1FF470                           ; $1C934E |
@@ -5414,7 +5427,7 @@ code_1C9417:
   INC $04B0,x                               ; $1C941A |
   AND #$07                                  ; $1C941D |
   BNE code_1C9416                           ; $1C941F |
-  JSR code_1FECC2                           ; $1C9421 |
+  JSR get_angle_to_player                   ; $1C9421 |
   TAY                                       ; $1C9424 |
   LSR                                       ; $1C9425 |
   STA $0480,x                               ; $1C9426 |
@@ -5439,7 +5452,7 @@ code_1C9417:
   db $00, $00, $00, $6A, $00, $6A, $00, $00 ; $1C946F |
   db $00, $00, $00, $01, $02, $01, $00, $00 ; $1C9477 |
 
-  JSR code_1FEC94                           ; $1C947F |
+  JSR distance_to_player                    ; $1C947F |
   CMP #$5A                                  ; $1C9482 |
   BCC code_1C948F                           ; $1C9484 |
   LDA $14                                   ; $1C9486 |
@@ -5731,10 +5744,10 @@ code_1C96E5:
   LDA $14                                   ; $1C96E5 |
   AND #$40                                  ; $1C96E7 |
   BNE code_1C96F9                           ; $1C96E9 |
-  JSR code_1FEC94                           ; $1C96EB |
+  JSR distance_to_player                    ; $1C96EB |
   CMP #$5A                                  ; $1C96EE |
   BCS code_1C96D3                           ; $1C96F0 |
-  JSR code_1FEC76                           ; $1C96F2 |
+  JSR vertical_distance_to_player           ; $1C96F2 |
   CMP #$32                                  ; $1C96F5 |
   BCS code_1C96D3                           ; $1C96F7 |
 code_1C96F9:
@@ -5803,7 +5816,7 @@ code_1C977C:
   LDA $0300,y                               ; $1C9780 |
   CMP #$25                                  ; $1C9783 |
   BEQ code_1C97BA                           ; $1C9785 |
-  JSR code_1FEC94                           ; $1C9787 |
+  JSR distance_to_player                    ; $1C9787 |
   CMP #$20                                  ; $1C978A |
   BCS code_1C97BA                           ; $1C978C |
   JSR code_1FF16F                           ; $1C978E |
@@ -6102,7 +6115,7 @@ code_1C99FD:
   STA $0570,x                               ; $1C9A08 |
   JSR code_1FEC16                           ; $1C9A0B |
   JSR code_1FEC30                           ; $1C9A0E |
-  JSR code_1FEC94                           ; $1C9A11 |
+  JSR distance_to_player                    ; $1C9A11 |
   CMP #$40                                  ; $1C9A14 |
   BCS code_1C9A2F                           ; $1C9A16 |
   LDA #$01                                  ; $1C9A18 |
@@ -6431,14 +6444,14 @@ code_1C9C7C:
   LDA #$00                                  ; $1C9C93 |
 code_1C9C95:
   STA $0378                                 ; $1C9C95 |
-  JSR code_1FEC94                           ; $1C9C98 |
+  JSR distance_to_player                    ; $1C9C98 |
   CMP #$03                                  ; $1C9C9B |
   BCS code_1C9CA6                           ; $1C9C9D |
-  JSR code_1FEC76                           ; $1C9C9F |
+  JSR vertical_distance_to_player           ; $1C9C9F |
   CMP #$03                                  ; $1C9CA2 |
   BCC code_1C9CB9                           ; $1C9CA4 |
 code_1C9CA6:
-  JSR code_1FECC2                           ; $1C9CA6 |
+  JSR get_angle_to_player                   ; $1C9CA6 |
   TAY                                       ; $1C9CA9 |
   LDA #$08                                  ; $1C9CAA |
   JSR code_1FF470                           ; $1C9CAC |
@@ -6668,7 +6681,7 @@ code_1C9E6C:
   STY $0E                                   ; $1C9EA7 |
   LDX $0E                                   ; $1C9EA9 |
   LDY #$00                                  ; $1C9EAB |
-  JSR code_1C854D                           ; $1C9EAD |
+  JSR catapult_aim_func                     ; $1C9EAD |
   LDX $0F                                   ; $1C9EB0 |
 code_1C9EB2:
   LDA $26                                   ; $1C9EB2 |
@@ -6755,7 +6768,7 @@ org $A000
   LDA $14                                   ; $1D8000 |
   AND #$40                                  ; $1DA002 |
   BNE code_1DA00D                           ; $1DA004 |
-  JSR code_1FEC94                           ; $1DA006 |
+  JSR distance_to_player                    ; $1DA006 |
   CMP #$50                                  ; $1DA009 |
   BCS code_1DA032                           ; $1DA00B |
 code_1DA00D:
@@ -6821,7 +6834,7 @@ code_1DA088:
   RTS                                       ; $1DA088 |
 
 code_1DA089:
-  JSR code_1FECC2                           ; $1DA089 |
+  JSR get_angle_to_player                   ; $1DA089 |
   STA $0F                                   ; $1DA08C |
   DEC $0F                                   ; $1DA08E |
   LDA $0F                                   ; $1DA090 |
@@ -6861,10 +6874,10 @@ code_1DA0B1:
   BNE code_1DA0B1                           ; $1DA0CB |
 code_1DA0CD:
   STA $0570,x                               ; $1DA0CD |
-  JSR code_1FEC94                           ; $1DA0D0 |
+  JSR distance_to_player                    ; $1DA0D0 |
   CMP #$50                                  ; $1DA0D3 |
   BCS code_1DA0B1                           ; $1DA0D5 |
-  JSR code_1FEC76                           ; $1DA0D7 |
+  JSR vertical_distance_to_player           ; $1DA0D7 |
   CMP #$14                                  ; $1DA0DA |
   BCS code_1DA0B1                           ; $1DA0DC |
   LDA #$01                                  ; $1DA0DE |
@@ -7105,10 +7118,10 @@ code_1DA2AB:
   STA $05A0,x                               ; $1DA2B5 |
   RTS                                       ; $1DA2B8 |
 
-  JSR code_1FEC94                           ; $1DA2B9 |
+  JSR distance_to_player                    ; $1DA2B9 |
   CMP #$50                                  ; $1DA2BC |
   BCS code_1DA31E                           ; $1DA2BE |
-  JSR code_1FEC76                           ; $1DA2C0 |
+  JSR vertical_distance_to_player           ; $1DA2C0 |
   CMP #$10                                  ; $1DA2C3 |
   BCS code_1DA31E                           ; $1DA2C5 |
   LDA #$75                                  ; $1DA2C7 |
@@ -7244,7 +7257,7 @@ code_1DA3DC:
   AND #$1F                                  ; $1DA3E2 |
   BNE code_1DA3EF                           ; $1DA3E4 |
 code_1DA3E6:
-  JSR code_1FECC2                           ; $1DA3E6 |
+  JSR get_angle_to_player                   ; $1DA3E6 |
   TAY                                       ; $1DA3E9 |
   LDA #$38                                  ; $1DA3EA |
   JSR code_1FF470                           ; $1DA3EC |
@@ -7253,7 +7266,7 @@ code_1DA3EF:
   JSR code_1FEA86                           ; $1DA3F2 |
   DEC $0468,x                               ; $1DA3F5 |
   BNE code_1DA43C                           ; $1DA3F8 |
-  JSR code_1FECC2                           ; $1DA3FA |
+  JSR get_angle_to_player                   ; $1DA3FA |
   STA $0D                                   ; $1DA3FD |
   LDA #$78                                  ; $1DA3FF |
   STA $0468,x                               ; $1DA401 |
@@ -7618,10 +7631,10 @@ code_1DA6D9:
 
   LDA #$00                                  ; $1DA6DA |
   STA $0570,x                               ; $1DA6DC |
-  JSR code_1FEC94                           ; $1DA6DF |
+  JSR distance_to_player                    ; $1DA6DF |
   CMP #$40                                  ; $1DA6E2 |
   BCS code_1DA6D9                           ; $1DA6E4 |
-  JSR code_1FEC76                           ; $1DA6E6 |
+  JSR vertical_distance_to_player           ; $1DA6E6 |
   CMP #$10                                  ; $1DA6E9 |
   BCS code_1DA6D9                           ; $1DA6EB |
   LDA #$FC                                  ; $1DA6ED |
@@ -7827,10 +7840,10 @@ code_1DA88E:
   LDA $0558,x                               ; $1DA88E |
   CMP #$26                                  ; $1DA891 |
   BNE code_1DA907                           ; $1DA893 |
-  JSR code_1FEC94                           ; $1DA895 |
+  JSR distance_to_player                    ; $1DA895 |
   CMP #$50                                  ; $1DA898 |
   BCS code_1DA907                           ; $1DA89A |
-  JSR code_1FEC76                           ; $1DA89C |
+  JSR vertical_distance_to_player           ; $1DA89C |
   CMP #$28                                  ; $1DA89F |
   BCS code_1DA907                           ; $1DA8A1 |
   DEC $0558,x                               ; $1DA8A3 |
@@ -7887,7 +7900,7 @@ code_1DA907:
   LDA $0558,x                               ; $1DA90A |
   CMP #$1E                                  ; $1DA90D |
   BEQ code_1DA920                           ; $1DA90F |
-  JSR code_1FEC94                           ; $1DA911 |
+  JSR distance_to_player                    ; $1DA911 |
   CMP #$30                                  ; $1DA914 |
   BCS code_1DA964                           ; $1DA916 |
   INC $0558,x                               ; $1DA918 |
@@ -7953,7 +7966,7 @@ code_1DA965:
   JSR $8538                                 ; $1DA9A5 |
   DEC $0480,x                               ; $1DA9A8 |
   BNE code_1DA9DF                           ; $1DA9AB |
-  JSR code_1FECC2                           ; $1DA9AD |
+  JSR get_angle_to_player                   ; $1DA9AD |
   TAY                                       ; $1DA9B0 |
   LDA #$18                                  ; $1DA9B1 |
   JSR code_1FF470                           ; $1DA9B3 |
@@ -8124,7 +8137,7 @@ code_1DAB24:
   INC $0468,x                               ; $1DAB28 |
   AND #$0F                                  ; $1DAB2B |
   BNE code_1DAB38                           ; $1DAB2D |
-  JSR code_1FECC2                           ; $1DAB2F |
+  JSR get_angle_to_player                   ; $1DAB2F |
   TAY                                       ; $1DAB32 |
   LDA #$38                                  ; $1DAB33 |
   JSR code_1FF470                           ; $1DAB35 |
@@ -8141,10 +8154,10 @@ code_1DAB3E:
   DEC $0498,x                               ; $1DAB49 |
   BNE code_1DAB3E                           ; $1DAB4C |
 code_1DAB4E:
-  JSR code_1FEC94                           ; $1DAB4E |
+  JSR distance_to_player                    ; $1DAB4E |
   CMP #$20                                  ; $1DAB51 |
   BCS code_1DAB3E                           ; $1DAB53 |
-  JSR code_1FEC76                           ; $1DAB55 |
+  JSR vertical_distance_to_player           ; $1DAB55 |
   CMP #$18                                  ; $1DAB58 |
   BCS code_1DAB3E                           ; $1DAB5A |
   LDA #$66                                  ; $1DAB5C |
@@ -8321,7 +8334,7 @@ code_1DACDB:
   BCC code_1DACEC                           ; $1DACE7 |
   JSR code_1FEC4A                           ; $1DACE9 |
 code_1DACEC:
-  JSR code_1FEC94                           ; $1DACEC |
+  JSR distance_to_player                    ; $1DACEC |
   CMP #$20                                  ; $1DACEF |
   BCS code_1DAD2B                           ; $1DACF1 |
   LDA #$02                                  ; $1DACF3 |
@@ -8873,7 +8886,7 @@ code_1DB188:
   BCS code_1DB187                           ; $1DB1A6 |
   JSR code_1FEF87                           ; $1DB1A8 |
   BCS code_1DB187                           ; $1DB1AB |
-  JSR code_1FEC94                           ; $1DB1AD |
+  JSR distance_to_player                    ; $1DB1AD |
   CMP #$07                                  ; $1DB1B0 |
   BCS code_1DB187                           ; $1DB1B2 |
   LDA $0378,x                               ; $1DB1B4 |
@@ -9575,9 +9588,9 @@ code_1DB78D:
   LDA $0408,y                               ; $1DB79B |
   AND #$40                                  ; $1DB79E |
   BEQ code_1DB7B8                           ; $1DB7A0 |
-  JSR code_1FECAB                           ; $1DB7A2 |
+  JSR distance_to_entity                    ; $1DB7A2 |
   STA $00                                   ; $1DB7A5 |
-  JSR code_1FEC85                           ; $1DB7A7 |
+  JSR vertical_distance_to_entity           ; $1DB7A7 |
   CMP $00                                   ; $1DB7AA |
   BCC code_1DB7B0                           ; $1DB7AC |
   LDA $00                                   ; $1DB7AE |
@@ -9604,7 +9617,7 @@ code_1DB7B8:
   STA $0588,x                               ; $1DB7D9 |
   LDA #$B7                                  ; $1DB7DC |
   STA $05A0,x                               ; $1DB7DE |
-  JSR code_1FECC4                           ; $1DB7E1 |
+  JSR get_angle_to_entity                   ; $1DB7E1 |
   TAY                                       ; $1DB7E4 |
   STA $04B0,x                               ; $1DB7E5 |
   LDA #$40                                  ; $1DB7E8 |
@@ -9613,10 +9626,10 @@ code_1DB7ED:
   RTS                                       ; $1DB7ED |
 
 code_1DB7EE:
-  JSR code_1FEC76                           ; $1DB7EE |
+  JSR vertical_distance_to_player           ; $1DB7EE |
   CMP #$04                                  ; $1DB7F1 |
   BCS code_1DB829                           ; $1DB7F3 |
-  JSR code_1FEC94                           ; $1DB7F5 |
+  JSR distance_to_player                    ; $1DB7F5 |
   CMP #$04                                  ; $1DB7F8 |
   BCS code_1DB829                           ; $1DB7FA |
   LDA #$00                                  ; $1DB7FC |
@@ -15524,123 +15537,146 @@ code_1FEC73:
   LDX $00                                   ; $1FEC73 |
   RTS                                       ; $1FEC75 |
 
-code_1FEC76:
-  LDA $0378                                 ; $1FEC76 |
-  SEC                                       ; $1FEC79 |
-  SBC $0378,x                               ; $1FEC7A |
-  BCS code_1FEC84                           ; $1FEC7D |
-  EOR #$FF                                  ; $1FEC7F |
-  ADC #$01                                  ; $1FEC81 |
-  CLC                                       ; $1FEC83 |
+; Calculates vertical distance from entity to the player and stores it into the accumulator.
+; Parameters:
+; X - entity index
+vertical_distance_to_player:
+  LDA $0378                                 ; $1FEC76 | \
+  SEC                                       ; $1FEC79 | | Subtract entity's Y from player's Y
+  SBC $0378,x                               ; $1FEC7A | /
+  BCS code_1FEC84                           ; $1FEC7D | \
+  EOR #$FF                                  ; $1FEC7F | | If negative, invert to get absolute value
+  ADC #$01                                  ; $1FEC81 | |
+  CLC                                       ; $1FEC83 | /
 code_1FEC84:
   RTS                                       ; $1FEC84 |
 
-code_1FEC85:
-  LDA $0378,y                               ; $1FEC85 |
-  SEC                                       ; $1FEC88 |
-  SBC $0378,x                               ; $1FEC89 |
-  BCS code_1FEC93                           ; $1FEC8C |
-  EOR #$FF                                  ; $1FEC8E |
-  ADC #$01                                  ; $1FEC90 |
-  CLC                                       ; $1FEC92 |
+; Calculates vertical distance from entity to the player and stores it into the accumulator.
+; Parameters:
+; X - source entity index
+; Y - target entity index
+vertical_distance_to_entity:
+  LDA $0378,y                               ; $1FEC85 | \
+  SEC                                       ; $1FEC88 | | Subtract source's Y from target's Y
+  SBC $0378,x                               ; $1FEC89 | /
+  BCS code_1FEC93                           ; $1FEC8C | \
+  EOR #$FF                                  ; $1FEC8E | | If negative, invert to get absolute value
+  ADC #$01                                  ; $1FEC90 | |
+  CLC                                       ; $1FEC92 | /
 code_1FEC93:
   RTS                                       ; $1FEC93 |
 
-code_1FEC94:
-  LDA $0330                                 ; $1FEC94 |
-  SEC                                       ; $1FEC97 |
-  SBC $0330,x                               ; $1FEC98 |
-  PHA                                       ; $1FEC9B |
-  LDA $0348                                 ; $1FEC9C |
-  SBC $0348,x                               ; $1FEC9F |
-  PLA                                       ; $1FECA2 |
-  BCS code_1FECAA                           ; $1FECA3 |
-  EOR #$FF                                  ; $1FECA5 |
-  ADC #$01                                  ; $1FECA7 |
-  CLC                                       ; $1FECA9 |
+; Calculates horizontal distance from entity to the player and stores it into the accumulator.
+; Parameters:
+; X - entity index
+distance_to_player:
+  LDA $0330                                 ; $1FEC94 | \
+  SEC                                       ; $1FEC97 | | Subtract entity's X from player's X 
+  SBC $0330,x                               ; $1FEC98 | /
+  PHA                                       ; $1FEC9B | \
+  LDA $0348                                 ; $1FEC9C | | Subtract entity's X screen from player's X screen
+  SBC $0348,x                               ; $1FEC9F | | Affects carry for the next check, inverting the result if they are on different ones
+  PLA                                       ; $1FECA2 | /
+  BCS code_1FECAA                           ; $1FECA3 | \
+  EOR #$FF                                  ; $1FECA5 | | If negative, invert to get absolute value
+  ADC #$01                                  ; $1FECA7 | |
+  CLC                                       ; $1FECA9 | /
 code_1FECAA:
   RTS                                       ; $1FECAA |
 
-code_1FECAB:
-  LDA $0330,y                               ; $1FECAB |
-  SEC                                       ; $1FECAE |
-  SBC $0330,x                               ; $1FECAF |
-  PHA                                       ; $1FECB2 |
-  LDA $0348,y                               ; $1FECB3 |
-  SBC $0348,x                               ; $1FECB6 |
-  PLA                                       ; $1FECB9 |
-  BCS code_1FECC1                           ; $1FECBA |
-  EOR #$FF                                  ; $1FECBC |
-  ADC #$01                                  ; $1FECBE |
-  CLC                                       ; $1FECC0 |
+; Calculates horizontal distance between to entities and stores it into the accumulator.
+; Parameters:
+; X - source entity index
+; Y - target entity index
+distance_to_entity:
+  LDA $0330,y                               ; $1FECAB | \
+  SEC                                       ; $1FECAE | | Subtract source X from target X
+  SBC $0330,x                               ; $1FECAF | /
+  PHA                                       ; $1FECB2 | \
+  LDA $0348,y                               ; $1FECB3 | | Subtract source's X screen from target's X screen
+  SBC $0348,x                               ; $1FECB6 | | Affects carry for the next check, inverting the result if they are on different ones
+  PLA                                       ; $1FECB9 | /
+  BCS code_1FECC1                           ; $1FECBA | \
+  EOR #$FF                                  ; $1FECBC | | If negative, invert to get absolute value
+  ADC #$01                                  ; $1FECBE | |
+  CLC                                       ; $1FECC0 | /
 code_1FECC1:
   RTS                                       ; $1FECC1 |
 
-code_1FECC2:
-  LDY #$00                                  ; $1FECC2 |
-code_1FECC4:
-  LDA $0378,y                               ; $1FECC4 |
-  STA $00                                   ; $1FECC7 |
-  LDA $0330,y                               ; $1FECC9 |
-  STA $01                                   ; $1FECCC |
-  LDA $0348,y                               ; $1FECCE |
-  STA $02                                   ; $1FECD1 |
-  LDY #$00                                  ; $1FECD3 |
-  LDA $00                                   ; $1FECD5 |
-  SEC                                       ; $1FECD7 |
-  SBC $0378,x                               ; $1FECD8 |
-  LDY #$00                                  ; $1FECDB |
-  BCS code_1FECE5                           ; $1FECDD |
-  EOR #$FF                                  ; $1FECDF |
-  ADC #$01                                  ; $1FECE1 |
-  LDY #$04                                  ; $1FECE3 |
-code_1FECE5:
-  STA $00                                   ; $1FECE5 |
-  LDA $01                                   ; $1FECE7 |
-  SEC                                       ; $1FECE9 |
-  SBC $0330,x                               ; $1FECEA |
-  PHA                                       ; $1FECED |
-  LDA $02                                   ; $1FECEE |
-  SBC $0348,x                               ; $1FECF0 |
-  PLA                                       ; $1FECF3 |
-  BCS code_1FECFC                           ; $1FECF4 |
-  EOR #$FF                                  ; $1FECF6 |
-  ADC #$01                                  ; $1FECF8 |
-  INY                                       ; $1FECFA |
-  INY                                       ; $1FECFB |
-code_1FECFC:
-  STA $01                                   ; $1FECFC |
-  CMP $00                                   ; $1FECFE |
-  BCS code_1FED0B                           ; $1FED00 |
-  PHA                                       ; $1FED02 |
-  LDA $00                                   ; $1FED03 |
-  STA $01                                   ; $1FED05 |
-  PLA                                       ; $1FED07 |
-  STA $00                                   ; $1FED08 |
-  INY                                       ; $1FED0A |
+get_angle_to_player:
+  LDY #$00                                  ; $1FECC2 |  Sets Y to 0, then proceeds to angleFunc
+
+; Calculates angle from one entity to another and stores it in the accumulator.
+; Angle values go from 0 to 15, clockwise starting North.
+; Angle is obtained by calculating the slope using horizontal and vertical distances, and using that info + quadrant of the angle to get the proper angle value from a lookup table.
+; Parameters:
+; X - Source entity
+; Y - Target entity
+get_angle_to_entity:
+  LDA $0378,y                               ; $1FECC4 | \
+  STA $00                                   ; $1FECC7 | | Load source entity Y into $00, X into $01 and X screen into $02.
+  LDA $0330,y                               ; $1FECC9 | |
+  STA $01                                   ; $1FECCC | |
+  LDA $0348,y                               ; $1FECCE | |
+  STA $02                                   ; $1FECD1 | /
+  LDY #$00                                  ; $1FECD3 | We got the data we need from the source entity. From now on, the Y register serves as offset into angle table.
+  LDA $00                                   ; $1FECD5 | \
+  SEC                                       ; $1FECD7 | | Subtract target entity's Y from ours.
+  SBC $0378,x                               ; $1FECD8 | / 
+  LDY #$00                                  ; $1FECDB | 
+  BCS code_1FECE5                           ; $1FECDD | \ 
+  EOR #$FF                                  ; $1FECDF | | 
+  ADC #$01                                  ; $1FECE1 | | If Y distance is negative, set offset to 4, and set distance to absolute value.
+  LDY #$04                                  ; $1FECE3 | | $00 is now absolute Y distance.
+code_1FECE5:                                ;           |
+  STA $00                                   ; $1FECE5 | /
+  LDA $01                                   ; $1FECE7 | \
+  SEC                                       ; $1FECE9 | | Subtract target entity's X from ours.
+  SBC $0330,x                               ; $1FECEA | |
+  PHA                                       ; $1FECED | \
+  LDA $02                                   ; $1FECEE | | Subtract target entity's X screen from ours. 
+  SBC $0348,x                               ; $1FECF0 | | Will affect the carry flag for the next comparison, as a result the distance will be inverted if the two entities are on different screens.
+  PLA                                       ; $1FECF3 | /
+  BCS code_1FECFC                           ; $1FECF4 | \
+  EOR #$FF                                  ; $1FECF6 | |
+  ADC #$01                                  ; $1FECF8 | |
+  INY                                       ; $1FECFA | | If X distance is negative, increase offset by 2 and set distance to absolute value.
+  INY                                       ; $1FECFB | | $01 is now absolute X distance.
+code_1FECFC:                                ;           |
+  STA $01                                   ; $1FECFC | /
+  CMP $00                                   ; $1FECFE | \
+  BCS code_1FED0B                           ; $1FED00 | |
+  PHA                                       ; $1FED02 | |
+  LDA $00                                   ; $1FED03 | | If $01 is less than $00, swap them and increase offset by 1.
+  STA $01                                   ; $1FED05 | | From now on, $01 will be the bigger distance, and $00 the smaller one.
+  PLA                                       ; $1FED07 | |
+  STA $00                                   ; $1FED08 | |
+  INY                                       ; $1FED0A | /
 code_1FED0B:
   LDA #$00                                  ; $1FED0B |
-  STA $02                                   ; $1FED0D |
-  LDA $01                                   ; $1FED0F |
-  LSR                                       ; $1FED11 |
-  LSR                                       ; $1FED12 |
-  CMP $00                                   ; $1FED13 |
-  BCS code_1FED20                           ; $1FED15 |
-  INC $02                                   ; $1FED17 |
-  ASL                                       ; $1FED19 |
-  CMP $00                                   ; $1FED1A |
-  BCS code_1FED20                           ; $1FED1C |
-  INC $02                                   ; $1FED1E |
+  STA $02                                   ; $1FED0D | $02 will now be used to represent the angle's slope.
+  LDA $01                                   ; $1FED0F | \
+  LSR                                       ; $1FED11 | | Check if bigDistance/4 > smallDistance
+  LSR                                       ; $1FED12 | | If so, angle's slope value is left at 0 - cardinal direction
+  CMP $00                                   ; $1FED13 | | If not, increase slope steepness
+  BCS code_1FED20                           ; $1FED15 | | 
+  INC $02                                   ; $1FED17 | /
+  ASL                                       ; $1FED19 | \ 
+  CMP $00                                   ; $1FED1A | | Check if bigDistance/2 > smallDistance
+  BCS code_1FED20                           ; $1FED1C | | If not, increase slope steepness
+  INC $02                                   ; $1FED1E | /
 code_1FED20:
-  TYA                                       ; $1FED20 |
-  ASL                                       ; $1FED21 |
-  ASL                                       ; $1FED22 |
-  CLC                                       ; $1FED23 |
-  ADC $02                                   ; $1FED24 |
+  TYA                                       ; $1FED20 | \
+  ASL                                       ; $1FED21 | | 4 slope value entries per table region, so multiply offset by 4
+  ASL                                       ; $1FED22 | | Slope value 3 is never used, but probably done for performance reasons
+  CLC                                       ; $1FED23 | /
+  ADC $02                                   ; $1FED24 | Add slope value to offset
   TAY                                       ; $1FED26 |
-  LDA $ED2B,y                               ; $1FED27 |
+  LDA get_angle_table,y                     ; $1FED27 | Load appropriate value from table 
   RTS                                       ; $1FED2A |
 
+;Used by get_angle_to_entity
+get_angle_table:
   db $04, $05, $06, $04, $08, $07, $06, $04 ; $1FED2B |
   db $0C, $0B, $0A, $04, $08, $09, $0A, $04 ; $1FED33 |
   db $04, $03, $02, $04, $00, $01, $02, $04 ; $1FED3B |
@@ -15651,7 +15687,7 @@ code_1FED20:
 code_1FED5B:
   LDY #$00                                  ; $1FED5B |
 code_1FED5D:
-  JSR code_1FECC4                           ; $1FED5D |
+  JSR get_angle_to_entity                   ; $1FED5D |
   STA $00                                   ; $1FED60 |
   TAY                                       ; $1FED62 |
   LDA $04B0,x                               ; $1FED63 |
@@ -16179,14 +16215,14 @@ code_1FF17D:
   CLC                                       ; $1FF17D |
   RTS                                       ; $1FF17E |
 
-  JSR code_1FEC94                           ; $1FF17F |
+  JSR distance_to_player                    ; $1FF17F |
   STA $0A                                   ; $1FF182 |
   LDA #$01                                  ; $1FF184 |
   BCS code_1FF18A                           ; $1FF186 |
   LDA #$02                                  ; $1FF188 |
 code_1FF18A:
   STA $0C                                   ; $1FF18A |
-  JSR code_1FEC76                           ; $1FF18C |
+  JSR vertical_distance_to_player           ; $1FF18C |
   STA $0B                                   ; $1FF18F |
   LDA #$04                                  ; $1FF191 |
   BCS code_1FF197                           ; $1FF193 |
