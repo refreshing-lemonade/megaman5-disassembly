@@ -126,7 +126,7 @@ code_1B80D9:
   JSR code_1FEC5D                           ; $1B8117 |
   LDA #$B0                                  ; $1B811A |
 code_1B811C:
-  JSR code_1FEA98                           ; $1B811C |
+  JSR entity_set_animation                  ; $1B811C |
   LDY $AF                                   ; $1B811F |
   LDA {y_position_low}                      ; $1B8121 |
   CLC                                       ; $1B8124 |
@@ -172,7 +172,7 @@ code_1B814A:
   LDA #$14                                  ; $1B817B |
   CLC                                       ; $1B817D |
   ADC $34                                   ; $1B817E |
-  JSR code_1FEA98                           ; $1B8180 |
+  JSR entity_set_animation                  ; $1B8180 |
   JMP code_1B820E                           ; $1B8183 |
 
 code_1B8186:
@@ -197,7 +197,7 @@ code_1B819D:
   LDA #$04                                  ; $1B81AA |
   CLC                                       ; $1B81AC |
   ADC $34                                   ; $1B81AD |
-  JSR code_1FEA98                           ; $1B81AF |
+  JSR entity_set_animation                  ; $1B81AF |
   JMP code_1B81CF                           ; $1B81B2 |
 
 code_1B81B5:
@@ -214,7 +214,7 @@ code_1B81BF:
   LDA #$0D                                  ; $1B81C7 |
   CLC                                       ; $1B81C9 |
   ADC $34                                   ; $1B81CA |
-  JSR code_1FEA98                           ; $1B81CC |
+  JSR entity_set_animation                  ; $1B81CC |
 code_1B81CF:
   LDA {entity_var_e}                        ; $1B81CF |
   BNE code_1B8201                           ; $1B81D2 |
@@ -240,7 +240,7 @@ code_1B81E8:
   LDA #$1B                                  ; $1B81F7 |
   CMP {animation_index}                     ; $1B81F9 |
   BEQ code_1B8214                           ; $1B81FC |
-  JMP code_1FEA98                           ; $1B81FE |
+  JMP entity_set_animation                  ; $1B81FE |
 
 code_1B8201:
   LDA #$01                                  ; $1B8201 |
@@ -249,7 +249,7 @@ code_1B8201:
   CMP {animation_index}                     ; $1B8206 |
   BEQ code_1B820E                           ; $1B8209 |
 code_1B820B:
-  JSR code_1FEA98                           ; $1B820B |
+  JSR entity_set_animation                  ; $1B820B |
 code_1B820E:
   JSR code_1B906B                           ; $1B820E |
   JSR code_1B95F8                           ; $1B8211 |
@@ -281,7 +281,7 @@ code_1B823A:
   BEQ code_1B824E                           ; $1B8242 |
   CLC                                       ; $1B8244 |
   ADC $34                                   ; $1B8245 |
-  JSR code_1FEA98                           ; $1B8247 |
+  JSR entity_set_animation                  ; $1B8247 |
   LDA #$01                                  ; $1B824A |
   STA $30                                   ; $1B824C |
 code_1B824E:
@@ -309,7 +309,7 @@ code_1B826E:
   LDA #$04                                  ; $1B8276 |
   CLC                                       ; $1B8278 |
   ADC $34                                   ; $1B8279 |
-  JSR code_1FEA98                           ; $1B827B |
+  JSR entity_set_animation                  ; $1B827B |
   LDA #$1B                                  ; $1B827E |
   JSR code_1FEC5D                           ; $1B8280 |
 code_1B8283:
@@ -391,7 +391,7 @@ code_1B830C:
   LDA #$01                                  ; $1B8315 |
   STA {x_speed}                             ; $1B8317 |
   LDA #$04                                  ; $1B831A |
-  JSR code_1FEA98                           ; $1B831C |
+  JSR entity_set_animation                  ; $1B831C |
   LDY $AF                                   ; $1B831F |
   LDA $8EF3,y                               ; $1B8321 |
   STA {y_speed_frac}                        ; $1B8324 |
@@ -469,7 +469,7 @@ code_1B83A9:
   ADC $34                                   ; $1B83AD |
   CMP {animation_index}                     ; $1B83AF |
   BEQ code_1B83BC                           ; $1B83B2 |
-  JMP code_1FEA98                           ; $1B83B4 |
+  JMP entity_set_animation                  ; $1B83B4 |
 
 code_1B83B7:
   LDA #$00                                  ; $1B83B7 |
@@ -514,7 +514,7 @@ code_1B83FF:
   LDA $10                                   ; $1B83FF |
   CMP {animation_index}                     ; $1B8401 |
   BEQ code_1B8409                           ; $1B8404 |
-  JSR code_1FEA98                           ; $1B8406 |
+  JSR entity_set_animation                  ; $1B8406 |
 code_1B8409:
   LDA {y_speed}                             ; $1B8409 |
   BMI code_1B841C                           ; $1B840C |
@@ -623,7 +623,7 @@ code_1B84BF:
   CMP #$02                                  ; $1B84E0 |
   BEQ code_1B84E9                           ; $1B84E2 |
   LDA #$1D                                  ; $1B84E4 |
-  JMP code_1FEA98                           ; $1B84E6 |
+  JMP entity_set_animation                  ; $1B84E6 |
 
 code_1B84E9:
   LDY $AF                                   ; $1B84E9 |
@@ -636,7 +636,7 @@ code_1B84E9:
   LDA #$02                                  ; $1B84FA |
   STA {x_speed}                             ; $1B84FC |
   LDA #$10                                  ; $1B84FF |
-  JSR code_1FEA98                           ; $1B8501 |
+  JSR entity_set_animation                  ; $1B8501 |
   LDA #$00                                  ; $1B8504 |
   STA $35                                   ; $1B8506 |
 code_1B8508:
@@ -678,7 +678,7 @@ code_1B8538:
   LDY {animation_frame}                     ; $1B8549 |
   CPY #$0F                                  ; $1B854C |
   BNE code_1B85CE                           ; $1B854E |
-  JSR code_1FEA98                           ; $1B8550 |
+  JSR entity_set_animation                  ; $1B8550 |
   LDA #$00                                  ; $1B8553 |
   STA {y_speed_frac}                        ; $1B8555 |
   LDA #$08                                  ; $1B8558 |
@@ -729,7 +729,7 @@ code_1B85B6:
   CMP #$04                                  ; $1B85B9 |
   BNE code_1B85CE                           ; $1B85BB |
   LDA #$01                                  ; $1B85BD |
-  JSR code_1FEA98                           ; $1B85BF |
+  JSR entity_set_animation                  ; $1B85BF |
   LDA #$00                                  ; $1B85C2 |
   STA $30                                   ; $1B85C4 |
   JSR reset_vertical_speed                  ; $1B85C6 |
@@ -744,7 +744,7 @@ code_1B85CE:
   LDA #$07                                  ; $1B85D4 |
   CMP {animation_index}                     ; $1B85D6 |
   BEQ code_1B85E4                           ; $1B85D9 |
-  JSR code_1FEA98                           ; $1B85DB |
+  JSR entity_set_animation                  ; $1B85DB |
   LDA #$00                                  ; $1B85DE |
   STA $34                                   ; $1B85E0 |
   STA $33                                   ; $1B85E2 |
@@ -769,11 +769,11 @@ code_1B8605:
   LDY #$0F                                  ; $1B8606 |
 code_1B8608:
   LDA $8EFB,y                               ; $1B8608 |
-  STA $0620,y                               ; $1B860B |
+  STA {palette_original},y                  ; $1B860B |
   DEY                                       ; $1B860E |
   BPL code_1B8608                           ; $1B860F |
   LDA #$F0                                  ; $1B8611 |
-  STA $EB                                   ; $1B8613 |
+  STA {background_chr_bank_bottom}          ; $1B8613 |
   LDA #$00                                  ; $1B8615 |
   STA $95                                   ; $1B8617 |
   STA $30                                   ; $1B8619 |
@@ -789,7 +789,7 @@ code_1B8608:
   LDA #$07                                  ; $1B862E |
   CMP {animation_index}                     ; $1B8630 |
   BEQ code_1B863E                           ; $1B8633 |
-  JSR code_1FEA98                           ; $1B8635 |
+  JSR entity_set_animation                  ; $1B8635 |
   LDA #$00                                  ; $1B8638 |
   STA $34                                   ; $1B863A |
   STA $33                                   ; $1B863C |
@@ -849,7 +849,7 @@ code_1B86A8:
   PHP                                       ; $1B86A8 |
   CMP {animation_index}                     ; $1B86A9 |
   BEQ code_1B86B7                           ; $1B86AC |
-  JSR code_1FEA98                           ; $1B86AE |
+  JSR entity_set_animation                  ; $1B86AE |
   LDA #$00                                  ; $1B86B1 |
   STA $34                                   ; $1B86B3 |
   STA $33                                   ; $1B86B5 |
@@ -897,7 +897,7 @@ code_1B86EE:
 code_1B8702:
   CMP {animation_index}                     ; $1B8702 |
   BEQ code_1B870A                           ; $1B8705 |
-  JSR code_1FEA98                           ; $1B8707 |
+  JSR entity_set_animation                  ; $1B8707 |
 code_1B870A:
   JSR code_1FE8DE                           ; $1B870A |
   LDA {animation_index}                     ; $1B870D |
@@ -917,7 +917,7 @@ code_1B870A:
   LDA #$1E                                  ; $1B872F |
   STA {entity_type},y                       ; $1B8731 |
   LDA #$07                                  ; $1B8734 |
-  JSR code_1FEA98                           ; $1B8736 |
+  JSR entity_set_animation                  ; $1B8736 |
   LDA #$00                                  ; $1B8739 |
   STA {y_speed_frac}                        ; $1B873B |
   LDA #$05                                  ; $1B873E |
@@ -957,7 +957,7 @@ code_1B8779:
   LDA #$08                                  ; $1B8781 |
   STA {y_speed}                             ; $1B8783 |
   LDA #$07                                  ; $1B8786 |
-  JSR code_1FEA98                           ; $1B8788 |
+  JSR entity_set_animation                  ; $1B8788 |
   LDA #$00                                  ; $1B878B |
   STA {entity_var_a}                        ; $1B878D |
   STA {entity_var_b}                        ; $1B8790 |
@@ -1032,7 +1032,7 @@ code_1B880F:
   LDA #$08                                  ; $1B8822 |
   STA {y_speed}                             ; $1B8824 |
   LDA #$13                                  ; $1B8827 |
-  JSR code_1FEA98                           ; $1B8829 |
+  JSR entity_set_animation                  ; $1B8829 |
   LDA #$04                                  ; $1B882C |
   STA {animation_frame}                     ; $1B882E |
   LDA #$35                                  ; $1B8831 |
@@ -1072,7 +1072,7 @@ code_1B886E:
 code_1B8879:
   CMP {animation_index}                     ; $1B8879 |
   BEQ code_1B8881                           ; $1B887C |
-  JSR code_1FEA98                           ; $1B887E |
+  JSR entity_set_animation                  ; $1B887E |
 code_1B8881:
   JSR code_1FE8DE                           ; $1B8881 |
   LDA #$84                                  ; $1B8884 |
@@ -1080,7 +1080,7 @@ code_1B8881:
   BCS code_1B8897                           ; $1B8889 |
   STA {x_position_low}                      ; $1B888B |
   LDA #$01                                  ; $1B888E |
-  JSR code_1FEA98                           ; $1B8890 |
+  JSR entity_set_animation                  ; $1B8890 |
   LDA #$12                                  ; $1B8893 |
   STA $30                                   ; $1B8895 |
 code_1B8897:
@@ -1103,7 +1103,7 @@ code_1B8897:
   STA {x_position_low}                      ; $1B88BA |
 code_1B88BD:
   LDA #$01                                  ; $1B88BD |
-  JMP code_1FEA98                           ; $1B88BF |
+  JMP entity_set_animation                  ; $1B88BF |
 
 code_1B88C2:
   LDA {animation_frame}                     ; $1B88C2 |
@@ -1132,7 +1132,7 @@ code_1B88E2:
   LDA #$01                                  ; $1B88EF |
   CMP {animation_index}                     ; $1B88F1 |
   BEQ code_1B88FF                           ; $1B88F4 |
-  JSR code_1FEA98                           ; $1B88F6 |
+  JSR entity_set_animation                  ; $1B88F6 |
   LDY {entity_var_b}                        ; $1B88F9 |
   JMP code_1FF2FE                           ; $1B88FC |
 
@@ -1192,7 +1192,7 @@ code_1B8919:
   LDA $03                                   ; $1B896E |
   STA {x_position_low},y                    ; $1B8970 |
   LDA #$00                                  ; $1B8973 |
-  STA {sprite_flags},y                      ; $1B8975 |
+  STA {entity_flags},y                      ; $1B8975 |
   TYA                                       ; $1B8978 |
   TAX                                       ; $1B8979 |
   LDY $11                                   ; $1B897A |
@@ -1235,7 +1235,7 @@ code_1B89B5:
 code_1B89C4:
   CMP {animation_index}                     ; $1B89C4 |
   BEQ code_1B89D2                           ; $1B89C7 |
-  JSR code_1FEA98                           ; $1B89C9 |
+  JSR entity_set_animation                  ; $1B89C9 |
   LDA #$00                                  ; $1B89CC |
   STA $33                                   ; $1B89CE |
   STA $34                                   ; $1B89D0 |
@@ -1261,7 +1261,7 @@ code_1B89D3:
   LDA {animation_frame}                     ; $1B89F3 |
   BNE code_1B8A38                           ; $1B89F6 |
   LDA #$13                                  ; $1B89F8 |
-  JSR code_1FEA98                           ; $1B89FA |
+  JSR entity_set_animation                  ; $1B89FA |
   LDA #$00                                  ; $1B89FD |
   STA {y_speed_frac}                        ; $1B89FF |
   LDA #$08                                  ; $1B8A02 |
@@ -1273,7 +1273,7 @@ code_1B89D3:
   STA {entity_display_flags}                ; $1B8A10 |
   LDY $6A                                   ; $1B8A13 |
   LDA $8FBB,y                               ; $1B8A15 |
-  STA $F9                                   ; $1B8A18 |
+  STA {scroll_x_high}                       ; $1B8A18 |
   LDA $8FBC,y                               ; $1B8A1A |
   STA $29                                   ; $1B8A1D |
   LDA $8FBD,y                               ; $1B8A1F |
@@ -1299,7 +1299,7 @@ code_1B8A38:
   CMP #$04                                  ; $1B8A4D |
   BNE code_1B8A38                           ; $1B8A4F |
   LDA #$01                                  ; $1B8A51 |
-  JSR code_1FEA98                           ; $1B8A53 |
+  JSR entity_set_animation                  ; $1B8A53 |
   LDA #$00                                  ; $1B8A56 |
   STA $30                                   ; $1B8A58 |
   JSR reset_vertical_speed                  ; $1B8A5A |
@@ -1322,7 +1322,7 @@ code_1B8A5D:
   BNE code_1B8A33                           ; $1B8A7B |
 code_1B8A7D:
   LDA #$13                                  ; $1B8A7D |
-  JSR code_1FEA98                           ; $1B8A7F |
+  JSR entity_set_animation                  ; $1B8A7F |
   LDA #$04                                  ; $1B8A82 |
   STA {animation_frame}                     ; $1B8A84 |
   LDA #$08                                  ; $1B8A87 |
@@ -1334,7 +1334,7 @@ code_1B8A7D:
   LDA #$35                                  ; $1B8A95 |
   JSR code_1FEC5D                           ; $1B8A97 |
 code_1B8A9A:
-  LDA $F9                                   ; $1B8A9A |
+  LDA {scroll_x_high}                       ; $1B8A9A |
   CMP #$03                                  ; $1B8A9C |
   BEQ code_1B8AD8                           ; $1B8A9E |
   LDA {animation_frame}                     ; $1B8AA0 |
@@ -1344,7 +1344,7 @@ code_1B8A9A:
   LDA {y_position_high}                     ; $1B8AAB |
   BEQ code_1B8A33                           ; $1B8AAE |
   JSR reset_vertical_speed                  ; $1B8AB0 |
-  LDA $F9                                   ; $1B8AB3 |
+  LDA {scroll_x_high}                       ; $1B8AB3 |
   AND #$07                                  ; $1B8AB5 |
   ASL                                       ; $1B8AB7 |
   TAY                                       ; $1B8AB8 |
@@ -1355,7 +1355,7 @@ code_1B8A9A:
   LDA #$00                                  ; $1B8AC5 |
   STA {y_position_high}                     ; $1B8AC7 |
   LDA #$03                                  ; $1B8ACA |
-  STA $F9                                   ; $1B8ACC |
+  STA {scroll_x_high}                       ; $1B8ACC |
   LDA #$01                                  ; $1B8ACE |
   STA $29                                   ; $1B8AD0 |
   JSR code_1ED460                           ; $1B8AD2 |
@@ -1384,7 +1384,7 @@ code_1B8AE6:
 code_1B8AF7:
   CMP {animation_index}                     ; $1B8AF7 |
   BEQ code_1B8AFF                           ; $1B8AFA |
-  JSR code_1FEA98                           ; $1B8AFC |
+  JSR entity_set_animation                  ; $1B8AFC |
 code_1B8AFF:
   LDA {animation_index}                     ; $1B8AFF |
   CMP #$01                                  ; $1B8B02 |
@@ -1399,7 +1399,7 @@ code_1B8B0F:
   LDA $26                                   ; $1B8B14 |
   AND #$07                                  ; $1B8B16 |
   TAY                                       ; $1B8B18 |
-  LDA $F2B2,y                               ; $1B8B19 |
+  LDA bitmask_table,y                       ; $1B8B19 |
   STA $00                                   ; $1B8B1C |
   LDA $26                                   ; $1B8B1E |
   LSR                                       ; $1B8B20 |
@@ -1415,7 +1415,7 @@ code_1B8B0F:
   CMP #$08                                  ; $1B8B32 |
   BCS code_1B8B40                           ; $1B8B34 |
   LDA #$04                                  ; $1B8B36 |
-  JSR code_1FEA98                           ; $1B8B38 |
+  JSR entity_set_animation                  ; $1B8B38 |
   LDA #$0F                                  ; $1B8B3B |
   STA $30                                   ; $1B8B3D |
   RTS                                       ; $1B8B3F |
@@ -1433,7 +1433,7 @@ code_1B8B45:
   LDA #$01                                  ; $1B8B4A |
   CMP {animation_index}                     ; $1B8B4C |
   BEQ code_1B8B5A                           ; $1B8B4F |
-  JSR code_1FEA98                           ; $1B8B51 |
+  JSR entity_set_animation                  ; $1B8B51 |
   LDA #$00                                  ; $1B8B54 |
   STA $34                                   ; $1B8B56 |
   STA $33                                   ; $1B8B58 |
@@ -1453,7 +1453,7 @@ code_1B8B5A:
 code_1B8B6F:
   CMP {animation_index}                     ; $1B8B6F |
   BEQ code_1B8B7D                           ; $1B8B72 |
-  JSR code_1FEA98                           ; $1B8B74 |
+  JSR entity_set_animation                  ; $1B8B74 |
   LDA #$00                                  ; $1B8B77 |
   STA $33                                   ; $1B8B79 |
   STA $34                                   ; $1B8B7B |
@@ -1484,7 +1484,7 @@ code_1B8BA3:
   LDA #$01                                  ; $1B8BB0 |
   CMP {animation_index}                     ; $1B8BB2 |
   BEQ code_1B8BBA                           ; $1B8BB5 |
-  JSR code_1FEA98                           ; $1B8BB7 |
+  JSR entity_set_animation                  ; $1B8BB7 |
 code_1B8BBA:
   LDA $99                                   ; $1B8BBA |
   BNE code_1B8C02                           ; $1B8BBC |
@@ -1503,8 +1503,8 @@ code_1B8BBA:
   LDY #$0F                                  ; $1B8BD7 |
 code_1B8BD9:
   LDA $8FF3,y                               ; $1B8BD9 |
-  STA $0600,y                               ; $1B8BDC |
-  STA $0620,y                               ; $1B8BDF |
+  STA {palette_current},y                   ; $1B8BDC |
+  STA {palette_original},y                  ; $1B8BDF |
   DEY                                       ; $1B8BE2 |
   BPL code_1B8BD9                           ; $1B8BE3 |
   STY $18                                   ; $1B8BE5 |
@@ -1516,7 +1516,7 @@ code_1B8BD9:
   LDA #$1D                                  ; $1B8BF4 |
   STA $30                                   ; $1B8BF6 |
   LDA #$04                                  ; $1B8BF8 |
-  JSR code_1FEA98                           ; $1B8BFA |
+  JSR entity_set_animation                  ; $1B8BFA |
   LDA #$4A                                  ; $1B8BFD |
   JSR code_1FEC5B                           ; $1B8BFF |
 code_1B8C02:
@@ -1534,7 +1534,7 @@ code_1B8C02:
   BCS code_1B8C02                           ; $1B8C19 |
   STA {x_position_low}                      ; $1B8C1B |
   LDA #$01                                  ; $1B8C1E |
-  JSR code_1FEA98                           ; $1B8C20 |
+  JSR entity_set_animation                  ; $1B8C20 |
   LDA #$15                                  ; $1B8C23 |
   JSR code_1FEC5B                           ; $1B8C25 |
   LDA #$00                                  ; $1B8C28 |
@@ -1555,7 +1555,7 @@ code_1B8C2D:
   LDA #$1E                                  ; $1B8C4B |
   STA $30                                   ; $1B8C4D |
   LDA #$07                                  ; $1B8C4F |
-  JSR code_1FEA98                           ; $1B8C51 |
+  JSR entity_set_animation                  ; $1B8C51 |
   LDA #$00                                  ; $1B8C54 |
   STA $05F3                                 ; $1B8C56 |
   LDY #$00                                  ; $1B8C59 |
@@ -1576,11 +1576,11 @@ code_1B8C7B:
   LDA #$01                                  ; $1B8C7B |
   CMP {animation_index}                     ; $1B8C7D |
   BEQ code_1B8CAD                           ; $1B8C80 |
-  JSR code_1FEA98                           ; $1B8C82 |
+  JSR entity_set_animation                  ; $1B8C82 |
   LDA {entity_display_flags}                ; $1B8C85 |
   ORA #$20                                  ; $1B8C88 |
   STA {entity_display_flags}                ; $1B8C8A |
-  LDY {entity_var_h}                        ; $1B8C8D |
+  LDY {entity_spawn_id}                     ; $1B8C8D |
   LDA {entity_display_flags},y              ; $1B8C90 |
   ORA #$20                                  ; $1B8C93 |
   STA {entity_display_flags},y              ; $1B8C95 |
@@ -1600,7 +1600,7 @@ code_1B8CAE:
   LDA {entity_direction}                    ; $1B8CAE |
   AND #$01                                  ; $1B8CB1 |
   BNE code_1B8CC7                           ; $1B8CB3 |
-  LDY {entity_var_h}                        ; $1B8CB5 |
+  LDY {entity_spawn_id}                     ; $1B8CB5 |
   LDA {y_position_low}                      ; $1B8CB8 |
   STA {y_position_low},y                    ; $1B8CBB |
   LDA {x_position_low}                      ; $1B8CBE |
@@ -1633,7 +1633,7 @@ code_1B8CED:
   DEY                                       ; $1B8CF3 |
   BPL code_1B8CD3                           ; $1B8CF4 |
   STY $18                                   ; $1B8CF6 |
-  LDY {entity_var_h}                        ; $1B8CF8 |
+  LDY {entity_spawn_id}                     ; $1B8CF8 |
   LDA {entity_display_flags},y              ; $1B8CFB |
   AND #$EF                                  ; $1B8CFE |
   STA {entity_display_flags},y              ; $1B8D00 |
@@ -1645,7 +1645,7 @@ code_1B8D03:
   BEQ code_1B8D1B                           ; $1B8D09 |
   DEC {entity_var_a}                        ; $1B8D0B |
   BNE code_1B8D03                           ; $1B8D0E |
-  JSR code_1FEA98                           ; $1B8D10 |
+  JSR entity_set_animation                  ; $1B8D10 |
   LDA #$0B                                  ; $1B8D13 |
   STA $23                                   ; $1B8D15 |
   LDA #$80                                  ; $1B8D17 |
@@ -1662,7 +1662,7 @@ code_1B8D1B:
   LDA #$2F                                  ; $1B8D2F |
   STA {entity_type},y                       ; $1B8D31 |
   LDA #$00                                  ; $1B8D34 |
-  STA {sprite_flags},y                      ; $1B8D36 |
+  STA {entity_flags},y                      ; $1B8D36 |
   LDX {entity_var_b}                        ; $1B8D39 |
   LDA $9007,x                               ; $1B8D3C |
   STA {y_position_low},y                    ; $1B8D3F |
@@ -1711,28 +1711,28 @@ code_1B8D9A:
   SEC                                       ; $1B8D9D |
   SBC {entity_var_a}                        ; $1B8D9E |
   STA {entity_var_c}                        ; $1B8DA1 |
-  LDA $FA                                   ; $1B8DA4 |
+  LDA {scroll_y}                            ; $1B8DA4 |
   SBC {entity_var_b}                        ; $1B8DA6 |
-  STA $FA                                   ; $1B8DA9 |
+  STA {scroll_y}                            ; $1B8DA9 |
   BCS code_1B8DB5                           ; $1B8DAB |
   SBC #$0F                                  ; $1B8DAD |
-  STA $FA                                   ; $1B8DAF |
+  STA {scroll_y}                            ; $1B8DAF |
   LDA #$02                                  ; $1B8DB1 |
   STA $FD                                   ; $1B8DB3 |
 code_1B8DB5:
   LDA $FD                                   ; $1B8DB5 |
   BEQ code_1B8DED                           ; $1B8DB7 |
   LDA #$66                                  ; $1B8DB9 |
-  CMP $FA                                   ; $1B8DBB |
+  CMP {scroll_y}                            ; $1B8DBB |
   BCC code_1B8DED                           ; $1B8DBD |
-  STA $FA                                   ; $1B8DBF |
+  STA {scroll_y}                            ; $1B8DBF |
   LDA $9D                                   ; $1B8DC1 |
   AND #$02                                  ; $1B8DC3 |
   STA $78                                   ; $1B8DC5 |
   LDA #$C4                                  ; $1B8DC7 |
   CMP {animation_index}                     ; $1B8DC9 |
   BEQ code_1B8DD1                           ; $1B8DCC |
-  JSR code_1FEA98                           ; $1B8DCE |
+  JSR entity_set_animation                  ; $1B8DCE |
 code_1B8DD1:
   LDY {entity_var_g}                        ; $1B8DD1 |
   LDA {entity_type},y                       ; $1B8DD4 |
@@ -1752,13 +1752,13 @@ code_1B8DED:
   CLC                                       ; $1B8DF1 |
   ADC #$40                                  ; $1B8DF2 |
   STA {entity_var_c}                        ; $1B8DF4 |
-  LDA $FA                                   ; $1B8DF7 |
+  LDA {scroll_y}                            ; $1B8DF7 |
   ADC #$00                                  ; $1B8DF9 |
-  STA $FA                                   ; $1B8DFB |
+  STA {scroll_y}                            ; $1B8DFB |
   LDA #$6E                                  ; $1B8DFD |
-  CMP $FA                                   ; $1B8DFF |
+  CMP {scroll_y}                            ; $1B8DFF |
   BCS code_1B8E05                           ; $1B8E01 |
-  STA $FA                                   ; $1B8E03 |
+  STA {scroll_y}                            ; $1B8E03 |
 code_1B8E05:
   DEC {entity_var_a}                        ; $1B8E05 |
   BNE code_1B8DED                           ; $1B8E08 |
@@ -1800,7 +1800,7 @@ code_1B8E05:
   LDA $03                                   ; $1B8E5D |
   STA {x_position_low},y                    ; $1B8E5F |
   LDA #$00                                  ; $1B8E62 |
-  STA {sprite_flags},y                      ; $1B8E64 |
+  STA {entity_flags},y                      ; $1B8E64 |
   TYA                                       ; $1B8E67 |
   TAX                                       ; $1B8E68 |
   LDY $11                                   ; $1B8E69 |
@@ -1813,7 +1813,7 @@ code_1B8E05:
   CMP #$48                                  ; $1B8E79 |
   BNE code_1B8E95                           ; $1B8E7B |
   LDA #$04                                  ; $1B8E7D |
-  JSR code_1FEA98                           ; $1B8E7F |
+  JSR entity_set_animation                  ; $1B8E7F |
   LDA #$22                                  ; $1B8E82 |
   STA $30                                   ; $1B8E84 |
   LDA #$00                                  ; $1B8E86 |
@@ -1833,7 +1833,7 @@ code_1B8E95:
 code_1B8EA1:
   CMP {animation_index}                     ; $1B8EA1 |
   BEQ code_1B8EA9                           ; $1B8EA4 |
-  JSR code_1FEA98                           ; $1B8EA6 |
+  JSR entity_set_animation                  ; $1B8EA6 |
 code_1B8EA9:
   LDA {entity_display_flags}                ; $1B8EA9 |
   ORA #$08                                  ; $1B8EAC |
@@ -1843,7 +1843,7 @@ code_1B8EA9:
   BEQ code_1B8EBB                           ; $1B8EB6 |
   JSR code_1FE8DE                           ; $1B8EB8 |
 code_1B8EBB:
-  LDY {entity_var_h}                        ; $1B8EBB |
+  LDY {entity_spawn_id}                     ; $1B8EBB |
   LDA {entity_type},y                       ; $1B8EBE |
   BNE code_1B8ECF                           ; $1B8EC1 |
   LDA #$23                                  ; $1B8EC3 |
@@ -1859,14 +1859,14 @@ code_1B8ECF:
   DEC {entity_var_a}                        ; $1B8ED5 |
   BNE code_1B8ECF                           ; $1B8ED8 |
 code_1B8EDA:
-  LDA $FA                                   ; $1B8EDA |
+  LDA {scroll_y}                            ; $1B8EDA |
   SEC                                       ; $1B8EDC |
   SBC #$08                                  ; $1B8EDD |
-  STA $FA                                   ; $1B8EDF |
+  STA {scroll_y}                            ; $1B8EDF |
   LDA #$50                                  ; $1B8EE1 |
-  CMP $FA                                   ; $1B8EE3 |
+  CMP {scroll_y}                            ; $1B8EE3 |
   BCC code_1B8ECF                           ; $1B8EE5 |
-  STA $FA                                   ; $1B8EE7 |
+  STA {scroll_y}                            ; $1B8EE7 |
   DEC {entity_var_b}                        ; $1B8EE9 |
   BNE code_1B8ECF                           ; $1B8EEC |
   JMP code_1B851C                           ; $1B8EEE |
@@ -2127,12 +2127,12 @@ code_1B91F2:
   LDA $95A3,x                               ; $1B91F2 |
   JSR code_1FEC5D                           ; $1B91F5 |
   LDA #$00                                  ; $1B91F8 |
-  STA {sprite_flags},y                      ; $1B91FA |
+  STA {entity_flags},y                      ; $1B91FA |
   LDA $9594,x                               ; $1B91FD |
   LDX #$00                                  ; $1B9200 |
   JSR code_1FEAF5                           ; $1B9202 |
   LDA #$00                                  ; $1B9205 |
-  STA {sprite_flags},y                      ; $1B9207 |
+  STA {entity_flags},y                      ; $1B9207 |
   LDA #$70                                  ; $1B920A |
   STA {entity_type},y                       ; $1B920C |
   LDA $38                                   ; $1B920F |
@@ -2248,7 +2248,7 @@ code_1B92EB:
   LDA #$75                                  ; $1B92F9 |
   STA {entity_type},y                       ; $1B92FB |
   LDA #$00                                  ; $1B92FE |
-  STA {sprite_flags},y                      ; $1B9300 |
+  STA {entity_flags},y                      ; $1B9300 |
   STA {x_speed_frac},y                      ; $1B9303 |
   LDA #$03                                  ; $1B9306 |
   STA {x_speed},y                           ; $1B9308 |
@@ -2304,7 +2304,7 @@ code_1B9350:
   STA {x_speed_frac},y                      ; $1B9370 |
   STA {x_speed},y                           ; $1B9373 |
   LDA #$1A                                  ; $1B9376 |
-  STA {sprite_flags},y                      ; $1B9378 |
+  STA {entity_flags},y                      ; $1B9378 |
   LDA $32                                   ; $1B937B |
   STA $5B                                   ; $1B937D |
   LDA #$1E                                  ; $1B937F |
@@ -2336,7 +2336,7 @@ code_1B93A5:
   LDA #$B1                                  ; $1B93B1 |
   JSR code_1FEAF5                           ; $1B93B3 |
   LDA #$00                                  ; $1B93B6 |
-  STA {sprite_flags},y                      ; $1B93B8 |
+  STA {entity_flags},y                      ; $1B93B8 |
   LDA #$72                                  ; $1B93BB |
   STA {entity_type},y                       ; $1B93BD |
   JSR code_1FEA34                           ; $1B93C0 |
@@ -2394,7 +2394,7 @@ code_1B942E:
   LDA #$AF                                  ; $1B942E |
   JSR code_1FEAA4                           ; $1B9430 |
   LDA #$00                                  ; $1B9433 |
-  STA {sprite_flags},y                      ; $1B9435 |
+  STA {entity_flags},y                      ; $1B9435 |
   LDA {x_position_low},y                    ; $1B9438 |
   CLC                                       ; $1B943B |
   ADC $95B5,y                               ; $1B943C |
@@ -2444,11 +2444,11 @@ code_1B942E:
   STA $0391                                 ; $1B94A6 |
   LDA #$80                                  ; $1B94A9 |
   STA $0379                                 ; $1B94AB |
-  LDA $FC                                   ; $1B94AE |
+  LDA {scroll_x}                            ; $1B94AE |
   CLC                                       ; $1B94B0 |
   ADC #$80                                  ; $1B94B1 |
   STA $0331                                 ; $1B94B3 |
-  LDA $F9                                   ; $1B94B6 |
+  LDA {scroll_x_high}                       ; $1B94B6 |
   ADC #$00                                  ; $1B94B8 |
   STA $0349                                 ; $1B94BA |
   LDA #$20                                  ; $1B94BD |
@@ -2484,7 +2484,7 @@ code_1B94E4:
   LDA $32                                   ; $1B94F5 |
   STA $5B                                   ; $1B94F7 |
   LDA #$00                                  ; $1B94F9 |
-  STA {sprite_flags},y                      ; $1B94FB |
+  STA {entity_flags},y                      ; $1B94FB |
   STA {y_position_low},y                    ; $1B94FE |
   STA {x_speed_frac},y                      ; $1B9501 |
   STA {x_speed},y                           ; $1B9504 |
@@ -2607,7 +2607,7 @@ code_1B962B:
   LDA #$0A                                  ; $1B9643 |
   CLC                                       ; $1B9645 |
   ADC $34                                   ; $1B9646 |
-  JSR code_1FEA98                           ; $1B9648 |
+  JSR entity_set_animation                  ; $1B9648 |
 code_1B964B:
   RTS                                       ; $1B964B |
 
@@ -2769,7 +2769,7 @@ code_1B9766:
   LDA $26                                   ; $1B9766 |
   CMP #$05                                  ; $1B9768 |
   BNE code_1B9795                           ; $1B976A |
-  LDA $F9                                   ; $1B976C |
+  LDA {scroll_x_high}                       ; $1B976C |
   CMP #$13                                  ; $1B976E |
   BEQ code_1B9795                           ; $1B9770 |
   CMP #$05                                  ; $1B9772 |
@@ -2787,7 +2787,7 @@ code_1B9766:
   LDA $99                                   ; $1B978C |
   BNE code_1B9795                           ; $1B978E |
   LDA $97CD,y                               ; $1B9790 |
-  STA $FA                                   ; $1B9793 |
+  STA {scroll_y}                            ; $1B9793 |
 code_1B9795:
   LDA $9D                                   ; $1B9795 |
   LSR                                       ; $1B9797 |
@@ -2843,7 +2843,7 @@ code_1B97FA:
   LDA #$62                                  ; $1B97FF |
   JSR code_1FEAF5                           ; $1B9801 |
   LDA #$00                                  ; $1B9804 |
-  STA {sprite_flags},y                      ; $1B9806 |
+  STA {entity_flags},y                      ; $1B9806 |
   LDA {entity_display_flags},y              ; $1B9809 |
   AND #$DF                                  ; $1B980C |
   ORA #$0A                                  ; $1B980E |
@@ -2894,7 +2894,7 @@ code_1B9859:
   STA $03                                   ; $1B985B |
   LDA {x_position_low}                      ; $1B985D |
   SEC                                       ; $1B9860 |
-  SBC $FC                                   ; $1B9861 |
+  SBC {scroll_x}                            ; $1B9861 |
   STA $00                                   ; $1B9863 |
   SEC                                       ; $1B9865 |
   SBC #$10                                  ; $1B9866 |
@@ -2917,230 +2917,257 @@ code_1B9878:
 code_1B9889:
   RTS                                       ; $1B9889 |
 
+; Subroutine that spawns in new enemies as the screen is scrolled.
+; Depending on direction of scrolling, keeps spawning entries in that direction until it hits the first one that isn't scrolled in yet, or the edge of the list.
+; Also updates the next entry for the other direction, for proper behaviour the next time that direction is scrolled in.
+spawn_entry_routine:
   CLC                                       ; $1B988A |
-  LDA $FC                                   ; $1B988B |
-  STA $02                                   ; $1B988D |
-  ADC #$FF                                  ; $1B988F |
-  STA $04                                   ; $1B9891 |
-  LDA $F9                                   ; $1B9893 |
-  STA $03                                   ; $1B9895 |
-  ADC #$00                                  ; $1B9897 |
-  STA $05                                   ; $1B9899 |
-  LDA $AC                                   ; $1B989B |
-  AND #$01                                  ; $1B989D |
-  BNE code_1B98D9                           ; $1B989F |
-code_1B98A1:
-  LDY $AE                                   ; $1B98A1 |
-  BEQ code_1B98BD                           ; $1B98A3 |
-  LDA $A9FF,y                               ; $1B98A5 |
-  CMP $03                                   ; $1B98A8 |
-  BCC code_1B98BD                           ; $1B98AA |
-  BNE code_1B98B5                           ; $1B98AC |
-  LDA $AA7F,y                               ; $1B98AE |
-  CMP $02                                   ; $1B98B1 |
-  BCC code_1B98BD                           ; $1B98B3 |
+  LDA {scroll_x}                            ; $1B988B | \
+  STA $02                                   ; $1B988D | | $02 and $03 store left edge of the screen, $04 and $05 right edge
+  ADC #$FF                                  ; $1B988F | |
+  STA $04                                   ; $1B9891 | |
+  LDA {scroll_x_high}                       ; $1B9893 | |
+  STA $03                                   ; $1B9895 | |
+  ADC #$00                                  ; $1B9897 | |
+  STA $05                                   ; $1B9899 | /
+  LDA {horizontal_scroll_direction}         ; $1B989B | \
+  AND #$01                                  ; $1B989D | | Branch to appropriate code based on scrolling direction
+  BNE spawn_entry_routine_right             ; $1B989F | /
+
+spawn_entry_routine_left:
+  LDY {prev_spawn_index}                    ; $1B98A1 | Prev_spawn_index is the first spawn entry that we've scrolled onto the screen, so -1 is the entry we have to consider now.
+  BEQ code_1B98BD                           ; $1B98A3 | If prev_spawn_index is 0, there's no previous enemy, skip spawning
+  LDA {level_entity_x_position_high}-1,y    ; $1B98A5 | Otherwise, check if we've scrolled in the previous entry.
+  CMP $03                                   ; $1B98A8 | $03 stores X high of left screen edge after previous code.
+  BCC code_1B98BD                           ; $1B98AA | If left edge screen is greater than spawn entry screen, skip spawning
+  BNE code_1B98B5                           ; $1B98AC | Otherwise, if it's less, proceed to spawn
+  LDA {level_entity_x_position_low}-1,y     ; $1B98AE | If it's equal, we also need to compare low x position
+  CMP $02                                   ; $1B98B1 | 
+  BCC code_1B98BD                           ; $1B98B3 | Skip if left screen edge is to the right of spawn entry
 code_1B98B5:
-  DEY                                       ; $1B98B5 |
-  JSR code_1B990A                           ; $1B98B6 |
-  DEC $AE                                   ; $1B98B9 |
-  BNE code_1B98A1                           ; $1B98BB |
+  DEY                                       ; $1B98B5 | Decrease Y to tell the spawning handler that we want to spawn instance of index-1
+  JSR handle_level_spawn_entry              ; $1B98B6 | Handle said spawn entry
+  DEC {prev_spawn_index}                    ; $1B98B9 | 
+  BNE spawn_entry_routine_left              ; $1B98BB | If we haven't reached the start of the enemy list, go back and try processing more entries to the left
 code_1B98BD:
-  LDY $AD                                   ; $1B98BD |
-  BEQ code_1B98D4                           ; $1B98BF |
+  LDY {next_spawn_index}                    ; $1B98BD | Update next spawn entry index to the first one right of us, by moving backwards through them until we hit the first one we've scrolled in.
+  BEQ code_1B98D4                           ; $1B98BF | If next spawn index is 0, there are no further enemies to consider, skip.
 code_1B98C1:
-  LDA $A9FF,y                               ; $1B98C1 |
-  CMP $05                                   ; $1B98C4 |
-  BCC code_1B98D4                           ; $1B98C6 |
-  BNE code_1B98D1                           ; $1B98C8 |
-  LDA $AA7F,y                               ; $1B98CA |
-  CMP $04                                   ; $1B98CD |
-  BCC code_1B98D4                           ; $1B98CF |
+  LDA {level_entity_x_position_high}-1,y    ; $1B98C1 | We compare with data of index-1, since then the entry with the proper index will be the first one we haven't scrolled in yet.
+  CMP $05                                   ; $1B98C4 | $05 stores X high of right screen edge.
+  BCC code_1B98D4                           ; $1B98C6 | If spawn entry screen is to the left of the right screen edge, means it's still on-screen, so it won't be the next entry in line.
+  BNE code_1B98D1                           ; $1B98C8 | If spawn entry screen is to the right of the right screen edge, it's off-screen, proceed to previous entry.
+  LDA {level_entity_x_position_low}-1,y     ; $1B98CA | If spawn entry is on the same screen as the right screen edge, we need to compare low X positions.
+  CMP $04                                   ; $1B98CD | 
+  BCC code_1B98D4                           ; $1B98CF | Don't proceed to previous entry if current one is already to the right of the right screen edge.
 code_1B98D1:
-  DEY                                       ; $1B98D1 |
+  DEY                                       ; $1B98D1 | Decrease next entry index and repeat the process if we haven't hit the start of the list.
   BNE code_1B98C1                           ; $1B98D2 |
 code_1B98D4:
-  STY $AD                                   ; $1B98D4 |
+  STY {next_spawn_index}                    ; $1B98D4 | Store the new index we've calculated into RAM.
   JMP code_1B9909                           ; $1B98D6 |
 
-code_1B98D9:
-  LDY $AD                                   ; $1B98D9 |
-  LDA $05                                   ; $1B98DB |
-  CMP $AA00,y                               ; $1B98DD |
-  BCC code_1B98F2                           ; $1B98E0 |
-  BNE code_1B98EB                           ; $1B98E2 |
-  LDA $04                                   ; $1B98E4 |
-  CMP $AA80,y                               ; $1B98E6 |
-  BCC code_1B98F2                           ; $1B98E9 |
+spawn_entry_routine_right:
+  LDY {next_spawn_index}                    ; $1B98D9 | First check if we can spawn the next spawn entry.
+  LDA $05                                   ; $1B98DB | $05 stores X high of right screen edge after previous code.
+  CMP {level_entity_x_position_high},y      ; $1B98DD | Compare X High of spawn entry with X high of right screen edge.
+  BCC code_1B98F2                           ; $1B98E0 | If right screen edge hasn't yet reached the spawn entry's screen, skip spawning.
+  BNE code_1B98EB                           ; $1B98E2 | If right screen edge is beyond the screen of the spawn entry, spawn it in right away.
+  LDA $04                                   ; $1B98E4 | Otherwise, screen edge and spawn entry are on the same screen.
+  CMP {level_entity_x_position_low},y       ; $1B98E6 | Compare X low to see if we've scrolled the spawn entry into view.
+  BCC code_1B98F2                           ; $1B98E9 | If not, skip spawning.
 code_1B98EB:
-  JSR code_1B990A                           ; $1B98EB |
-  INC $AD                                   ; $1B98EE |
-  BNE code_1B98D9                           ; $1B98F0 |
+  JSR handle_level_spawn_entry              ; $1B98EB | Handle said spawn entry
+  INC {next_spawn_index}                    ; $1B98EE |
+  BNE spawn_entry_routine_right             ; $1B98F0 | If we haven't reached the end of the enemy list, go back and try processing more entries to the right
 code_1B98F2:
-  LDY $AE                                   ; $1B98F2 |
+  LDY {prev_spawn_index}                    ; $1B98F2 | Update previous spawn entry index to the first one scrolled to the left, by skipping them until we hit the first one we haven't scrolled past.
 code_1B98F4:
-  LDA $03                                   ; $1B98F4 |
-  CMP $AA00,y                               ; $1B98F6 |
-  BCC code_1B9907                           ; $1B98F9 |
-  BNE code_1B9904                           ; $1B98FB |
-  LDA $02                                   ; $1B98FD |
-  CMP $AA80,y                               ; $1B98FF |
-  BCC code_1B9907                           ; $1B9902 |
+  LDA $03                                   ; $1B98F4 | $03 stores X high of left screen edge after previous code.
+  CMP {level_entity_x_position_high},y      ; $1B98F6 | Compare X high of spawn entry with X high of left screen edge.
+  BCC code_1B9907                           ; $1B98F9 | If left screen edge hasn't yet reached the spawn entry's screen, no need to skip it.
+  BNE code_1B9904                           ; $1B98FB | If left screen edge is to the right of the screen of the spawn entry, proceed to next entry.
+  LDA $02                                   ; $1B98FD | Otherwise, screen edge and spawn entry are on the same screen. 
+  CMP {level_entity_x_position_low},y       ; $1B98FF | Compare X low to see if we've scrolled past the spawn entry into view.
+  BCC code_1B9907                           ; $1B9902 | Skip if we did.
 code_1B9904:
-  INY                                       ; $1B9904 |
-  BNE code_1B98F4                           ; $1B9905 |
+  INY                                       ; $1B9904 | Increase previous spawn entry index and then do the process again.
+  BNE code_1B98F4                           ; $1B9905 | However, we won't loop if we've reached the final entry in the list.
 code_1B9907:
-  STY $AE                                   ; $1B9907 |
+  STY {prev_spawn_index}                    ; $1B9907 | Store the new index we've calculated into RAM.
 code_1B9909:
   RTS                                       ; $1B9909 |
 
-code_1B990A:
+; Handle spawn entry from level data.
+; Can be either a normal entity, or an effect.
+; Parameters:
+; Y - entry index
+handle_level_spawn_entry:
   STY $06                                   ; $1B990A |
-  LDA $AB80,y                               ; $1B990C |
-  CMP #$C0                                  ; $1B990F |
-  BCS code_1B9916                           ; $1B9911 |
-  JMP code_1B9995                           ; $1B9913 |
+  LDA {level_entity_spawn_id},y             ; $1B990C |
+  CMP #$C0                                  ; $1B990F | If spawn ID is >= $C0, this is a special effect
+  BCS handle_effect                         ; $1B9911 |
+  JMP spawn_instance_from_level             ; $1B9913 |
 
-code_1B9916:
-  AND #$3F                                  ; $1B9916 |
-  TAY                                       ; $1B9918 |
-  LDX $9DB2,y                               ; $1B9919 |
-  BMI code_1B9933                           ; $1B991C |
-  CPX #$10                                  ; $1B991E |
-  BCS code_1B9985                           ; $1B9920 |
-  LDA $9DE2,y                               ; $1B9922 |
-  BPL code_1B993F                           ; $1B9925 |
-  STA $05F0,x                               ; $1B9927 |
-  LDA #$00                                  ; $1B992A |
-  STA $05F4,x                               ; $1B992C |
-  STA $05F8,x                               ; $1B992F |
+; Handle effect instance spawned from level data.
+; Parameters
+; A - Spawn ID
+handle_effect:
+  AND #$3F                                  ; $1B9916 | \
+  TAY                                       ; $1B9918 | | Lower 6 bits are effect ID, load its properties from table
+  LDX main_effect_table,y                   ; $1B9919 | /
+  BMI set_chr_animation                     ; $1B991C | Is property bit 7 set? If so, this is a CHR animation effect
+  CPX #$10                                  ; $1B991E | Else, if greater than $10, this is a background CHR bank swap
+  BCS handle_background_chr_swap_effect     ; $1B9920 | 
+  LDA effect_palette_id,y                   ; $1B9922 | Otherwise, this is a palette effect. Load its palette ID
+  BPL handle_palette_update_effect          ; $1B9925 | If the first bit is set, it's a simple one-time update
+  STA {palette_animation_id},x              ; $1B9927 | \
+  LDA #$00                                  ; $1B992A | | Otherwise, for the affected palette line, update the current palette animation ID and reset palette animation frame and timer
+  STA {palette_animation_frame},x           ; $1B992C | |
+  STA {palette_animation_timer},x           ; $1B992F | /
   RTS                                       ; $1B9932 |
 
-code_1B9933:
-  STX $05D0                                 ; $1B9933 |
+; Update current CHR animation ID and reset CHR animation frame and timer
+; Parameters
+; X - animation ID
+set_chr_animation:
+  STX {chr_animation_id}                    ; $1B9933 |
   LDA #$00                                  ; $1B9936 |
-  STA $05D2                                 ; $1B9938 |
-  STA $05D1                                 ; $1B993B |
-  RTS                                       ; $1B993E |
+  STA {chr_animation_timer}                 ; $1B9938 |
+  STA {chr_animation_frame}                 ; $1B993B |
+  RTS                                       ; $1B993E | 
 
-code_1B993F:
-  ASL                                       ; $1B993F |
-  ASL                                       ; $1B9940 |
-  TAY                                       ; $1B9941 |
-  LDA $9E13,y                               ; $1B9942 |
-  STA $0601,x                               ; $1B9945 |
-  STA $0621,x                               ; $1B9948 |
-  LDA $9E14,y                               ; $1B994B |
-  STA $0602,x                               ; $1B994E |
-  STA $0622,x                               ; $1B9951 |
-  LDA $9E15,y                               ; $1B9954 |
-  STA $0603,x                               ; $1B9957 |
-  STA $0623,x                               ; $1B995A |
-  TXA                                       ; $1B995D |
-  LSR                                       ; $1B995E |
-  LSR                                       ; $1B995F |
-  TAX                                       ; $1B9960 |
-  LDA #$00                                  ; $1B9961 |
-  STA $05F0,x                               ; $1B9963 |
-  LDA #$FF                                  ; $1B9966 |
+; Update palette line according to the effect, and disable ongoing palette animation in that palette line
+; Also initiate a background CHR swap if it's associated with the effect
+; Parameters
+; A - palette ID
+; X - first color of palette line to update
+handle_palette_update_effect:
+  ASL                                       ; $1B993F | \
+  ASL                                       ; $1B9940 | | Multiply ID by 4, since the table is a collection of 4-color palettes
+  TAY                                       ; $1B9941 | /
+  LDA palette_effect_table+1,y              ; $1B9942 | \
+  STA $0601,x                               ; $1B9945 | | 3x Load color from table and store it into RAM palette table
+  STA $0621,x                               ; $1B9948 | | Two palette tables in RAM, so store it in both
+  LDA palette_effect_table+2,y              ; $1B994B | | The very 1st color of the palette is skipped as it is always black. Its value in the table is used for another purpose
+  STA $0602,x                               ; $1B994E | |
+  STA $0622,x                               ; $1B9951 | |
+  LDA palette_effect_table+3,y              ; $1B9954 | |
+  STA $0603,x                               ; $1B9957 | |
+  STA $0623,x                               ; $1B995A | |
+  TXA                                       ; $1B995D | /
+  LSR                                       ; $1B995E | \
+  LSR                                       ; $1B995F | | Disable ongoing palette limitation for palette line X
+  TAX                                       ; $1B9960 | |
+  LDA #$00                                  ; $1B9961 | |
+  STA {palette_animation_id},x              ; $1B9963 | /
+  LDA #$FF                                  ; $1B9966 | Signal palette change
   STA $18                                   ; $1B9968 |
-  LDX $9E12,y                               ; $1B996A |
-  BEQ code_1B9909                           ; $1B996D |
-  BPL code_1B9985                           ; $1B996F |
-  TXA                                       ; $1B9971 |
+  LDX palette_effect_table,y                ; $1B996A | Should there also be a background CHR swap?
+  BEQ code_1B9909                           ; $1B996D | If no, end here (branches to RTS)
+  BPL handle_background_chr_swap_effect     ; $1B996F | Otherwise, handle the CHR swap
+  TXA                                       ; $1B9971 | Also change first color of background and sprite palette, for both tables in RAM
   AND #$3F                                  ; $1B9972 |
-  STA $0600                                 ; $1B9974 |
-  STA $0620                                 ; $1B9977 |
+  STA {palette_current}                     ; $1B9974 |
+  STA {palette_original}                    ; $1B9977 |
   STA $0610                                 ; $1B997A |
   STA $0630                                 ; $1B997D |
-  LDA #$FF                                  ; $1B9980 |
+  LDA #$FF                                  ; $1B9980 | Mark palette change
   STA $18                                   ; $1B9982 |
   RTS                                       ; $1B9984 |
 
-code_1B9985:
-  LDA $9E56,x                               ; $1B9985 |
-  STA $EA                                   ; $1B9988 |
-  LDA $9E57,x                               ; $1B998A |
-  STA $EB                                   ; $1B998D |
-  LDA #$00                                  ; $1B998F |
-  STA $05D0                                 ; $1B9991 |
+; Update current background CHR banks according to the current effect, and stop ongoing CHR animation.
+; Parameters
+; X - effect ID
+handle_background_chr_swap_effect:
+  LDA chr_swap_effect_table,x               ; $1B9985 | \
+  STA {background_chr_bank_top}             ; $1B9988 | | Load top and bottom background CHR bank IDs
+  LDA chr_swap_effect_table+1,x             ; $1B998A | |
+  STA {background_chr_bank_bottom}          ; $1B998D | /
+  LDA #$00                                  ; $1B998F | Disable ongoing CHR animation
+  STA {chr_animation_id}                    ; $1B9991 |
 code_1B9994:
   RTS                                       ; $1B9994 |
 
-code_1B9995:
-  LDX #$17                                  ; $1B9995 |
-  LDA $06                                   ; $1B9997 |
+; Subroutine used to spawn an enemy from the level layout.
+; Checks if the specific instance has not already been spawned in, then searches for an available slot and 
+; fills out variables for the entity.
+spawn_instance_from_level:
+  LDX #$17                                  ; $1B9995 | Start looking from slot 23
+  LDA $06                                   ; $1B9997 | ID of this specific instance in the level data
 code_1B9999:
-  CMP $0438,x                               ; $1B9999 |
-  BEQ code_1B9994                           ; $1B999C |
-  DEX                                       ; $1B999E |
-  CPX #$07                                  ; $1B999F |
-  BNE code_1B9999                           ; $1B99A1 |
-  JSR code_1FF15F                           ; $1B99A3 |
-  BCS code_1B9994                           ; $1B99A6 |
-  LDA $06                                   ; $1B99A8 |
-  AND #$07                                  ; $1B99AA |
-  TAY                                       ; $1B99AC |
-  LDA $F2B2,y                               ; $1B99AD |
-  STA $07                                   ; $1B99B0 |
-  LDA $06                                   ; $1B99B2 |
-  LSR                                       ; $1B99B4 |
-  LSR                                       ; $1B99B5 |
-  LSR                                       ; $1B99B6 |
-  TAY                                       ; $1B99B7 |
-  LDA $0100,y                               ; $1B99B8 |
-  AND $07                                   ; $1B99BB |
-  BNE code_1B9994                           ; $1B99BD |
-  LDA $06                                   ; $1B99BF |
-  STA $0438,x                               ; $1B99C1 |
-  TAY                                       ; $1B99C4 |
-  LDA $AA00,y                               ; $1B99C5 |
-  STA {x_position_high},x                   ; $1B99C8 |
-  LDA $AA80,y                               ; $1B99CB |
-  STA {x_position_low},x                    ; $1B99CE |
-  LDA $AB00,y                               ; $1B99D1 |
-  STA {y_position_low},x                    ; $1B99D4 |
-  LDA $AB80,y                               ; $1B99D7 |
-  STA {entity_var_h},x                      ; $1B99DA |
-  TAY                                       ; $1B99DD |
-  LDA $9A42,y                               ; $1B99DE |
-  PHA                                       ; $1B99E1 |
-  AND #$7F                                  ; $1B99E2 |
-  STA {entity_display_flags},x              ; $1B99E4 |
-  LDA $9AD2,y                               ; $1B99E7 |
-  STA {entity_type},x                       ; $1B99EA |
-  LDA $9B62,y                               ; $1B99ED |
-  STA {sprite_flags},x                      ; $1B99F0 |
-  LDA $9BF2,y                               ; $1B99F3 |
-  JSR code_1FEA98                           ; $1B99F6 |
-  JSR face_player                           ; $1B99F9 |
-  LDA $9C82,y                               ; $1B99FC |
-  STA {entity_life},x                       ; $1B99FF |
-  LDA $9D12,y                               ; $1B9A02 |
-  TAY                                       ; $1B9A05 |
-  LDA $9DA2,y                               ; $1B9A06 |
-  STA {x_speed_frac},x                      ; $1B9A09 |
-  LDA $9DAA,y                               ; $1B9A0C |
-  STA {x_speed},x                           ; $1B9A0F |
-  JSR reset_vertical_speed                  ; $1B9A12 |
-  LDA #$00                                  ; $1B9A15 |
-  STA {y_position_high},x                   ; $1B9A17 |
-  STA {x_position_frac},x                   ; $1B9A1A |
-  STA {y_position_frac},x                   ; $1B9A1D |
-  STA {entity_handler_low},x                ; $1B9A20 |
-  STA {entity_handler_high},x               ; $1B9A23 |
-  STA {entity_var_a},x                      ; $1B9A26 |
-  STA {entity_var_b},x                      ; $1B9A29 |
-  STA {entity_var_c},x                      ; $1B9A2C |
-  STA {entity_var_d},x                      ; $1B9A2F |
-  STA {entity_var_e},x                      ; $1B9A32 |
-  STA {entity_var_f},x                      ; $1B9A35 |
-  STA {entity_var_g},x                      ; $1B9A38 |
-  PLA                                       ; $1B9A3B |
-  BMI code_1B9A41                           ; $1B9A3C |
-  JSR code_1FEC30                           ; $1B9A3E |
+  CMP $0438,x                               ; $1B9999 | \
+  BEQ code_1B9994                           ; $1B999C | | Loop through slots 8-23, if any already contains this specific instance, abort
+  DEX                                       ; $1B999E | |
+  CPX #$07                                  ; $1B999F | |
+  BNE code_1B9999                           ; $1B99A1 | /
+  JSR check_free_enemy_slot                 ; $1B99A3 | Is there an empty enemy slot?
+  BCS code_1B9994                           ; $1B99A6 | If not, abort
+  LDA $06                                   ; $1B99A8 | \
+  AND #$07                                  ; $1B99AA | | Check if instance has been blacklisted from spawning.
+  TAY                                       ; $1B99AC | | Table at address $0100 is a bitfield, the i-th bit means the i-th enemy should not spawn.
+  LDA bitmask_table,y                       ; $1B99AD | | So this calculates which byte of the table holds the bit we need to check, as well as the individual bit
+  STA $07                                   ; $1B99B0 | | of that value that we need to check.
+  LDA $06                                   ; $1B99B2 | | If it is set, abort.
+  LSR                                       ; $1B99B4 | |
+  LSR                                       ; $1B99B5 | |
+  LSR                                       ; $1B99B6 | |
+  TAY                                       ; $1B99B7 | |
+  LDA $0100,y                               ; $1B99B8 | |
+  AND $07                                   ; $1B99BB | |
+  BNE code_1B9994                           ; $1B99BD | /
+  LDA $06                                   ; $1B99BF | Finally proceed with spawning.
+  STA $0438,x                               ; $1B99C1 | Store instance ID into the slot's sprite number.
+  TAY                                       ; $1B99C4 | \
+  LDA {level_entity_x_position_high},y      ; $1B99C5 | | Load instance's position and spawn ID from level data and store it into the slot.
+  STA {x_position_high},x                   ; $1B99C8 | |
+  LDA {level_entity_x_position_low},y       ; $1B99CB | |
+  STA {x_position_low},x                    ; $1B99CE | |
+  LDA {level_entity_y_position_low},y       ; $1B99D1 | |
+  STA {y_position_low},x                    ; $1B99D4 | |
+  LDA {level_entity_spawn_id},y             ; $1B99D7 | |
+  STA {entity_spawn_id},x                   ; $1B99DA | /
+  TAY                                       ; $1B99DD | \
+  LDA spawn_display_flags,y                 ; $1B99DE | | Load initial values into this slot
+  PHA                                       ; $1B99E1 | | 
+  AND #$7F                                  ; $1B99E2 | |
+  STA {entity_display_flags},x              ; $1B99E4 | |
+  LDA spawn_entity_type,y                   ; $1B99E7 | |
+  STA {entity_type},x                       ; $1B99EA | |
+  LDA spawn_entity_flags,y                  ; $1B99ED | |
+  STA {entity_flags},x                      ; $1B99F0 | |
+  LDA spawn_animation,y                     ; $1B99F3 | |
+  JSR entity_set_animation                  ; $1B99F6 | |
+  JSR face_player                           ; $1B99F9 | |
+  LDA spawn_life,y                          ; $1B99FC | |
+  STA {entity_life},x                       ; $1B99FF | |
+  LDA spawn_x_speed_variant,y               ; $1B9A02 | |
+  TAY                                       ; $1B9A05 | |
+  LDA spawn_variant_x_speed_frac,y          ; $1B9A06 | |
+  STA {x_speed_frac},x                      ; $1B9A09 | |
+  LDA spawn_variant_x_speed,y               ; $1B9A0C | |
+  STA {x_speed},x                           ; $1B9A0F | /
+  JSR reset_vertical_speed                  ; $1B9A12 | \
+  LDA #$00                                  ; $1B9A15 | | Reset the slot's other variables
+  STA {y_position_high},x                   ; $1B9A17 | |
+  STA {x_position_frac},x                   ; $1B9A1A | |
+  STA {y_position_frac},x                   ; $1B9A1D | |
+  STA {entity_handler_low},x                ; $1B9A20 | |
+  STA {entity_handler_high},x               ; $1B9A23 | |
+  STA {entity_var_a},x                      ; $1B9A26 | |
+  STA {entity_var_b},x                      ; $1B9A29 | |
+  STA {entity_var_c},x                      ; $1B9A2C | |
+  STA {entity_var_d},x                      ; $1B9A2F | |
+  STA {entity_var_e},x                      ; $1B9A32 | |
+  STA {entity_var_f},x                      ; $1B9A35 | |
+  STA {entity_var_g},x                      ; $1B9A38 | |
+  PLA                                       ; $1B9A3B | /
+  BMI code_1B9A41                           ; $1B9A3C | 
+  JSR code_1FEC30                           ; $1B9A3E | 
 code_1B9A41:
   RTS                                       ; $1B9A41 |
 
+spawn_display_flags:
   db $08, $00, $00, $00, $00, $00, $00, $00 ; $1B9A42 |
   db $00, $00, $84, $00, $08, $00, $88, $C8 ; $1B9A4A |
   db $84, $04, $80, $80, $00, $00, $00, $00 ; $1B9A52 |
@@ -3159,6 +3186,7 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $A8 ; $1B9ABA |
   db $84, $80, $84, $80, $80, $80, $80, $80 ; $1B9AC2 |
   db $80, $80, $80, $80, $80, $80, $80, $80 ; $1B9ACA |
+spawn_entity_type:
   db $10, $12, $13, $15, $16, $17, $18, $19 ; $1B9AD2 |
   db $1B, $1D, $26, $1F, $20, $21, $23, $23 ; $1B9ADA |
   db $24, $38, $28, $27, $2B, $31, $33, $35 ; $1B9AE2 |
@@ -3177,6 +3205,7 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $3D ; $1B9B4A |
   db $22, $B6, $B6, $B6, $B6, $B6, $B6, $B6 ; $1B9B52 |
   db $B6, $B6, $B6, $B6, $B6, $B6, $B6, $B6 ; $1B9B5A |
+spawn_entity_flags:
   db $80, $C0, $C0, $C0, $CB, $D1, $92, $D2 ; $1B9B62 |
   db $93, $89, $96, $C0, $EE, $D7, $01, $01 ; $1B9B6A |
   db $00, $00, $D0, $00, $CC, $C8, $CC, $CD ; $1B9B72 |
@@ -3195,6 +3224,7 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $C1 ; $1B9BDA |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9BE2 |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9BEA |
+spawn_animation:
   db $48, $2F, $27, $90, $49, $2E, $23, $31 ; $1B9BF2 |
   db $43, $26, $22, $35, $39, $3C, $4C, $4C ; $1B9BFA |
   db $4F, $4B, $53, $59, $56, $01, $60, $50 ; $1B9C02 |
@@ -3213,6 +3243,7 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $05 ; $1B9C6A |
   db $07, $72, $73, $78, $74, $75, $76, $77 ; $1B9C72 |
   db $79, $7A, $7B, $7C, $7D, $7E, $7F, $80 ; $1B9C7A |
+spawn_life:
   db $02, $01, $01, $01, $03, $02, $06, $01 ; $1B9C82 |
   db $04, $01, $00, $03, $0D, $04, $00, $00 ; $1B9C8A |
   db $00, $00, $03, $00, $02, $03, $03, $02 ; $1B9C92 |
@@ -3231,6 +3262,7 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $01 ; $1B9CFA |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9D02 |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9D0A |
+spawn_x_speed_variant:
   db $01, $02, $04, $00, $03, $03, $03, $02 ; $1B9D12 |
   db $00, $05, $04, $00, $00, $00, $00, $00 ; $1B9D1A |
   db $00, $05, $00, $00, $00, $05, $00, $00 ; $1B9D22 |
@@ -3249,20 +3281,26 @@ code_1B9A41:
   db $00, $00, $00, $00, $00, $00, $00, $05 ; $1B9D8A |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9D92 |
   db $00, $00, $00, $00, $00, $00, $00, $00 ; $1B9D9A |
+spawn_variant_x_speed_frac:
   db $00, $CC, $33, $00, $80, $80, $00, $00 ; $1B9DA2 |
+spawn_variant_x_speed:
   db $01, $00, $01, $02, $01, $00, $04, $03 ; $1B9DAA |
+
+main_effect_table:
   db $82, $83, $12, $14, $0C, $08, $04, $04 ; $1B9DB2 |
   db $02, $02, $0C, $03, $84, $16, $04, $04 ; $1B9DBA |
   db $80, $81, $08, $85, $18, $0C, $08, $00 ; $1B9DC2 |
   db $00, $00, $00, $00, $0C, $00, $00, $0C ; $1B9DCA |
   db $08, $0C, $01, $00, $00, $00, $00, $00 ; $1B9DD2 |
   db $00, $08, $0C, $03, $00, $04, $00, $10 ; $1B9DDA |
+effect_palette_id:
   db $00, $00, $00, $00, $00, $01, $02, $03 ; $1B9DE2 |
   db $89, $90, $04, $83, $00, $00, $06, $07 ; $1B9DEA |
   db $00, $00, $05, $00, $00, $08, $10, $00 ; $1B9DF2 |
   db $00, $00, $00, $00, $0E, $00, $00, $08 ; $1B9DFA |
   db $09, $0C, $9D, $0F, $00, $00, $00, $00 ; $1B9E02 |
   db $00, $0A, $0B, $91, $00, $00, $00, $00 ; $1B9E0A |
+palette_effect_table:
   db $00, $30, $23, $03, $00, $30, $2A, $0A ; $1B9E12 |
   db $00, $19, $09, $06, $00, $1C, $0C, $05 ; $1B9E1A |
   db $00, $30, $23, $03, $00, $39, $27, $18 ; $1B9E22 |
@@ -3271,7 +3309,9 @@ code_1B9A41:
   db $00, $10, $1C, $0C, $00, $10, $00, $08 ; $1B9E3A |
   db $00, $3C, $2C, $1C, $00, $24, $14, $03 ; $1B9E42 |
   db $00, $31, $21, $11, $00, $30, $27, $17 ; $1B9E4A |
-  db $00, $20, $26, $16, $00, $00, $90, $92 ; $1B9E52 |
+  db $00, $20, $26, $16                     ; $1B9E52 |
+chr_swap_effect_table:
+  db $00, $00, $90, $92                     ; $1B9E56 |
   db $90, $F0, $84, $86, $84, $7A, $00, $00 ; $1B9E5A |
   db $00, $00, $00, $00, $88, $8A, $A4, $A6 ; $1B9E62 |
   db $B0, $B2, $B4, $B6, $90, $F8, $00, $00 ; $1B9E6A |
@@ -3394,12 +3434,12 @@ code_1C8073:
   JSR code_1FEFF8                           ; $1C8073 |
   BCS code_1C8082                           ; $1C8076 |
 code_1C8078:
-  LDA {sprite_flags},x                      ; $1C8078 |
+  LDA {entity_flags},x                      ; $1C8078 |
   AND #$40                                  ; $1C807B |
   STA $00                                   ; $1C807D |
   JSR code_1C809D                           ; $1C807F |
 code_1C8082:
-  LDA {sprite_flags},x                      ; $1C8082 |
+  LDA {entity_flags},x                      ; $1C8082 |
   BPL code_1C809A                           ; $1C8085 |
   LDA {entity_flash_counter}                ; $1C8087 |
   BNE code_1C809A                           ; $1C808A |
@@ -3570,7 +3610,7 @@ code_1C81C6:
   LDA #$B8                                  ; $1C81CE |
   STA {entity_type},x                       ; $1C81D0 |
   LDA #$42                                  ; $1C81D3 |
-  JSR code_1FEA98                           ; $1C81D5 |
+  JSR entity_set_animation                  ; $1C81D5 |
   JSR reset_vertical_speed                  ; $1C81D8 |
   LDA #$00                                  ; $1C81DB |
   STA {entity_display_flags},x              ; $1C81DD |
@@ -3627,7 +3667,7 @@ code_1C822C:
   PLA                                       ; $1C8238 |
   STA {entity_type},x                       ; $1C8239 |
   LDA #$00                                  ; $1C823C |
-  STA {sprite_flags},x                      ; $1C823E |
+  STA {entity_flags},x                      ; $1C823E |
   JMP code_1C81E0                           ; $1C8241 |
 
 code_1C8244:
@@ -3659,7 +3699,7 @@ code_1C8257:
   LDA #$00                                  ; $1C826D |
   STA $EA1E,x                               ; $1C826F |
   STA {y_speed},x                           ; $1C8272 |
-  STA {sprite_flags},x                      ; $1C8275 |
+  STA {entity_flags},x                      ; $1C8275 |
   LDA $E33B,y                               ; $1C8278 |
   SEC                                       ; $1C827B |
   SBC #$12                                  ; $1C827C |
@@ -3746,7 +3786,7 @@ code_1C82F1:
   BNE code_1C830D                           ; $1C8309 |
   LDA #$21                                  ; $1C830B |
 code_1C830D:
-  JSR code_1FEA98                           ; $1C830D |
+  JSR entity_set_animation                  ; $1C830D |
   JSR reset_vertical_speed                  ; $1C8310 |
   JSR code_1FF3BF                           ; $1C8313 |
   LDA $0305                                 ; $1C8316 |
@@ -3804,7 +3844,7 @@ code_1C8371:
   LDA #$03                                  ; $1C837D |
   STA {entity_type},y                       ; $1C837F |
   LDA #$00                                  ; $1C8382 |
-  STA {sprite_flags},y                      ; $1C8384 |
+  STA {entity_flags},y                      ; $1C8384 |
   STA {entity_var_a},y                      ; $1C8387 |
   STA {entity_var_b},y                      ; $1C838A |
   LDX $11                                   ; $1C838D |
@@ -3971,9 +4011,9 @@ code_1C84CF:
   STA $78                                   ; $1C84D7 |
   STA $79                                   ; $1C84D9 |
   STA $05F3                                 ; $1C84DB |
-  STA $05D1                                 ; $1C84DE |
-  STA $05D2                                 ; $1C84E1 |
-  STA $05D0                                 ; $1C84E4 |
+  STA {chr_animation_frame}                 ; $1C84DE |
+  STA {chr_animation_timer}                 ; $1C84E1 |
+  STA {chr_animation_id}                    ; $1C84E4 |
   LDA #$23                                  ; $1C84E7 |
   STA $7A                                   ; $1C84E9 |
   LDA #$00                                  ; $1C84EB |
@@ -4257,7 +4297,7 @@ catapult_aim_func_xspeed:
   LDA #$11                                  ; $1C8A68 |
   STA {entity_type},y                       ; $1C8A6A |
   LDA #$C1                                  ; $1C8A6D |
-  STA {sprite_flags},y                      ; $1C8A6F |
+  STA {entity_flags},y                      ; $1C8A6F |
   LDA #$03                                  ; $1C8A72 |
   STA {entity_life},y                       ; $1C8A74 |
   LDA #$47                                  ; $1C8A77 |
@@ -4385,14 +4425,14 @@ code_1C8B70:
   LDA #$8B                                  ; $1C8B83 |
   STA {entity_handler_high},x               ; $1C8B85 |
   LDA #$D3                                  ; $1C8B88 |
-  STA {sprite_flags},x                      ; $1C8B8A |
+  STA {entity_flags},x                      ; $1C8B8A |
   LDA {animation_timer},x                   ; $1C8B8D |
   CMP #$08                                  ; $1C8B90 |
   BNE code_1C8C0C                           ; $1C8B92 |
   LDA {animation_frame},x                   ; $1C8B94 |
   CMP #$02                                  ; $1C8B97 |
   BEQ code_1C8BA8                           ; $1C8B99 |
-  INC {sprite_flags},x                      ; $1C8B9B |
+  INC {entity_flags},x                      ; $1C8B9B |
   LDA {y_position_low},x                    ; $1C8B9E |
   SEC                                       ; $1C8BA1 |
   SBC #$04                                  ; $1C8BA2 |
@@ -4405,7 +4445,7 @@ code_1C8BA8:
   LDA #$8B                                  ; $1C8BAD |
   STA {entity_handler_high},x               ; $1C8BAF |
   LDA #$45                                  ; $1C8BB2 |
-  JSR code_1FEA98                           ; $1C8BB4 |
+  JSR entity_set_animation                  ; $1C8BB4 |
   LDA {entity_direction},x                  ; $1C8BB7 |
   STA $01                                   ; $1C8BBA |
   JSR face_player                           ; $1C8BBC |
@@ -4421,9 +4461,9 @@ code_1C8BA8:
   LDA #$44                                  ; $1C8BD5 |
   CMP {animation_index},x                   ; $1C8BD7 |
   BEQ code_1C8BED                           ; $1C8BDA |
-  JSR code_1FEA98                           ; $1C8BDC |
+  JSR entity_set_animation                  ; $1C8BDC |
   LDA #$94                                  ; $1C8BDF |
-  STA {sprite_flags},x                      ; $1C8BE1 |
+  STA {entity_flags},x                      ; $1C8BE1 |
   LDA {y_position_low},x                    ; $1C8BE4 |
   CLC                                       ; $1C8BE7 |
   ADC #$04                                  ; $1C8BE8 |
@@ -4451,9 +4491,9 @@ code_1C8C0D:
   LDA #$45                                  ; $1C8C0D |
   CMP {animation_index},x                   ; $1C8C0F |
   BEQ code_1C8C25                           ; $1C8C12 |
-  JSR code_1FEA98                           ; $1C8C14 |
+  JSR entity_set_animation                  ; $1C8C14 |
   LDA #$D5                                  ; $1C8C17 |
-  STA {sprite_flags},x                      ; $1C8C19 |
+  STA {entity_flags},x                      ; $1C8C19 |
   LDA {y_position_low},x                    ; $1C8C1C |
   SEC                                       ; $1C8C1F |
   SBC #$04                                  ; $1C8C20 |
@@ -4479,7 +4519,7 @@ code_1C8C25:
   ADC $8CB0,y                               ; $1C8C4D |
   STA {y_position_low},x                    ; $1C8C50 |
   LDA $8CB6,y                               ; $1C8C53 |
-  STA {sprite_flags},x                      ; $1C8C56 |
+  STA {entity_flags},x                      ; $1C8C56 |
   CPY #$05                                  ; $1C8C59 |
   BEQ code_1C8C9B                           ; $1C8C5B |
   CPY #$03                                  ; $1C8C5D |
@@ -4491,7 +4531,7 @@ code_1C8C25:
   LDA #$1C                                  ; $1C8C6B |
   STA {entity_type},y                       ; $1C8C6D |
   LDA #$C1                                  ; $1C8C70 |
-  STA {sprite_flags},y                      ; $1C8C72 |
+  STA {entity_flags},y                      ; $1C8C72 |
   LDA #$01                                  ; $1C8C75 |
   STA {entity_life},y                       ; $1C8C77 |
   LDA {entity_direction},x                  ; $1C8C7A |
@@ -4512,7 +4552,7 @@ code_1C8C25:
 
 code_1C8C9B:
   LDA #$43                                  ; $1C8C9B |
-  JSR code_1FEA98                           ; $1C8C9D |
+  JSR entity_set_animation                  ; $1C8C9D |
   LDA #$61                                  ; $1C8CA0 |
   STA {entity_handler_low},x                ; $1C8CA2 |
   LDA #$8B                                  ; $1C8CA5 |
@@ -4552,7 +4592,7 @@ code_1C8CDE:
   LDA #$8D                                  ; $1C8CF2 |
   STA {entity_handler_high},x               ; $1C8CF4 |
   LDA #$0D                                  ; $1C8CF7 |
-  JSR code_1FEA98                           ; $1C8CF9 |
+  JSR entity_set_animation                  ; $1C8CF9 |
   LDA {entity_display_flags},x              ; $1C8CFC |
   AND #$40                                  ; $1C8CFF |
   BEQ code_1C8D06                           ; $1C8D01 |
@@ -4565,7 +4605,7 @@ code_1C8D09:
 
 code_1C8D0A:
   LDA #$0C                                  ; $1C8D0A |
-  JSR code_1FEA98                           ; $1C8D0C |
+  JSR entity_set_animation                  ; $1C8D0C |
   LDA #$19                                  ; $1C8D0F |
   STA {entity_handler_low},x                ; $1C8D11 |
   LDA #$8D                                  ; $1C8D14 |
@@ -4582,7 +4622,7 @@ code_1C8D0A:
   LDA #$3C                                  ; $1C8D2F |
   STA {entity_var_b},x                      ; $1C8D31 |
   LDA #$0A                                  ; $1C8D34 |
-  JMP code_1FEA98                           ; $1C8D36 |
+  JMP entity_set_animation                  ; $1C8D36 |
 
 code_1C8D39:
   LDA #$01                                  ; $1C8D39 |
@@ -4593,7 +4633,7 @@ code_1C8D3D:
   LDA #$58                                  ; $1C8D42 |
   STA {entity_type},y                       ; $1C8D44 |
   LDA #$87                                  ; $1C8D47 |
-  STA {sprite_flags},y                      ; $1C8D49 |
+  STA {entity_flags},y                      ; $1C8D49 |
   LDA $0E                                   ; $1C8D4C |
   PHA                                       ; $1C8D4E |
   CLC                                       ; $1C8D4F |
@@ -4621,7 +4661,7 @@ code_1C8D70:
   LDA {animation_frame},x                   ; $1C8D78 |
   BEQ code_1C8D8F                           ; $1C8D7B |
   LDA #$0A                                  ; $1C8D7D |
-  JSR code_1FEA98                           ; $1C8D7F |
+  JSR entity_set_animation                  ; $1C8D7F |
   LDA #$97                                  ; $1C8D82 |
   STA {entity_handler_low},x                ; $1C8D84 |
   LDA #$8D                                  ; $1C8D87 |
@@ -4652,11 +4692,11 @@ code_1C8DB1:
   LDA #$8D                                  ; $1C8DB6 |
   STA {entity_handler_high},x               ; $1C8DB8 |
   LDA #$0B                                  ; $1C8DBB |
-  JSR code_1FEA98                           ; $1C8DBD |
+  JSR entity_set_animation                  ; $1C8DBD |
   LDA {animation_frame},x                   ; $1C8DC0 |
   BEQ code_1C8DE1                           ; $1C8DC3 |
   LDA #$0A                                  ; $1C8DC5 |
-  JSR code_1FEA98                           ; $1C8DC7 |
+  JSR entity_set_animation                  ; $1C8DC7 |
 code_1C8DCA:
   LDA {entity_display_flags}                ; $1C8DCA |
   AND #$40                                  ; $1C8DCD |
@@ -4677,7 +4717,7 @@ code_1C8DE1:
   CMP #$08                                  ; $1C8DEB |
   BCS code_1C8E56                           ; $1C8DED |
   LDA #$28                                  ; $1C8DEF |
-  JSR code_1FEA98                           ; $1C8DF1 |
+  JSR entity_set_animation                  ; $1C8DF1 |
   LDA #$FE                                  ; $1C8DF4 |
   STA {entity_handler_low},x                ; $1C8DF6 |
   LDA #$8D                                  ; $1C8DF9 |
@@ -4695,7 +4735,7 @@ code_1C8DE1:
   LDA #$8E                                  ; $1C8E15 |
   STA {entity_handler_high},x               ; $1C8E17 |
   LDA #$29                                  ; $1C8E1A |
-  JMP code_1FEA98                           ; $1C8E1C |
+  JMP entity_set_animation                  ; $1C8E1C |
 
 code_1C8E1F:
   JSR code_1FF16F                           ; $1C8E1F |
@@ -4705,7 +4745,7 @@ code_1C8E1F:
   LDA #$2B                                  ; $1C8E29 |
   JSR code_1FEAA4                           ; $1C8E2B |
   LDA #$C1                                  ; $1C8E2E |
-  STA {sprite_flags},y                      ; $1C8E30 |
+  STA {entity_flags},y                      ; $1C8E30 |
   LDA #$01                                  ; $1C8E33 |
   STA {entity_life},y                       ; $1C8E35 |
   LDA {y_position_low},y                    ; $1C8E38 |
@@ -4752,9 +4792,9 @@ code_1C8E83:
   LDA #$8E                                  ; $1C8E8C |
   STA {entity_handler_high},x               ; $1C8E8E |
   LDA #$C0                                  ; $1C8E91 |
-  STA {sprite_flags},x                      ; $1C8E93 |
+  STA {entity_flags},x                      ; $1C8E93 |
   LDA #$7D                                  ; $1C8E96 |
-  JMP code_1FEA98                           ; $1C8E98 |
+  JMP entity_set_animation                  ; $1C8E98 |
 
 code_1C8E9B:
   JSR code_1FF16F                           ; $1C8E9B |
@@ -4762,7 +4802,7 @@ code_1C8E9B:
   LDA #$2D                                  ; $1C8EA0 |
   STA {entity_type},y                       ; $1C8EA2 |
   LDA #$87                                  ; $1C8EA5 |
-  STA {sprite_flags},y                      ; $1C8EA7 |
+  STA {entity_flags},y                      ; $1C8EA7 |
   LDA {entity_direction},x                  ; $1C8EAA |
   STA {entity_direction},y                  ; $1C8EAD |
   AND #$01                                  ; $1C8EB0 |
@@ -4803,11 +4843,11 @@ code_1C8E9B:
   LDA #$00                                  ; $1C8EFE |
   STA {entity_var_a},x                      ; $1C8F00 |
   LDA #$4D                                  ; $1C8F03 |
-  JSR code_1FEA98                           ; $1C8F05 |
+  JSR entity_set_animation                  ; $1C8F05 |
   LDA #$78                                  ; $1C8F08 |
   STA {entity_var_c},x                      ; $1C8F0A |
   LDA #$80                                  ; $1C8F0D |
-  STA {sprite_flags},x                      ; $1C8F0F |
+  STA {entity_flags},x                      ; $1C8F0F |
 code_1C8F12:
   RTS                                       ; $1C8F12 |
 
@@ -4825,9 +4865,9 @@ code_1C8F22:
   LDA #$8F                                  ; $1C8F27 |
   STA {entity_handler_high},x               ; $1C8F29 |
   LDA #$7C                                  ; $1C8F2C |
-  JSR code_1FEA98                           ; $1C8F2E |
+  JSR entity_set_animation                  ; $1C8F2E |
   LDA #$85                                  ; $1C8F31 |
-  STA {sprite_flags},x                      ; $1C8F33 |
+  STA {entity_flags},x                      ; $1C8F33 |
   LDY {entity_var_b},x                      ; $1C8F36 |
   LDA {entity_type},y                       ; $1C8F39 |
   CMP #$2A                                  ; $1C8F3C |
@@ -4839,7 +4879,7 @@ code_1C8F43:
   CMP #$7D                                  ; $1C8F46 |
   BNE code_1C8F5C                           ; $1C8F48 |
   LDA #$96                                  ; $1C8F4A |
-  JSR code_1FEA98                           ; $1C8F4C |
+  JSR entity_set_animation                  ; $1C8F4C |
   LDA #$59                                  ; $1C8F4F |
   STA {entity_handler_low},x                ; $1C8F51 |
   LDA #$8F                                  ; $1C8F54 |
@@ -4891,7 +4931,7 @@ code_1C8FAE:
   LDA #$8F                                  ; $1C8FB3 |
   STA {entity_handler_high},x               ; $1C8FB5 |
   LDA #$32                                  ; $1C8FB8 |
-  JSR code_1FEA98                           ; $1C8FBA |
+  JSR entity_set_animation                  ; $1C8FBA |
   LDA {animation_timer},x                   ; $1C8FBD |
   CMP #$04                                  ; $1C8FC0 |
   BNE code_1C900D                           ; $1C8FC2 |
@@ -4909,7 +4949,7 @@ code_1C8FAE:
   LDA #$90                                  ; $1C8FDC |
   STA {entity_handler_high},x               ; $1C8FDE |
   LDA #$34                                  ; $1C8FE1 |
-  JSR code_1FEA98                           ; $1C8FE3 |
+  JSR entity_set_animation                  ; $1C8FE3 |
   BEQ code_1C900D                           ; $1C8FE6 |
 code_1C8FE8:
   JSR code_1FF16F                           ; $1C8FE8 |
@@ -4917,7 +4957,7 @@ code_1C8FE8:
   LDA #$1A                                  ; $1C8FED |
   STA {entity_type},y                       ; $1C8FEF |
   LDA #$CA                                  ; $1C8FF2 |
-  STA {sprite_flags},y                      ; $1C8FF4 |
+  STA {entity_flags},y                      ; $1C8FF4 |
   LDA #$01                                  ; $1C8FF7 |
   STA {entity_life},y                       ; $1C8FF9 |
   LDA #$33                                  ; $1C8FFC |
@@ -4949,7 +4989,7 @@ code_1C9029:
   LDA #$90                                  ; $1C902E |
   STA {entity_handler_high},x               ; $1C9030 |
   LDA #$30                                  ; $1C9033 |
-  JSR code_1FEA98                           ; $1C9035 |
+  JSR entity_set_animation                  ; $1C9035 |
   LDA {animation_frame},x                   ; $1C9038 |
   CMP #$02                                  ; $1C903B |
   BNE code_1C9065                           ; $1C903D |
@@ -4961,7 +5001,7 @@ code_1C9029:
   LDA #$90                                  ; $1C904B |
   STA {entity_handler_high},x               ; $1C904D |
   LDA #$CC                                  ; $1C9050 |
-  STA {sprite_flags},x                      ; $1C9052 |
+  STA {entity_flags},x                      ; $1C9052 |
   JSR reset_vertical_speed                  ; $1C9055 |
   LDA #$3B                                  ; $1C9058 |
   JSR code_1FEC5D                           ; $1C905A |
@@ -4996,7 +5036,7 @@ code_1C9091:
   LDA #$01                                  ; $1C9096 |
   STA {entity_type},y                       ; $1C9098 |
   LDA #$00                                  ; $1C909B |
-  STA {sprite_flags},y                      ; $1C909D |
+  STA {entity_flags},y                      ; $1C909D |
   LDA #$00                                  ; $1C90A0 |
   STA {entity_life},y                       ; $1C90A2 |
   LDA {entity_var_b},x                      ; $1C90A5 |
@@ -5027,7 +5067,7 @@ code_1C90C4:
   LDA #$2F                                  ; $1C90D5 |
   STA {entity_type},y                       ; $1C90D7 |
   LDA #$00                                  ; $1C90DA |
-  STA {sprite_flags},y                      ; $1C90DC |
+  STA {entity_flags},y                      ; $1C90DC |
   LDA {entity_var_b},x                      ; $1C90DF |
   CLC                                       ; $1C90E2 |
   ADC #$19                                  ; $1C90E3 |
@@ -5167,7 +5207,7 @@ code_1C91DC:
   LDA #$39                                  ; $1C91EE |
   STA {entity_type},y                       ; $1C91F0 |
   LDA #$C1                                  ; $1C91F3 |
-  STA {sprite_flags},y                      ; $1C91F5 |
+  STA {entity_flags},y                      ; $1C91F5 |
   LDA #$00                                  ; $1C91F8 |
   STA {entity_life},y                       ; $1C91FA |
   LDA #$4B                                  ; $1C91FD |
@@ -5300,7 +5340,7 @@ code_1C92FB:
   BCC code_1C92CE                           ; $1C9305 |
 code_1C9307:
   LDA #$3A                                  ; $1C9307 |
-  JSR code_1FEA98                           ; $1C9309 |
+  JSR entity_set_animation                  ; $1C9309 |
   LDA #$1B                                  ; $1C930C |
   STA {entity_handler_low},x                ; $1C930E |
   LDA #$93                                  ; $1C9311 |
@@ -5314,7 +5354,7 @@ code_1C9307:
   CMP #$04                                  ; $1C9325 |
   BNE code_1C92CE                           ; $1C9327 |
   LDA #$39                                  ; $1C9329 |
-  JSR code_1FEA98                           ; $1C932B |
+  JSR entity_set_animation                  ; $1C932B |
   LDA #$2A                                  ; $1C932E |
 code_1C9330:
   STA {entity_var_a},x                      ; $1C9330 |
@@ -5354,7 +5394,7 @@ code_1C936C:
   BCS code_1C93CB                           ; $1C937C |
   STX $0F                                   ; $1C937E |
   LDA #$86                                  ; $1C9380 |
-  STA {sprite_flags},y                      ; $1C9382 |
+  STA {entity_flags},y                      ; $1C9382 |
   LDA #$55                                  ; $1C9385 |
   STA {entity_type},y                       ; $1C9387 |
   TYA                                       ; $1C938A |
@@ -5466,7 +5506,7 @@ code_1C948F:
   LDA #$94                                  ; $1C9494 |
   STA {entity_handler_high},x               ; $1C9496 |
   LDA #$8A                                  ; $1C9499 |
-  JSR code_1FEA98                           ; $1C949B |
+  JSR entity_set_animation                  ; $1C949B |
   LDA $9D                                   ; $1C949E |
   AND #$0F                                  ; $1C94A0 |
   BNE code_1C94A9                           ; $1C94A2 |
@@ -5485,7 +5525,7 @@ code_1C94A9:
   LDY #$26                                  ; $1C94BC |
   JSR code_1C851A                           ; $1C94BE |
   BCS code_1C94D1                           ; $1C94C1 |
-  LDA {entity_var_h},x                      ; $1C94C3 |
+  LDA {entity_spawn_id},x                   ; $1C94C3 |
   CMP #$1F                                  ; $1C94C6 |
   BEQ code_1C94E1                           ; $1C94C8 |
   LDA {x_position_low},x                    ; $1C94CA |
@@ -5521,12 +5561,12 @@ code_1C9504:
   SBC #$1C                                  ; $1C9509 |
   STA {y_position_low},x                    ; $1C950B |
   LDA #$CE                                  ; $1C950E |
-  STA {sprite_flags},x                      ; $1C9510 |
+  STA {entity_flags},x                      ; $1C9510 |
   JSR code_1FEFF8                           ; $1C9513 |
   PLA                                       ; $1C9516 |
   STA {y_position_low},x                    ; $1C9517 |
   LDA #$8F                                  ; $1C951A |
-  STA {sprite_flags},x                      ; $1C951C |
+  STA {entity_flags},x                      ; $1C951C |
   BCS code_1C9528                           ; $1C951F |
   LDA #$40                                  ; $1C9521 |
   STA $00                                   ; $1C9523 |
@@ -5556,7 +5596,7 @@ code_1C9532:
   JSR code_1FF16F                           ; $1C9553 |
   BCS code_1C958E                           ; $1C9556 |
   LDA #$87                                  ; $1C9558 |
-  STA {sprite_flags},y                      ; $1C955A |
+  STA {entity_flags},y                      ; $1C955A |
   LDA #$9D                                  ; $1C955D |
   STA {entity_type},y                       ; $1C955F |
   LDA #$13                                  ; $1C9562 |
@@ -5666,7 +5706,7 @@ code_1C9625:
   db $08, $24, $00, $1C, $2C, $2C, $2C, $2C ; $1C963D |
   db $2C, $2C, $2C, $1C                     ; $1C9645 |
 
-  LDA {entity_var_h},x                      ; $1C9649 |
+  LDA {entity_spawn_id},x                   ; $1C9649 |
   AND #$07                                  ; $1C964C |
   PHA                                       ; $1C964E |
   AND #$01                                  ; $1C964F |
@@ -5770,9 +5810,9 @@ code_1C971A:
   LDA #$38                                  ; $1C971A |
   CMP {animation_index},x                   ; $1C971C |
   BEQ code_1C9729                           ; $1C971F |
-  JSR code_1FEA98                           ; $1C9721 |
+  JSR entity_set_animation                  ; $1C9721 |
   LDA #$CB                                  ; $1C9724 |
-  STA {sprite_flags},x                      ; $1C9726 |
+  STA {entity_flags},x                      ; $1C9726 |
 code_1C9729:
   LDA {animation_frame},x                   ; $1C9729 |
   CMP #$03                                  ; $1C972C |
@@ -5788,7 +5828,7 @@ code_1C9729:
   LDA #$5A                                  ; $1C9744 |
   STA {entity_var_b},x                      ; $1C9746 |
   LDA #$49                                  ; $1C9749 |
-  JMP code_1FEA98                           ; $1C974B |
+  JMP entity_set_animation                  ; $1C974B |
 
 code_1C974E:
   LDA #$45                                  ; $1C974E |
@@ -5802,9 +5842,9 @@ code_1C974E:
   LDA #$04                                  ; $1C9762 |
   STA {y_speed},x                           ; $1C9764 |
   LDA #$37                                  ; $1C9767 |
-  JSR code_1FEA98                           ; $1C9769 |
+  JSR entity_set_animation                  ; $1C9769 |
   LDA #$F1                                  ; $1C976C |
-  STA {sprite_flags},x                      ; $1C976E |
+  STA {entity_flags},x                      ; $1C976E |
   LDA #$00                                  ; $1C9771 |
   STA {entity_var_a},x                      ; $1C9773 |
   STA {entity_var_c},x                      ; $1C9776 |
@@ -5822,7 +5862,7 @@ code_1C977C:
   JSR code_1FF16F                           ; $1C978E |
   BCS code_1C97BA                           ; $1C9791 |
   LDA #$D0                                  ; $1C9793 |
-  STA {sprite_flags},y                      ; $1C9795 |
+  STA {entity_flags},y                      ; $1C9795 |
   LDA #$0A                                  ; $1C9798 |
   STA {entity_life},y                       ; $1C979A |
   LDA #$25                                  ; $1C979D |
@@ -5858,7 +5898,7 @@ code_1C97D3:
   CMP #$0A                                  ; $1C97DA |
   BNE code_1C97BA                           ; $1C97DC |
   LDA #$51                                  ; $1C97DE |
-  JSR code_1FEA98                           ; $1C97E0 |
+  JSR entity_set_animation                  ; $1C97E0 |
   LDA #$01                                  ; $1C97E3 |
   STA {y_speed},x                           ; $1C97E5 |
   LDA #$F2                                  ; $1C97E8 |
@@ -5883,7 +5923,7 @@ code_1C9812:
   DEC {entity_var_a},x                      ; $1C9812 |
   BNE code_1C9864                           ; $1C9815 |
   LDA #$68                                  ; $1C9817 |
-  JSR code_1FEA98                           ; $1C9819 |
+  JSR entity_set_animation                  ; $1C9819 |
   LDA #$26                                  ; $1C981C |
   STA {entity_handler_low},x                ; $1C981E |
   LDA #$98                                  ; $1C9821 |
@@ -5905,18 +5945,18 @@ code_1C9812:
   ADC $9865,y                               ; $1C9840 |
   STA {y_position_low},x                    ; $1C9843 |
   LDA $986D,y                               ; $1C9846 |
-  STA {sprite_flags},x                      ; $1C9849 |
+  STA {entity_flags},x                      ; $1C9849 |
   RTS                                       ; $1C984C |
 
 code_1C984D:
   LDA #$67                                  ; $1C984D |
-  JSR code_1FEA98                           ; $1C984F |
+  JSR entity_set_animation                  ; $1C984F |
   LDA #$05                                  ; $1C9852 |
   STA {entity_handler_low},x                ; $1C9854 |
   LDA #$98                                  ; $1C9857 |
   STA {entity_handler_high},x               ; $1C9859 |
   LDA #$C0                                  ; $1C985C |
-  STA {sprite_flags},x                      ; $1C985E |
+  STA {entity_flags},x                      ; $1C985E |
   JSR code_1FEC4A                           ; $1C9861 |
 code_1C9864:
   RTS                                       ; $1C9864 |
@@ -5942,7 +5982,7 @@ code_1C9896:
   JSR code_1FF16F                           ; $1C9896 |
   BCS code_1C98F8                           ; $1C9899 |
   LDA #$C7                                  ; $1C989B |
-  STA {sprite_flags},y                      ; $1C989D |
+  STA {entity_flags},y                      ; $1C989D |
   LDA #$01                                  ; $1C98A0 |
   STA {entity_life},y                       ; $1C98A2 |
   LDA #$29                                  ; $1C98A5 |
@@ -6038,9 +6078,9 @@ code_1C9940:
   STA {entity_handler_low},x                ; $1C9966 |
   LDA #$99                                  ; $1C9969 |
   STA {entity_handler_high},x               ; $1C996B |
-  LDA {sprite_flags},x                      ; $1C996E |
+  LDA {entity_flags},x                      ; $1C996E |
   ORA #$40                                  ; $1C9971 |
-  STA {sprite_flags},x                      ; $1C9973 |
+  STA {entity_flags},x                      ; $1C9973 |
   LDA {animation_frame},x                   ; $1C9976 |
   CMP #$06                                  ; $1C9979 |
   BNE code_1C9994                           ; $1C997B |
@@ -6064,7 +6104,7 @@ code_1C9994:
   JSR code_1FF16F                           ; $1C999F |
   BCS code_1C99CB                           ; $1C99A2 |
   LDA #$87                                  ; $1C99A4 |
-  STA {sprite_flags},y                      ; $1C99A6 |
+  STA {entity_flags},y                      ; $1C99A6 |
   LDA #$2C                                  ; $1C99A9 |
   STA {entity_type},y                       ; $1C99AB |
   LDA {entity_direction},x                  ; $1C99AE |
@@ -6102,9 +6142,9 @@ code_1C99EE:
   AND #$20                                  ; $1C99F1 |
   BNE code_1C99FD                           ; $1C99F3 |
 code_1C99F5:
-  LDA {sprite_flags},x                      ; $1C99F5 |
+  LDA {entity_flags},x                      ; $1C99F5 |
   AND #$BF                                  ; $1C99F8 |
-  STA {sprite_flags},x                      ; $1C99FA |
+  STA {entity_flags},x                      ; $1C99FA |
 code_1C99FD:
   RTS                                       ; $1C99FD |
 
@@ -6121,7 +6161,7 @@ code_1C99FD:
   LDA #$01                                  ; $1C9A18 |
   STA {animation_frame},x                   ; $1C9A1A |
   LDA #$C1                                  ; $1C9A1D |
-  STA {sprite_flags},x                      ; $1C9A1F |
+  STA {entity_flags},x                      ; $1C9A1F |
   RTS                                       ; $1C9A22 |
 
 code_1C9A23:
@@ -6141,7 +6181,7 @@ code_1C9A2F:
   CMP #$03                                  ; $1C9A3D |
   BNE code_1C9A2F                           ; $1C9A3F |
   LDA #$9A                                  ; $1C9A41 |
-  JMP code_1FEA98                           ; $1C9A43 |
+  JMP entity_set_animation                  ; $1C9A43 |
 
 code_1C9A46:
   LDA {entity_var_a},x                      ; $1C9A46 |
@@ -6182,7 +6222,7 @@ code_1C9A87:
   STA {x_speed_frac},x                      ; $1C9A93 |
   STA {x_speed},x                           ; $1C9A96 |
   LDA #$98                                  ; $1C9A99 |
-  JMP code_1FEA98                           ; $1C9A9B |
+  JMP entity_set_animation                  ; $1C9A9B |
 
   JSR code_1C9BA5                           ; $1C9A9E |
   LDA {animation_frame},x                   ; $1C9AA1 |
@@ -6213,7 +6253,7 @@ code_1C9AD8:
   JSR code_1C9B17                           ; $1C9AD8 |
   BCC code_1C9B16                           ; $1C9ADB |
   LDA #$98                                  ; $1C9ADD |
-  JMP code_1FEA98                           ; $1C9ADF |
+  JMP entity_set_animation                  ; $1C9ADF |
 
 code_1C9AE2:
   LDA {entity_var_d},x                      ; $1C9AE2 |
@@ -6229,7 +6269,7 @@ code_1C9AE2:
   LDA #$00                                  ; $1C9AFB |
   STA {entity_var_e},x                      ; $1C9AFD |
   LDA #$99                                  ; $1C9B00 |
-  JMP code_1FEA98                           ; $1C9B02 |
+  JMP entity_set_animation                  ; $1C9B02 |
 
 code_1C9B05:
   LDA {animation_frame},x                   ; $1C9B05 |
@@ -6238,7 +6278,7 @@ code_1C9B05:
   LDA #$40                                  ; $1C9B0C |
   STA {entity_var_d},x                      ; $1C9B0E |
   LDA #$91                                  ; $1C9B11 |
-  STA {sprite_flags},x                      ; $1C9B13 |
+  STA {entity_flags},x                      ; $1C9B13 |
 code_1C9B16:
   RTS                                       ; $1C9B16 |
 
@@ -6273,7 +6313,7 @@ code_1C9B44:
   JSR code_1FF16F                           ; $1C9B44 |
   BCS code_1C9B75                           ; $1C9B47 |
   LDA #$86                                  ; $1C9B49 |
-  STA {sprite_flags},y                      ; $1C9B4B |
+  STA {entity_flags},y                      ; $1C9B4B |
   LDA #$9F                                  ; $1C9B4E |
   STA {entity_type},y                       ; $1C9B50 |
   LDA #$9C                                  ; $1C9B53 |
@@ -6319,7 +6359,7 @@ code_1C9B86:
   JSR face_player                           ; $1C9B9A |
   JSR code_1FEC30                           ; $1C9B9D |
   LDA #$9A                                  ; $1C9BA0 |
-  JMP code_1FEA98                           ; $1C9BA2 |
+  JMP entity_set_animation                  ; $1C9BA2 |
 
 code_1C9BA5:
   LDA {entity_var_c},x                      ; $1C9BA5 |
@@ -6339,7 +6379,7 @@ code_1C9BAE:
   LDA #$BF                                  ; $1C9BC2 |
   STA {entity_type},y                       ; $1C9BC4 |
   LDA #$00                                  ; $1C9BC7 |
-  STA {sprite_flags},y                      ; $1C9BC9 |
+  STA {entity_flags},y                      ; $1C9BC9 |
   LDA {entity_direction},x                  ; $1C9BCC |
   STA {entity_direction},y                  ; $1C9BCF |
   AND #$01                                  ; $1C9BD2 |
@@ -6387,7 +6427,7 @@ code_1C9C24:
   JSR code_1FF16F                           ; $1C9C24 |
   BCS code_1C9C5F                           ; $1C9C27 |
   LDA #$C7                                  ; $1C9C29 |
-  STA {sprite_flags},y                      ; $1C9C2B |
+  STA {entity_flags},y                      ; $1C9C2B |
   LDA #$01                                  ; $1C9C2E |
   STA {entity_life},y                       ; $1C9C30 |
   LDA #$32                                  ; $1C9C33 |
@@ -6535,7 +6575,7 @@ code_1C9D34:
 code_1C9D58:
   RTS                                       ; $1C9D58 |
 
-  LDA {entity_var_h},x                      ; $1C9D59 |
+  LDA {entity_spawn_id},x                   ; $1C9D59 |
   AND #$01                                  ; $1C9D5C |
   CLC                                       ; $1C9D5E |
   ADC #$01                                  ; $1C9D5F |
@@ -6547,15 +6587,15 @@ code_1C9D58:
   STA {entity_handler_high},x               ; $1C9D6E |
   LDA #$01                                  ; $1C9D71 |
   STA {entity_direction},x                  ; $1C9D73 |
-  LDA {entity_var_h},x                      ; $1C9D76 |
+  LDA {entity_spawn_id},x                   ; $1C9D76 |
   AND #$01                                  ; $1C9D79 |
   BNE code_1C9DCF                           ; $1C9D7B |
   LDA {entity_display_flags},x              ; $1C9D7D |
   AND #$FB                                  ; $1C9D80 |
   STA {entity_display_flags},x              ; $1C9D82 |
-  LDA $FC                                   ; $1C9D85 |
+  LDA {scroll_x}                            ; $1C9D85 |
   STA {x_position_low},x                    ; $1C9D87 |
-  LDA $F9                                   ; $1C9D8A |
+  LDA {scroll_x_high}                       ; $1C9D8A |
   STA {x_position_high},x                   ; $1C9D8C |
   LDA #$9E                                  ; $1C9D8F |
   STA {entity_handler_low},x                ; $1C9D91 |
@@ -6570,7 +6610,7 @@ code_1C9D58:
   JSR code_1FF16F                           ; $1C9DA8 |
   BCS code_1C9DDA                           ; $1C9DAB |
   LDA #$87                                  ; $1C9DAD |
-  STA {sprite_flags},y                      ; $1C9DAF |
+  STA {entity_flags},y                      ; $1C9DAF |
   LDA #$37                                  ; $1C9DB2 |
   STA {entity_type},y                       ; $1C9DB4 |
   LDA #$57                                  ; $1C9DB7 |
@@ -6656,7 +6696,7 @@ code_1C9E6C:
   LDA {entity_var_a},x                      ; $1C9E6C |
   TAX                                       ; $1C9E6F |
   LDA $9ECE,x                               ; $1C9E70 |
-  STA {sprite_flags},y                      ; $1C9E73 |
+  STA {entity_flags},y                      ; $1C9E73 |
   LDX $0F                                   ; $1C9E76 |
   LDA {animation_index},x                   ; $1C9E78 |
   CLC                                       ; $1C9E7B |
@@ -6689,7 +6729,7 @@ code_1C9EB2:
   BNE code_1C9EC5                           ; $1C9EB6 |
   LDA {entity_var_b},x                      ; $1C9EB8 |
   SEC                                       ; $1C9EBB |
-  SBC $FA                                   ; $1C9EBC |
+  SBC {scroll_y}                            ; $1C9EBC |
   BCS code_1C9EC2                           ; $1C9EBE |
   SBC #$0F                                  ; $1C9EC0 |
 code_1C9EC2:
@@ -6714,18 +6754,18 @@ code_1C9EDE:
   LDA #$5E                                  ; $1C9EE8 |
   STA {entity_type},x                       ; $1C9EEA |
   LDA #$81                                  ; $1C9EED |
-  STA {sprite_flags},x                      ; $1C9EEF |
+  STA {entity_flags},x                      ; $1C9EEF |
   LDA #$2B                                  ; $1C9EF2 |
   JSR code_1FEC5D                           ; $1C9EF4 |
   LDA #$92                                  ; $1C9EF7 |
-  JMP code_1FEA98                           ; $1C9EF9 |
+  JMP entity_set_animation                  ; $1C9EF9 |
 
 code_1C9EFC:
   JSR $A56C                                 ; $1C9EFC |
   LDA #$8C                                  ; $1C9EFF |
   STA {entity_type},x                       ; $1C9F01 |
   LDA #$8B                                  ; $1C9F04 |
-  STA {sprite_flags},x                      ; $1C9F06 |
+  STA {entity_flags},x                      ; $1C9F06 |
   RTS                                       ; $1C9F09 |
 
   RTS                                       ; $1C9F0A |
@@ -6773,7 +6813,7 @@ org $A000
   BCS code_1DA032                           ; $1DA00B |
 code_1DA00D:
   LDA #$6D                                  ; $1DA00D |
-  JSR code_1FEA98                           ; $1DA00F |
+  JSR entity_set_animation                  ; $1DA00F |
   LDA #$1C                                  ; $1DA012 |
   STA {entity_handler_low},x                ; $1DA014 |
   LDA #$A0                                  ; $1DA017 |
@@ -6819,7 +6859,7 @@ code_1DA067:
   JSR code_1FF16F                           ; $1DA067 |
   BCS code_1DA088                           ; $1DA06A |
   LDA #$87                                  ; $1DA06C |
-  STA {sprite_flags},y                      ; $1DA06E |
+  STA {entity_flags},y                      ; $1DA06E |
   TYA                                       ; $1DA071 |
   STA {entity_var_b},x                      ; $1DA072 |
   LDA #$6E                                  ; $1DA075 |
@@ -6887,7 +6927,7 @@ code_1DA0CD:
   SBC #$03                                  ; $1DA0E7 |
   STA {y_position_low},x                    ; $1DA0E9 |
   LDA #$C1                                  ; $1DA0EC |
-  STA {sprite_flags},x                      ; $1DA0EE |
+  STA {entity_flags},x                      ; $1DA0EE |
   LDA #$FB                                  ; $1DA0F1 |
   STA {entity_handler_low},x                ; $1DA0F3 |
   LDA #$A0                                  ; $1DA0F6 |
@@ -6904,7 +6944,7 @@ code_1DA10A:
   LDA #$C4                                  ; $1DA10F |
   STA {entity_type},y                       ; $1DA111 |
   LDA #$C6                                  ; $1DA114 |
-  STA {sprite_flags},y                      ; $1DA116 |
+  STA {entity_flags},y                      ; $1DA116 |
   LDA #$01                                  ; $1DA119 |
   STA {entity_life},y                       ; $1DA11B |
   LDA #$73                                  ; $1DA11E |
@@ -6935,7 +6975,7 @@ code_1DA13D:
   ADC #$03                                  ; $1DA153 |
   STA {y_position_low},x                    ; $1DA155 |
   LDA #$81                                  ; $1DA158 |
-  STA {sprite_flags},x                      ; $1DA15A |
+  STA {entity_flags},x                      ; $1DA15A |
   LDA #$3C                                  ; $1DA15D |
   STA {entity_var_a},x                      ; $1DA15F |
   LDA #$B8                                  ; $1DA162 |
@@ -6958,7 +6998,7 @@ code_1DA17C:
   JSR code_1FF16F                           ; $1DA17C |
   BCS code_1DA1A3                           ; $1DA17F |
   LDA #$86                                  ; $1DA181 |
-  STA {sprite_flags},y                      ; $1DA183 |
+  STA {entity_flags},y                      ; $1DA183 |
   LDA #$51                                  ; $1DA186 |
   STA {entity_type},y                       ; $1DA188 |
   LDA #$85                                  ; $1DA18B |
@@ -7125,7 +7165,7 @@ code_1DA2AB:
   CMP #$10                                  ; $1DA2C3 |
   BCS code_1DA31E                           ; $1DA2C5 |
   LDA #$75                                  ; $1DA2C7 |
-  JSR code_1FEA98                           ; $1DA2C9 |
+  JSR entity_set_animation                  ; $1DA2C9 |
   LDA #$D7                                  ; $1DA2CC |
   STA {entity_handler_low},x                ; $1DA2CE |
   LDA #$A2                                  ; $1DA2D1 |
@@ -7142,12 +7182,12 @@ code_1DA2AB:
   ADC #$04                                  ; $1DA2E7 |
   STA {y_position_low},x                    ; $1DA2E9 |
   LDA #$D1                                  ; $1DA2EC |
-  STA {sprite_flags},x                      ; $1DA2EE |
+  STA {entity_flags},x                      ; $1DA2EE |
 code_1DA2F1:
   CMP #$02                                  ; $1DA2F1 |
   BNE code_1DA31E                           ; $1DA2F3 |
   LDA #$76                                  ; $1DA2F5 |
-  JSR code_1FEA98                           ; $1DA2F7 |
+  JSR entity_set_animation                  ; $1DA2F7 |
   LDA #$0A                                  ; $1DA2FA |
   STA {entity_handler_low},x                ; $1DA2FC |
   LDA #$A3                                  ; $1DA2FF |
@@ -7190,7 +7230,7 @@ code_1DA353:
   JSR code_1FF16F                           ; $1DA353 |
   BCS code_1DA379                           ; $1DA356 |
   LDA #$87                                  ; $1DA358 |
-  STA {sprite_flags},y                      ; $1DA35A |
+  STA {entity_flags},y                      ; $1DA35A |
   LDA #$78                                  ; $1DA35D |
   JSR code_1FEAA4                           ; $1DA35F |
   LDA {y_position_low},y                    ; $1DA362 |
@@ -7225,9 +7265,9 @@ code_1DA396:
   CMP #$03                                  ; $1DA39D |
   BNE code_1DA379                           ; $1DA39F |
   LDA #$7A                                  ; $1DA3A1 |
-  JSR code_1FEA98                           ; $1DA3A3 |
+  JSR entity_set_animation                  ; $1DA3A3 |
   LDA #$C1                                  ; $1DA3A6 |
-  STA {sprite_flags},x                      ; $1DA3A8 |
+  STA {entity_flags},x                      ; $1DA3A8 |
 code_1DA3AB:
   LDA #$00                                  ; $1DA3AB |
   STA {entity_var_b},x                      ; $1DA3AD |
@@ -7274,7 +7314,7 @@ code_1DA3EF:
   JSR code_1FF16F                           ; $1DA406 |
   BCS code_1DA43C                           ; $1DA409 |
   LDA #$87                                  ; $1DA40B |
-  STA {sprite_flags},y                      ; $1DA40D |
+  STA {entity_flags},y                      ; $1DA40D |
   LDA #$55                                  ; $1DA410 |
   STA {entity_type},y                       ; $1DA412 |
   LDA #$7B                                  ; $1DA415 |
@@ -7312,7 +7352,7 @@ code_1DA43C:
   BNE code_1DA478                           ; $1DA454 |
 code_1DA456:
   LDA #$24                                  ; $1DA456 |
-  JSR code_1FEA98                           ; $1DA458 |
+  JSR entity_set_animation                  ; $1DA458 |
 code_1DA45B:
   LDA {animation_timer},x                   ; $1DA45B |
   CMP #$04                                  ; $1DA45E |
@@ -7323,24 +7363,24 @@ code_1DA45B:
   CMP #$04                                  ; $1DA469 |
   BNE code_1DA478                           ; $1DA46B |
   LDA #$23                                  ; $1DA46D |
-  JSR code_1FEA98                           ; $1DA46F |
+  JSR entity_set_animation                  ; $1DA46F |
   JMP code_1DA478                           ; $1DA472 |
 
 code_1DA475:
   JSR code_1FEC4A                           ; $1DA475 |
 code_1DA478:
-  LDA {sprite_flags},x                      ; $1DA478 |
+  LDA {entity_flags},x                      ; $1DA478 |
   ORA #$40                                  ; $1DA47B |
-  STA {sprite_flags},x                      ; $1DA47D |
+  STA {entity_flags},x                      ; $1DA47D |
   JSR code_1FEFF8                           ; $1DA480 |
   BCS code_1DA497                           ; $1DA483 |
   LDA {entity_direction},y                  ; $1DA485 |
   AND #$03                                  ; $1DA488 |
   CMP {entity_direction},x                  ; $1DA48A |
   BEQ code_1DA497                           ; $1DA48D |
-  LDA {sprite_flags},x                      ; $1DA48F |
+  LDA {entity_flags},x                      ; $1DA48F |
   AND #$BF                                  ; $1DA492 |
-  STA {sprite_flags},x                      ; $1DA494 |
+  STA {entity_flags},x                      ; $1DA494 |
 code_1DA497:
   RTS                                       ; $1DA497 |
 
@@ -7356,7 +7396,7 @@ code_1DA4AC:
   JSR code_1FF16F                           ; $1DA4AC |
   BCS code_1DA4DA                           ; $1DA4AF |
   LDA #$87                                  ; $1DA4B1 |
-  STA {sprite_flags},y                      ; $1DA4B3 |
+  STA {entity_flags},y                      ; $1DA4B3 |
   LDA #$5B                                  ; $1DA4B6 |
   STA {entity_type},y                       ; $1DA4B8 |
   LDA #$82                                  ; $1DA4BB |
@@ -7380,12 +7420,12 @@ code_1DA4DA:
 
 code_1DA4DB:
   LDA #$A2                                  ; $1DA4DB |
-  STA {sprite_flags},x                      ; $1DA4DD |
+  STA {entity_flags},x                      ; $1DA4DD |
   LDA $32                                   ; $1DA4E0 |
   CMP #$07                                  ; $1DA4E2 |
   BNE code_1DA4EC                           ; $1DA4E4 |
   LDA #$E2                                  ; $1DA4E6 |
-  STA {sprite_flags},x                      ; $1DA4E8 |
+  STA {entity_flags},x                      ; $1DA4E8 |
   RTS                                       ; $1DA4EB |
 
 code_1DA4EC:
@@ -7406,7 +7446,7 @@ code_1DA509:
   JSR code_1FF16F                           ; $1DA509 |
   BCS code_1DA4DA                           ; $1DA50C |
   LDA #$87                                  ; $1DA50E |
-  STA {sprite_flags},y                      ; $1DA510 |
+  STA {entity_flags},y                      ; $1DA510 |
   LDA #$5B                                  ; $1DA513 |
   STA {entity_type},y                       ; $1DA515 |
   LDA {entity_display_flags},x              ; $1DA518 |
@@ -7445,7 +7485,7 @@ code_1DA54D:
   LDA #$2B                                  ; $1DA555 |
   JSR code_1FEC5D                           ; $1DA557 |
   LDA #$42                                  ; $1DA55A |
-  JMP code_1FEA98                           ; $1DA55C |
+  JMP entity_set_animation                  ; $1DA55C |
 
   JSR code_1FF2FE                           ; $1DA55F |
   LDA #$01                                  ; $1DA562 |
@@ -7458,7 +7498,7 @@ code_1DA56C:
   LDA #$2F                                  ; $1DA56F |
   STA {entity_type},x                       ; $1DA571 |
   LDA #$42                                  ; $1DA574 |
-  JMP code_1FEA98                           ; $1DA576 |
+  JMP entity_set_animation                  ; $1DA576 |
 
   JSR code_1DA620                           ; $1DA579 |
   BCC code_1DA5BD                           ; $1DA57C |
@@ -7488,7 +7528,7 @@ code_1DA5A3:
   CMP #$03                                  ; $1DA5AA |
   BCS code_1DA61F                           ; $1DA5AC |
   LDA #$87                                  ; $1DA5AE |
-  JSR code_1FEA98                           ; $1DA5B0 |
+  JSR entity_set_animation                  ; $1DA5B0 |
   LDA #$BE                                  ; $1DA5B3 |
   STA {entity_handler_low},x                ; $1DA5B5 |
   LDA #$A5                                  ; $1DA5B8 |
@@ -7511,7 +7551,7 @@ code_1DA5BD:
   LDA #$A5                                  ; $1DA5DA |
   STA {entity_handler_high},x               ; $1DA5DC |
   LDA #$AE                                  ; $1DA5DF |
-  JMP code_1FEA98                           ; $1DA5E1 |
+  JMP entity_set_animation                  ; $1DA5E1 |
 
 code_1DA5E4:
   LDA #$32                                  ; $1DA5E4 |
@@ -7519,7 +7559,7 @@ code_1DA5E4:
   JSR code_1FF16F                           ; $1DA5E9 |
   BCS code_1DA61F                           ; $1DA5EC |
   LDA #$D6                                  ; $1DA5EE |
-  STA {sprite_flags},y                      ; $1DA5F0 |
+  STA {entity_flags},y                      ; $1DA5F0 |
   LDA #$01                                  ; $1DA5F3 |
   STA {entity_life},y                       ; $1DA5F5 |
   LDA #$52                                  ; $1DA5F8 |
@@ -7548,12 +7588,12 @@ code_1DA620:
   SBC #$0C                                  ; $1DA627 |
   STA {y_position_low},x                    ; $1DA629 |
   LDA #$CD                                  ; $1DA62C |
-  STA {sprite_flags},x                      ; $1DA62E |
+  STA {entity_flags},x                      ; $1DA62E |
   JSR code_1FEFF8                           ; $1DA631 |
   LDA {entity_var_b},x                      ; $1DA634 |
   STA {y_position_low},x                    ; $1DA637 |
   LDA #$97                                  ; $1DA63A |
-  STA {sprite_flags},x                      ; $1DA63C |
+  STA {entity_flags},x                      ; $1DA63C |
   BCS code_1DA61F                           ; $1DA63F |
   LDA #$40                                  ; $1DA641 |
   STA $00                                   ; $1DA643 |
@@ -7650,7 +7690,7 @@ code_1DA6D9:
   BNE code_1DA6D9                           ; $1DA707 |
   LDY {animation_frame},x                   ; $1DA709 |
   LDA $A7BB,y                               ; $1DA70C |
-  STA {sprite_flags},x                      ; $1DA70F |
+  STA {entity_flags},x                      ; $1DA70F |
   LDA {y_position_low},x                    ; $1DA712 |
   SEC                                       ; $1DA715 |
   SBC #$04                                  ; $1DA716 |
@@ -7672,7 +7712,7 @@ code_1DA6D9:
   JSR code_1FF16F                           ; $1DA73B |
   BCS code_1DA6D9                           ; $1DA73E |
   LDA #$87                                  ; $1DA740 |
-  STA {sprite_flags},y                      ; $1DA742 |
+  STA {entity_flags},y                      ; $1DA742 |
   LDA #$61                                  ; $1DA745 |
   STA {entity_type},y                       ; $1DA747 |
   LDA {entity_direction},x                  ; $1DA74A |
@@ -7721,7 +7761,7 @@ code_1DA790:
   STA {y_position_low},x                    ; $1DA7A4 |
   LDY {entity_var_a},x                      ; $1DA7A7 |
   LDA $A7BA,y                               ; $1DA7AA |
-  STA {sprite_flags},x                      ; $1DA7AD |
+  STA {entity_flags},x                      ; $1DA7AD |
   DEC {entity_var_a},x                      ; $1DA7B0 |
   RTS                                       ; $1DA7B3 |
 
@@ -7811,12 +7851,12 @@ code_1DA83F:
 code_1DA855:
   LDA {entity_var_a},x                      ; $1DA855 |
   PHA                                       ; $1DA858 |
-  JSR code_1FEA98                           ; $1DA859 |
+  JSR entity_set_animation                  ; $1DA859 |
   PLA                                       ; $1DA85C |
   AND #$01                                  ; $1DA85D |
   TAY                                       ; $1DA85F |
   LDA $A908,y                               ; $1DA860 |
-  STA {sprite_flags},x                      ; $1DA863 |
+  STA {entity_flags},x                      ; $1DA863 |
 code_1DA866:
   LDA {entity_var_c},x                      ; $1DA866 |
   BEQ code_1DA870                           ; $1DA869 |
@@ -7832,9 +7872,9 @@ code_1DA870:
   LDA {animation_index},x                   ; $1DA87E |
   STA {entity_var_a},x                      ; $1DA881 |
   LDA #$91                                  ; $1DA884 |
-  STA {sprite_flags},x                      ; $1DA886 |
+  STA {entity_flags},x                      ; $1DA886 |
   LDA #$36                                  ; $1DA889 |
-  JMP code_1FEA98                           ; $1DA88B |
+  JMP entity_set_animation                  ; $1DA88B |
 
 code_1DA88E:
   LDA {animation_index},x                   ; $1DA88E |
@@ -7848,7 +7888,7 @@ code_1DA88E:
   BCS code_1DA907                           ; $1DA8A1 |
   DEC {animation_index},x                   ; $1DA8A3 |
   LDA #$C9                                  ; $1DA8A6 |
-  STA {sprite_flags},x                      ; $1DA8A8 |
+  STA {entity_flags},x                      ; $1DA8A8 |
   LDA #$F0                                  ; $1DA8AB |
   STA {entity_var_b},x                      ; $1DA8AD |
   LDA #$00                                  ; $1DA8B0 |
@@ -7864,7 +7904,7 @@ code_1DA8C5:
   JSR code_1FF16F                           ; $1DA8C5 |
   BCS code_1DA907                           ; $1DA8C8 |
   LDA #$87                                  ; $1DA8CA |
-  STA {sprite_flags},y                      ; $1DA8CC |
+  STA {entity_flags},y                      ; $1DA8CC |
   LDA #$55                                  ; $1DA8CF |
   STA {entity_type},y                       ; $1DA8D1 |
   LDA #$9D                                  ; $1DA8D4 |
@@ -7911,7 +7951,7 @@ code_1DA920:
   JSR code_1FE7B7                           ; $1DA922 |
   BCC code_1DA964                           ; $1DA925 |
   LDA #$1F                                  ; $1DA927 |
-  JSR code_1FEA98                           ; $1DA929 |
+  JSR entity_set_animation                  ; $1DA929 |
   LDA {entity_display_flags},x              ; $1DA92C |
   AND #$BF                                  ; $1DA92F |
   STA {entity_display_flags},x              ; $1DA931 |
@@ -7929,11 +7969,11 @@ code_1DA920:
   BCC code_1DA964                           ; $1DA950 |
   JSR code_1FF2C4                           ; $1DA952 |
   LDA #$42                                  ; $1DA955 |
-  JSR code_1FEA98                           ; $1DA957 |
+  JSR entity_set_animation                  ; $1DA957 |
   LDA #$8C                                  ; $1DA95A |
   STA {entity_type},x                       ; $1DA95C |
   LDA #$8B                                  ; $1DA95F |
-  STA {sprite_flags},x                      ; $1DA961 |
+  STA {entity_flags},x                      ; $1DA961 |
 code_1DA964:
   RTS                                       ; $1DA964 |
 
@@ -7948,7 +7988,7 @@ code_1DA965:
   STA {entity_var_a},x                      ; $1DA976 |
   STA {entity_var_b},x                      ; $1DA979 |
   LDA #$D1                                  ; $1DA97C |
-  STA {sprite_flags},x                      ; $1DA97E |
+  STA {entity_flags},x                      ; $1DA97E |
   LDA #$00                                  ; $1DA981 |
   STA {animation_frame},x                   ; $1DA983 |
   STA {animation_timer},x                   ; $1DA986 |
@@ -7979,7 +8019,7 @@ code_1DA965:
   LDA #$01                                  ; $1DA9C5 |
   STA {animation_frame},x                   ; $1DA9C7 |
   LDA #$C0                                  ; $1DA9CA |
-  STA {sprite_flags},x                      ; $1DA9CC |
+  STA {entity_flags},x                      ; $1DA9CC |
   LDA #$00                                  ; $1DA9CF |
   STA {animation_timer},x                   ; $1DA9D1 |
   JSR code_1FEA65                           ; $1DA9D4 |
@@ -7990,22 +8030,22 @@ code_1DA9DF:
   RTS                                       ; $1DA9DF |
 
   LDY $32                                   ; $1DA9E0 |
-  LDA {sprite_flags},x                      ; $1DA9E2 |
+  LDA {entity_flags},x                      ; $1DA9E2 |
   AND #$BF                                  ; $1DA9E5 |
   ORA $AAB0,y                               ; $1DA9E7 |
-  STA {sprite_flags},x                      ; $1DA9EA |
+  STA {entity_flags},x                      ; $1DA9EA |
   LDA {y_position_low},x                    ; $1DA9ED |
   PHA                                       ; $1DA9F0 |
   SEC                                       ; $1DA9F1 |
   SBC #$18                                  ; $1DA9F2 |
   STA {y_position_low},x                    ; $1DA9F4 |
-  LDA {sprite_flags},x                      ; $1DA9F7 |
+  LDA {entity_flags},x                      ; $1DA9F7 |
   PHA                                       ; $1DA9FA |
   LDA #$C1                                  ; $1DA9FB |
-  STA {sprite_flags},x                      ; $1DA9FD |
+  STA {entity_flags},x                      ; $1DA9FD |
   JSR code_1FEFF8                           ; $1DAA00 |
   PLA                                       ; $1DAA03 |
-  STA {sprite_flags},x                      ; $1DAA04 |
+  STA {entity_flags},x                      ; $1DAA04 |
   PLA                                       ; $1DAA07 |
   STA {y_position_low},x                    ; $1DAA08 |
   BCS code_1DAA14                           ; $1DAA0B |
@@ -8030,7 +8070,7 @@ code_1DAA14:
   CMP #$13                                  ; $1DAA33 |
   BNE code_1DAAAF                           ; $1DAA35 |
   LDA #$61                                  ; $1DAA37 |
-  JSR code_1FEA98                           ; $1DAA39 |
+  JSR entity_set_animation                  ; $1DAA39 |
 code_1DAA3C:
   LDA #$00                                  ; $1DAA3C |
   STA $00                                   ; $1DAA3E |
@@ -8047,25 +8087,25 @@ code_1DAA4B:
   LDA $00                                   ; $1DAA50 |
   CMP #$02                                  ; $1DAA52 |
   BCS code_1DAAAF                           ; $1DAA54 |
-  LDA {sprite_flags},x                      ; $1DAA56 |
+  LDA {entity_flags},x                      ; $1DAA56 |
   AND #$C0                                  ; $1DAA59 |
   ORA #$25                                  ; $1DAA5B |
-  STA {sprite_flags},x                      ; $1DAA5D |
+  STA {entity_flags},x                      ; $1DAA5D |
   LDA #$62                                  ; $1DAA60 |
-  JMP code_1FEA98                           ; $1DAA62 |
+  JMP entity_set_animation                  ; $1DAA62 |
 
 code_1DAA65:
-  LDA {sprite_flags},x                      ; $1DAA65 |
+  LDA {entity_flags},x                      ; $1DAA65 |
   AND #$C0                                  ; $1DAA68 |
   ORA #$24                                  ; $1DAA6A |
-  STA {sprite_flags},x                      ; $1DAA6C |
+  STA {entity_flags},x                      ; $1DAA6C |
   RTS                                       ; $1DAA6F |
 
 code_1DAA70:
   JSR code_1FF16F                           ; $1DAA70 |
   BCS code_1DAAAF                           ; $1DAA73 |
   LDA #$C5                                  ; $1DAA75 |
-  STA {sprite_flags},y                      ; $1DAA77 |
+  STA {entity_flags},y                      ; $1DAA77 |
   LDA #$01                                  ; $1DAA7A |
   STA {entity_life},y                       ; $1DAA7C |
   LDA #$62                                  ; $1DAA7F |
@@ -8173,7 +8213,7 @@ code_1DAB4E:
   SBC $ABFB,y                               ; $1DAB74 |
   STA {y_position_low},x                    ; $1DAB77 |
   LDA $ABFF,y                               ; $1DAB7A |
-  STA {sprite_flags},x                      ; $1DAB7D |
+  STA {entity_flags},x                      ; $1DAB7D |
   CPY #$03                                  ; $1DAB80 |
   BNE code_1DABFA                           ; $1DAB82 |
   LDA #$98                                  ; $1DAB84 |
@@ -8181,7 +8221,7 @@ code_1DAB4E:
   LDA #$AB                                  ; $1DAB89 |
   STA {entity_handler_high},x               ; $1DAB8B |
   LDA #$95                                  ; $1DAB8E |
-  JSR code_1FEA98                           ; $1DAB90 |
+  JSR entity_set_animation                  ; $1DAB90 |
   LDA #$07                                  ; $1DAB93 |
   STA {entity_var_a},x                      ; $1DAB95 |
   LDA {animation_timer},x                   ; $1DAB98 |
@@ -8197,9 +8237,9 @@ code_1DAB4E:
   LDA #$AB                                  ; $1DABB0 |
   STA {entity_handler_high},x               ; $1DABB2 |
   LDA #$91                                  ; $1DABB5 |
-  JSR code_1FEA98                           ; $1DABB7 |
+  JSR entity_set_animation                  ; $1DABB7 |
   LDA #$A0                                  ; $1DABBA |
-  STA {sprite_flags},x                      ; $1DABBC |
+  STA {entity_flags},x                      ; $1DABBC |
   LDA {y_position_low},x                    ; $1DABBF |
   SEC                                       ; $1DABC2 |
   SBC #$04                                  ; $1DABC3 |
@@ -8213,7 +8253,7 @@ code_1DAB4E:
   SBC $AC03,y                               ; $1DABD6 |
   STA {y_position_low},x                    ; $1DABD9 |
   LDA $AC09,y                               ; $1DABDC |
-  STA {sprite_flags},x                      ; $1DABDF |
+  STA {entity_flags},x                      ; $1DABDF |
   CPY #$05                                  ; $1DABE2 |
   BNE code_1DABFA                           ; $1DABE4 |
   LDA #$3F                                  ; $1DABE6 |
@@ -8221,7 +8261,7 @@ code_1DAB4E:
   LDA #$AB                                  ; $1DABEB |
   STA {entity_handler_high},x               ; $1DABED |
   LDA #$59                                  ; $1DABF0 |
-  JSR code_1FEA98                           ; $1DABF2 |
+  JSR entity_set_animation                  ; $1DABF2 |
   LDA #$3C                                  ; $1DABF5 |
   STA {entity_var_c},x                      ; $1DABF7 |
 code_1DABFA:
@@ -8236,16 +8276,16 @@ code_1DABFA:
   LDA {animation_index},x                   ; $1DAC15 |
   CMP #$97                                  ; $1DAC18 |
   BEQ code_1DAC33                           ; $1DAC1A |
-  LDA {sprite_flags},x                      ; $1DAC1C |
+  LDA {entity_flags},x                      ; $1DAC1C |
   PHA                                       ; $1DAC1F |
   LDA #$E6                                  ; $1DAC20 |
-  STA {sprite_flags},x                      ; $1DAC22 |
+  STA {entity_flags},x                      ; $1DAC22 |
   JSR code_1FEFF8                           ; $1DAC25 |
   PLA                                       ; $1DAC28 |
-  STA {sprite_flags},x                      ; $1DAC29 |
+  STA {entity_flags},x                      ; $1DAC29 |
   BCS code_1DAC7D                           ; $1DAC2C |
   LDA #$97                                  ; $1DAC2E |
-  JSR code_1FEA98                           ; $1DAC30 |
+  JSR entity_set_animation                  ; $1DAC30 |
 code_1DAC33:
   LDA {animation_timer},x                   ; $1DAC33 |
   CMP #$05                                  ; $1DAC36 |
@@ -8255,13 +8295,13 @@ code_1DAC33:
   CMP #$05                                  ; $1DAC3F |
   BNE code_1DAC7D                           ; $1DAC41 |
   LDA #$96                                  ; $1DAC43 |
-  JMP code_1FEA98                           ; $1DAC45 |
+  JMP entity_set_animation                  ; $1DAC45 |
 
 code_1DAC48:
   JSR code_1FF16F                           ; $1DAC48 |
   BCS code_1DAC7D                           ; $1DAC4B |
   LDA #$C7                                  ; $1DAC4D |
-  STA {sprite_flags},y                      ; $1DAC4F |
+  STA {entity_flags},y                      ; $1DAC4F |
   LDA #$01                                  ; $1DAC52 |
   STA {entity_life},y                       ; $1DAC54 |
   LDA #$65                                  ; $1DAC57 |
@@ -8296,7 +8336,7 @@ code_1DAC7D:
   JSR code_1FF16F                           ; $1DAC96 |
   BCS code_1DACC1                           ; $1DAC99 |
   LDA #$87                                  ; $1DAC9B |
-  STA {sprite_flags},y                      ; $1DAC9D |
+  STA {entity_flags},y                      ; $1DAC9D |
   LDA #$9B                                  ; $1DACA0 |
   STA {entity_type},y                       ; $1DACA2 |
   LDA {entity_direction},x                  ; $1DACA5 |
@@ -8339,10 +8379,10 @@ code_1DACEC:
   BCS code_1DAD2B                           ; $1DACF1 |
   LDA #$02                                  ; $1DACF3 |
   STA {entity_handler_low},x                ; $1DACF5 |
-  LDA #$AD                                  ; $1DACF8 |
+  LDA #$AD                                 ; $1DACF8 |
   STA {entity_handler_high},x               ; $1DACFA |
   LDA #$08                                  ; $1DACFD |
-  JSR code_1FEA98                           ; $1DACFF |
+  JSR entity_set_animation                  ; $1DACFF |
   LDA {animation_timer},x                   ; $1DAD02 |
   CMP #$08                                  ; $1DAD05 |
   BNE code_1DAD7B                           ; $1DAD07 |
@@ -8355,10 +8395,10 @@ code_1DACEC:
   STA {entity_var_a},x                      ; $1DAD16 |
   LDA #$7C                                  ; $1DAD19 |
   STA {entity_handler_low},x                ; $1DAD1B |
-  LDA #$AD                                  ; $1DAD1E |
+  LDA #$AD                                 ; $1DAD1E |
   STA {entity_handler_high},x               ; $1DAD20 |
   LDA #$07                                  ; $1DAD23 |
-  JSR code_1FEA98                           ; $1DAD25 |
+  JSR entity_set_animation                  ; $1DAD25 |
   INC {animation_frame},x                   ; $1DAD28 |
 code_1DAD2B:
   RTS                                       ; $1DAD2B |
@@ -8370,7 +8410,7 @@ code_1DAD2C:
   LDA #$57                                  ; $1DAD33 |
   STA {entity_type},y                       ; $1DAD35 |
   LDA #$00                                  ; $1DAD38 |
-  STA {sprite_flags},y                      ; $1DAD3A |
+  STA {entity_flags},y                      ; $1DAD3A |
   STA {entity_life},y                       ; $1DAD3D |
   STA {x_speed_frac},y                      ; $1DAD40 |
   STA {y_speed_frac},y                      ; $1DAD43 |
@@ -8406,7 +8446,7 @@ code_1DAD7B:
   DEC {entity_var_a},x                      ; $1DAD86 |
   BNE code_1DAD7B                           ; $1DAD89 |
   LDA #$09                                  ; $1DAD8B |
-  JSR code_1FEA98                           ; $1DAD8D |
+  JSR entity_set_animation                  ; $1DAD8D |
 code_1DAD90:
   LDA {animation_timer},x                   ; $1DAD90 |
   CMP #$02                                  ; $1DAD93 |
@@ -8536,9 +8576,9 @@ code_1DAE8B:
 
 code_1DAE8E:
   LDA $AF20,y                               ; $1DAE8E |
-  JSR code_1FEA98                           ; $1DAE91 |
+  JSR entity_set_animation                  ; $1DAE91 |
   LDA #$00                                  ; $1DAE94 |
-  STA {sprite_flags},x                      ; $1DAE96 |
+  STA {entity_flags},x                      ; $1DAE96 |
   STA {entity_direction},x                  ; $1DAE99 |
   LDA $AF25,y                               ; $1DAE9C |
   STA {entity_var_a},x                      ; $1DAE9F |
@@ -8622,10 +8662,10 @@ code_1DAF1A:
   JSR code_1FEA65                           ; $1DAF66 |
   LDA {x_position_low},x                    ; $1DAF69 |
   SEC                                       ; $1DAF6C |
-  SBC $FC                                   ; $1DAF6D |
+  SBC {scroll_x}                            ; $1DAF6D |
   STA $00                                   ; $1DAF6F |
   LDA {x_position_high},x                   ; $1DAF71 |
-  SBC $F9                                   ; $1DAF74 |
+  SBC {scroll_x_high}                       ; $1DAF74 |
   BNE code_1DAFDB                           ; $1DAF76 |
   LDA $00                                   ; $1DAF78 |
   CMP #$18                                  ; $1DAF7A |
@@ -8637,7 +8677,7 @@ code_1DAF1A:
   BEQ code_1DAFDB                           ; $1DAF87 |
   CPY #$0B                                  ; $1DAF89 |
   BNE code_1DAF93                           ; $1DAF8B |
-  LDA $FA                                   ; $1DAF8D |
+  LDA {scroll_y}                            ; $1DAF8D |
   AND #$0F                                  ; $1DAF8F |
   BNE code_1DAFDB                           ; $1DAF91 |
 code_1DAF93:
@@ -8652,7 +8692,7 @@ code_1DAF93:
   JSR code_1FEC5D                           ; $1DAFA4 |
   JSR code_1FF2C4                           ; $1DAFA7 |
   LDA #$42                                  ; $1DAFAA |
-  JSR code_1FEA98                           ; $1DAFAC |
+  JSR entity_set_animation                  ; $1DAFAC |
   LDA #$01                                  ; $1DAFAF |
   STA {entity_type},x                       ; $1DAFB1 |
   LDA {x_position_low},x                    ; $1DAFB4 |
@@ -8758,7 +8798,7 @@ code_1DB073:
   LDA $01                                   ; $1DB073 |
   AND #$07                                  ; $1DB075 |
   TAY                                       ; $1DB077 |
-  LDA $F2B2,y                               ; $1DB078 |
+  LDA bitmask_table,y                       ; $1DB078 |
   STA $00                                   ; $1DB07B |
   LDA $01                                   ; $1DB07D |
   PHA                                       ; $1DB07F |
@@ -8797,16 +8837,16 @@ code_1DB073:
   db $02, $00, $00, $00, $DC, $20, $39, $AF ; $1DB0ED |
   db $B0, $B0                               ; $1DB0F5 |
 
-  LDA $FC                                   ; $1DB0F7 |
+  LDA {scroll_x}                            ; $1DB0F7 |
   CLC                                       ; $1DB0F9 |
   ADC #$80                                  ; $1DB0FA |
   STA {x_position_low},x                    ; $1DB0FC |
-  LDA $F9                                   ; $1DB0FF |
+  LDA {scroll_x_high}                       ; $1DB0FF |
   ADC #$00                                  ; $1DB101 |
   STA {x_position_high},x                   ; $1DB103 |
   DEC {entity_var_a},x                      ; $1DB106 |
   BNE code_1DB118                           ; $1DB109 |
-  LDA $0620                                 ; $1DB10B |
+  LDA {palette_original}                    ; $1DB10B |
   STA $0610                                 ; $1DB10E |
   LDA #$FF                                  ; $1DB111 |
   STA $18                                   ; $1DB113 |
@@ -8874,7 +8914,7 @@ code_1DB188:
   CMP #$04                                  ; $1DB18B |
   BNE code_1DB187                           ; $1DB18D |
   LDA #$99                                  ; $1DB18F |
-  JSR code_1FEA98                           ; $1DB191 |
+  JSR entity_set_animation                  ; $1DB191 |
   LDA #$05                                  ; $1DB194 |
   STA $ED                                   ; $1DB196 |
   LDA #$A2                                  ; $1DB198 |
@@ -8903,7 +8943,7 @@ code_1DB188:
   LDA #$05                                  ; $1DB1CE |
   STA {y_speed},x                           ; $1DB1D0 |
   LDA #$11                                  ; $1DB1D3 |
-  STA {sprite_flags},x                      ; $1DB1D5 |
+  STA {entity_flags},x                      ; $1DB1D5 |
   LDA #$E7                                  ; $1DB1D8 |
   STA {entity_handler_low},x                ; $1DB1DA |
   LDA #$B1                                  ; $1DB1DD |
@@ -8914,7 +8954,7 @@ code_1DB188:
   LDA #$9A                                  ; $1DB1E7 |
   CMP {animation_index},x                   ; $1DB1E9 |
   BEQ code_1DB1F1                           ; $1DB1EC |
-  JSR code_1FEA98                           ; $1DB1EE |
+  JSR entity_set_animation                  ; $1DB1EE |
 code_1DB1F1:
   LDY #$17                                  ; $1DB1F1 |
   JSR code_1FE7B7                           ; $1DB1F3 |
@@ -8929,7 +8969,7 @@ code_1DB1F8:
   LDA #$B2                                  ; $1DB207 |
   STA {entity_handler_high},x               ; $1DB209 |
   LDA #$4E                                  ; $1DB20C |
-  JSR code_1FEA98                           ; $1DB20E |
+  JSR entity_set_animation                  ; $1DB20E |
   LDA #$46                                  ; $1DB211 |
   STA $ED                                   ; $1DB213 |
   LDA #$04                                  ; $1DB215 |
@@ -8982,7 +9022,7 @@ code_1DB273:
   CMP #$04                                  ; $1DB277 |
   BNE code_1DB273                           ; $1DB279 |
   LDA #$98                                  ; $1DB27B |
-  JSR code_1FEA98                           ; $1DB27D |
+  JSR entity_set_animation                  ; $1DB27D |
   LDA #$04                                  ; $1DB280 |
   STA $ED                                   ; $1DB282 |
   LDA #$96                                  ; $1DB284 |
@@ -9113,7 +9153,7 @@ code_1DB39D:
   BNE code_1DB3AF                           ; $1DB3A0 |
   JSR code_1FF2C4                           ; $1DB3A2 |
   LDA #$42                                  ; $1DB3A5 |
-  JSR code_1FEA98                           ; $1DB3A7 |
+  JSR entity_set_animation                  ; $1DB3A7 |
   LDA #$C2                                  ; $1DB3AA |
   STA {entity_type},x                       ; $1DB3AC |
 code_1DB3AF:
@@ -9128,12 +9168,12 @@ code_1DB3AF:
   STA $5B                                   ; $1DB3BD |
   LDY #$03                                  ; $1DB3BF |
 code_1DB3C1:
-  LDA #$AD                                  ; $1DB3C1 |
+  LDA #$AD                                 ; $1DB3C1 |
   JSR code_1FEAA4                           ; $1DB3C3 |
   LDA #$73                                  ; $1DB3C6 |
   STA {entity_type},y                       ; $1DB3C8 |
   LDA #$00                                  ; $1DB3CB |
-  STA {sprite_flags},y                      ; $1DB3CD |
+  STA {entity_flags},y                      ; $1DB3CD |
   LDA #$0B                                  ; $1DB3D0 |
   STA {entity_handler_low},y                ; $1DB3D2 |
   LDA #$B4                                  ; $1DB3D5 |
@@ -9151,7 +9191,7 @@ code_1DB3C1:
   LDA $B447,y                               ; $1DB3F7 |
   STA {y_speed},y                           ; $1DB3FA |
   LDA #$00                                  ; $1DB3FD |
-  STA {sprite_flags},y                      ; $1DB3FF |
+  STA {entity_flags},y                      ; $1DB3FF |
   LDA #$78                                  ; $1DB402 |
   STA {entity_var_a},y                      ; $1DB404 |
   DEY                                       ; $1DB407 |
@@ -9179,7 +9219,7 @@ code_1DB429:
   LDA #$01                                  ; $1DB431 |
   STA {entity_type},x                       ; $1DB433 |
   LDA #$42                                  ; $1DB436 |
-  JSR code_1FEA98                           ; $1DB438 |
+  JSR entity_set_animation                  ; $1DB438 |
 code_1DB43B:
   RTS                                       ; $1DB43B |
 
@@ -9295,14 +9335,14 @@ code_1DB51B:
   BNE code_1DB54C                           ; $1DB53C |
   LDA {y_position_low},x                    ; $1DB53E |
   STA {entity_var_c},x                      ; $1DB541 |
-  LDA $FA                                   ; $1DB544 |
+  LDA {scroll_y}                            ; $1DB544 |
   STA {entity_var_e},x                      ; $1DB546 |
   JMP code_1DB560                           ; $1DB549 |
 
 code_1DB54C:
   LDA {y_position_low},x                    ; $1DB54C |
   CLC                                       ; $1DB54F |
-  ADC $FA                                   ; $1DB550 |
+  ADC {scroll_y}                            ; $1DB550 |
   STA {entity_var_c},x                      ; $1DB552 |
   BCS code_1DB55B                           ; $1DB555 |
   CMP #$F0                                  ; $1DB557 |
@@ -9319,7 +9359,7 @@ code_1DB560:
   LDA #$01                                  ; $1DB56C |
   STA {entity_type},x                       ; $1DB56E |
   LDA #$42                                  ; $1DB571 |
-  JSR code_1FEA98                           ; $1DB573 |
+  JSR entity_set_animation                  ; $1DB573 |
   LDA {entity_display_flags},x              ; $1DB576 |
   AND #$FC                                  ; $1DB579 |
   STA {entity_display_flags},x              ; $1DB57B |
@@ -9351,7 +9391,7 @@ code_1DB5A1:
   LDA $26                                   ; $1DB5AE |
   CMP #$0E                                  ; $1DB5B0 |
   BNE code_1DB5CD                           ; $1DB5B2 |
-  LDA $FA                                   ; $1DB5B4 |
+  LDA {scroll_y}                            ; $1DB5B4 |
   SEC                                       ; $1DB5B6 |
   SBC {entity_var_e},x                      ; $1DB5B7 |
   CLC                                       ; $1DB5BA |
@@ -9367,7 +9407,7 @@ code_1DB5A1:
 code_1DB5CD:
   LDA {entity_var_c},x                      ; $1DB5CD |
   SEC                                       ; $1DB5D0 |
-  SBC $FA                                   ; $1DB5D1 |
+  SBC {scroll_y}                            ; $1DB5D1 |
   STA {y_position_low},x                    ; $1DB5D3 |
   BCS code_1DB5DD                           ; $1DB5D6 |
   SBC #$0F                                  ; $1DB5D8 |
@@ -9401,7 +9441,7 @@ code_1DB5F8:
   CMP #$02                                  ; $1DB611 |
   BNE code_1DB654                           ; $1DB613 |
   LDA #$AB                                  ; $1DB615 |
-  JSR code_1FEA98                           ; $1DB617 |
+  JSR entity_set_animation                  ; $1DB617 |
   LDA #$24                                  ; $1DB61A |
   STA {entity_handler_low},x                ; $1DB61C |
   LDA #$B6                                  ; $1DB61F |
@@ -9544,7 +9584,7 @@ code_1DB731:
   STA {y_speed},x                           ; $1DB746 |
   LDA {x_position_low},x                    ; $1DB749 |
   SEC                                       ; $1DB74C |
-  SBC $FC                                   ; $1DB74D |
+  SBC {scroll_x}                            ; $1DB74D |
   TAY                                       ; $1DB74F |
   LDA #$09                                  ; $1DB750 |
   CPY #$80                                  ; $1DB752 |
@@ -9585,7 +9625,7 @@ code_1DB78D:
   BPL code_1DB7B8                           ; $1DB795 |
   AND #$04                                  ; $1DB797 |
   BNE code_1DB7B8                           ; $1DB799 |
-  LDA {sprite_flags},y                      ; $1DB79B |
+  LDA {entity_flags},y                      ; $1DB79B |
   AND #$40                                  ; $1DB79E |
   BEQ code_1DB7B8                           ; $1DB7A0 |
   JSR distance_to_entity                    ; $1DB7A2 |
@@ -9643,7 +9683,7 @@ code_1DB7EE:
   LDA #$9C                                  ; $1DB813 |
   CMP {animation_index},x                   ; $1DB815 |
   BEQ code_1DB81D                           ; $1DB818 |
-  JSR code_1FEA98                           ; $1DB81A |
+  JSR entity_set_animation                  ; $1DB81A |
 code_1DB81D:
   CLC                                       ; $1DB81D |
   LDA {entity_display_flags}                ; $1DB81E |
@@ -9738,7 +9778,7 @@ code_1DB875:
   BEQ code_1DB8F3                           ; $1DB8E7 |
   DEC {entity_var_e},x                      ; $1DB8E9 |
   AND #$02                                  ; $1DB8EC |
-  STA $FC                                   ; $1DB8EE |
+  STA {scroll_x}                            ; $1DB8EE |
   JMP code_1DB96E                           ; $1DB8F0 |
 
 code_1DB8F3:
@@ -9746,26 +9786,26 @@ code_1DB8F3:
   SEC                                       ; $1DB8F6 |
   SBC {y_speed_frac},x                      ; $1DB8F7 |
   STA {entity_var_d},x                      ; $1DB8FA |
-  LDA $FA                                   ; $1DB8FD |
+  LDA {scroll_y}                            ; $1DB8FD |
   SBC {y_speed},x                           ; $1DB8FF |
   BCS code_1DB908                           ; $1DB902 |
   SBC #$0F                                  ; $1DB904 |
-  INC $FB                                   ; $1DB906 |
+  INC {vert_screen_offset}                  ; $1DB906 |
 code_1DB908:
-  STA $FA                                   ; $1DB908 |
+  STA {scroll_y}                            ; $1DB908 |
   JSR apply_gravity_upwards                 ; $1DB90A |
-  LDA $FB                                   ; $1DB90D |
+  LDA {vert_screen_offset}                  ; $1DB90D |
   CMP {entity_var_c},x                      ; $1DB90F |
   BCC code_1DB942                           ; $1DB912 |
   BNE code_1DB91D                           ; $1DB914 |
   LDA {entity_var_b},x                      ; $1DB916 |
-  CMP $FA                                   ; $1DB919 |
+  CMP {scroll_y}                            ; $1DB919 |
   BCC code_1DB942                           ; $1DB91B |
 code_1DB91D:
   LDA {entity_var_b},x                      ; $1DB91D |
-  STA $FA                                   ; $1DB920 |
+  STA {scroll_y}                            ; $1DB920 |
   LDA {entity_var_c},x                      ; $1DB922 |
-  STA $FB                                   ; $1DB925 |
+  STA {vert_screen_offset}                  ; $1DB925 |
   LDA #$BB                                  ; $1DB927 |
   STA {entity_handler_low},x                ; $1DB929 |
   LDA #$B8                                  ; $1DB92C |
@@ -9789,13 +9829,13 @@ code_1DB942:
   STA $2B                                   ; $1DB94F |
   STA $2A                                   ; $1DB951 |
   STA $25                                   ; $1DB953 |
-  STA $FB                                   ; $1DB955 |
+  STA {vert_screen_offset}                  ; $1DB955 |
   LDA #$22                                  ; $1DB957 |
   STA $29                                   ; $1DB959 |
   LDA #$01                                  ; $1DB95B |
   STA $28                                   ; $1DB95D |
   LDA #$02                                  ; $1DB95F |
-  STA $F9                                   ; $1DB961 |
+  STA {scroll_x_high}                       ; $1DB961 |
   STA {x_position_high}                     ; $1DB963 |
   STA {x_position_high},x                   ; $1DB966 |
   LDA #$01                                  ; $1DB969 |
@@ -9806,7 +9846,7 @@ code_1DB96E:
   PHA                                       ; $1DB971 |
   AND #$07                                  ; $1DB972 |
   TAY                                       ; $1DB974 |
-  LDA $F2B2,y                               ; $1DB975 |
+  LDA bitmask_table,y                       ; $1DB975 |
   STA $00                                   ; $1DB978 |
   PLA                                       ; $1DB97A |
   LSR                                       ; $1DB97B |
@@ -9823,7 +9863,7 @@ code_1DB96E:
   TAY                                       ; $1DB990 |
   LDA $B9C0,y                               ; $1DB991 |
   AND #$F0                                  ; $1DB994 |
-  CMP $FA                                   ; $1DB996 |
+  CMP {scroll_y}                            ; $1DB996 |
   BEQ code_1DB96E                           ; $1DB998 |
   STA {entity_var_b},x                      ; $1DB99A |
   LDA $B9C0,y                               ; $1DB99D |
@@ -9917,7 +9957,7 @@ code_1DBAA7:
   LDA #$01                                  ; $1DBAB6 |
   STA {entity_type},y                       ; $1DBAB8 |
   LDA #$00                                  ; $1DBABB |
-  STA {sprite_flags},y                      ; $1DBABD |
+  STA {entity_flags},y                      ; $1DBABD |
   LDA #$02                                  ; $1DBAC0 |
   STA {entity_display_flags},y              ; $1DBAC2 |
   LDA {entity_var_b},x                      ; $1DBAC5 |
@@ -10136,9 +10176,9 @@ code_1EC014:
   LDA $19                                   ; $1EC014 |
   ORA $1A                                   ; $1EC016 |
   STA $60                                   ; $1EC018 |
-  LDA $FA                                   ; $1EC01A |
+  LDA {scroll_y}                            ; $1EC01A |
   STA $A2                                   ; $1EC01C |
-  LDA $FC                                   ; $1EC01E |
+  LDA {scroll_x}                            ; $1EC01E |
   STA $A4                                   ; $1EC020 |
   LDA $FD                                   ; $1EC022 |
   AND #$03                                  ; $1EC024 |
@@ -10196,7 +10236,7 @@ code_1EC07B:
   STX $2006                                 ; $1EC08F |
   LDY #$20                                  ; $1EC092 |
 code_1EC094:
-  LDA $0600,x                               ; $1EC094 |
+  LDA {palette_current},x                   ; $1EC094 |
   STA $2007                                 ; $1EC097 |
   INX                                       ; $1EC09A |
   DEY                                       ; $1EC09B |
@@ -10210,7 +10250,7 @@ select_CHR_banks:
   LDX #$05                                  ; $1EC0AC | $00-$05 are MMC3's CHR banks
 loop_CHR_banks:
   STX $8000                                 ; $1EC0AE | loop index -> bank select register
-  LDA $EA,x                                 ; $1EC0B1 |\ table value at $EA
+  LDA {background_chr_bank_top},x           ; $1EC0B1 |\ table value at $EA
   STA $8001                                 ; $1EC0B3 |/ -> bank data
   DEX                                       ; $1EC0B6 |\ continue loop until after $00
   BPL loop_CHR_banks                        ; $1EC0B7 |/
@@ -10639,9 +10679,9 @@ code_1EC3B8:
   STA $79                                   ; $1EC3C0 |
   STA $7A                                   ; $1EC3C2 |
   STA $7B                                   ; $1EC3C4 |
-  STA $FA                                   ; $1EC3C6 |
-  STA $FB                                   ; $1EC3C8 |
-  STA $FC                                   ; $1EC3CA |
+  STA {scroll_y}                            ; $1EC3C6 |
+  STA {vert_screen_offset}                  ; $1EC3C8 |
+  STA {scroll_x}                            ; $1EC3CA |
   STA $FD                                   ; $1EC3CC |
   LDY #$88                                  ; $1EC3CE |
   STY $9B                                   ; $1EC3D0 |
@@ -10691,17 +10731,17 @@ code_1EC403:
   JMP code_1EC421                           ; $1EC411 |
 
 code_1EC414:
-  LDA $0620,y                               ; $1EC414 |
+  LDA {palette_original},y                  ; $1EC414 |
   SEC                                       ; $1EC417 |
   SBC $0F                                   ; $1EC418 |
   BPL code_1EC41E                           ; $1EC41A |
   LDA #$0F                                  ; $1EC41C |
 code_1EC41E:
-  STA $0600,y                               ; $1EC41E |
+  STA {palette_current},y                   ; $1EC41E |
 code_1EC421:
   DEY                                       ; $1EC421 |
   BPL code_1EC403                           ; $1EC422 |
-  LDA $0600                                 ; $1EC424 |
+  LDA {palette_current}                     ; $1EC424 |
   STA $0610                                 ; $1EC427 |
   STY $18                                   ; $1EC42A |
   PLA                                       ; $1EC42C |
@@ -11133,11 +11173,11 @@ code_1EC705:
 code_1EC712:
   LDA $13                                   ; $1EC712 |
   CLC                                       ; $1EC714 |
-  ADC $FB                                   ; $1EC715 |
+  ADC {vert_screen_offset}                  ; $1EC715 |
   STA $13                                   ; $1EC717 |
   LDA {y_position_low},x                    ; $1EC719 |
   CLC                                       ; $1EC71C |
-  ADC $FA                                   ; $1EC71D |
+  ADC {scroll_y}                            ; $1EC71D |
   BCS code_1EC725                           ; $1EC71F |
   CMP #$F0                                  ; $1EC721 |
   BCC code_1EC729                           ; $1EC723 |
@@ -11208,7 +11248,7 @@ code_1EC77C:
   ASL                                       ; $1EC786 |
   ORA $03                                   ; $1EC787 |
   TAY                                       ; $1EC789 |
-  LDA $F2B2,y                               ; $1EC78A |
+  LDA bitmask_table,y                       ; $1EC78A |
   STA $07                                   ; $1EC78D |
   LDA $13                                   ; $1EC78F |
   AND #$01                                  ; $1EC791 |
@@ -11356,10 +11396,10 @@ code_1ECA03:
   LDA {x_position_high}                     ; $1ECA0C |
   ADC #$00                                  ; $1ECA0F |
   STA {x_position_high}                     ; $1ECA11 |
-  LDA $FC                                   ; $1ECA14 |
+  LDA {scroll_x}                            ; $1ECA14 |
   BNE code_1ECA24                           ; $1ECA16 |
   STA $11                                   ; $1ECA18 |
-  LDA $F9                                   ; $1ECA1A |
+  LDA {scroll_x_high}                       ; $1ECA1A |
   CMP #$23                                  ; $1ECA1C |
   BEQ code_1ECA2E                           ; $1ECA1E |
   CMP #$3F                                  ; $1ECA20 |
@@ -11385,7 +11425,7 @@ code_1ECA38:
   BNE code_1ECA59                           ; $1ECA3C |
   LDA {x_position_low}                      ; $1ECA3E |
   SEC                                       ; $1ECA41 |
-  SBC $FC                                   ; $1ECA42 |
+  SBC {scroll_x}                            ; $1ECA42 |
   STA $10                                   ; $1ECA44 |
   LDA {x_position_low}                      ; $1ECA46 |
   SEC                                       ; $1ECA49 |
@@ -11411,25 +11451,25 @@ code_1ECA5C:
   LDA #$08                                  ; $1ECA6C |
 code_1ECA6E:
   STA $11                                   ; $1ECA6E |
-  LDA $FC                                   ; $1ECA70 |
+  LDA {scroll_x}                            ; $1ECA70 |
   SEC                                       ; $1ECA72 |
   SBC $11                                   ; $1ECA73 |
-  STA $FC                                   ; $1ECA75 |
+  STA {scroll_x}                            ; $1ECA75 |
   PHP                                       ; $1ECA77 |
-  LDA $F9                                   ; $1ECA78 |
+  LDA {scroll_x_high}                       ; $1ECA78 |
   STA $11                                   ; $1ECA7A |
   SBC #$00                                  ; $1ECA7C |
-  STA $F9                                   ; $1ECA7E |
+  STA {scroll_x_high}                       ; $1ECA7E |
   PLP                                       ; $1ECA80 |
   LDA $2B                                   ; $1ECA81 |
   SBC #$00                                  ; $1ECA83 |
   STA $2B                                   ; $1ECA85 |
   BCS code_1ECAA0                           ; $1ECA87 |
   LDA #$00                                  ; $1ECA89 |
-  STA $FC                                   ; $1ECA8B |
+  STA {scroll_x}                            ; $1ECA8B |
   STA $2B                                   ; $1ECA8D |
   LDA $11                                   ; $1ECA8F |
-  STA $F9                                   ; $1ECA91 |
+  STA {scroll_x_high}                       ; $1ECA91 |
   LDA #$10                                  ; $1ECA93 |
   CMP {x_position_low}                      ; $1ECA95 |
   BCC code_1ECAA0                           ; $1ECA98 |
@@ -11449,14 +11489,14 @@ code_1ECAA4:
   BCS code_1ECAB4                           ; $1ECAB0 |
   STA $11                                   ; $1ECAB2 |
 code_1ECAB4:
-  LDA $FC                                   ; $1ECAB4 |
+  LDA {scroll_x}                            ; $1ECAB4 |
   CLC                                       ; $1ECAB6 |
   ADC $11                                   ; $1ECAB7 |
-  STA $FC                                   ; $1ECAB9 |
+  STA {scroll_x}                            ; $1ECAB9 |
   PHP                                       ; $1ECABB |
-  LDA $F9                                   ; $1ECABC |
+  LDA {scroll_x_high}                       ; $1ECABC |
   ADC #$00                                  ; $1ECABE |
-  STA $F9                                   ; $1ECAC0 |
+  STA {scroll_x_high}                       ; $1ECAC0 |
   PLP                                       ; $1ECAC2 |
   LDA $2B                                   ; $1ECAC3 |
   ADC #$00                                  ; $1ECAC5 |
@@ -11464,13 +11504,13 @@ code_1ECAB4:
   CMP $2A                                   ; $1ECAC9 |
   BNE code_1ECAE2                           ; $1ECACB |
   LDA #$00                                  ; $1ECACD |
-  STA $FC                                   ; $1ECACF |
+  STA {scroll_x}                            ; $1ECACF |
   LDA #$F0                                  ; $1ECAD1 |
   CMP {x_position_low}                      ; $1ECAD3 |
   BCS code_1ECAE2                           ; $1ECAD6 |
   STA {x_position_low}                      ; $1ECAD8 |
   LDA #$00                                  ; $1ECADB |
-  STA $FC                                   ; $1ECADD |
+  STA {scroll_x}                            ; $1ECADD |
   JMP code_1ECB5F                           ; $1ECADF |
 
 code_1ECAE2:
@@ -11481,8 +11521,8 @@ code_1ECAE6:
 
 code_1ECAE9:
   STA $10                                   ; $1ECAE9 |
-  STA $AC                                   ; $1ECAEB |
-  LDA $FC                                   ; $1ECAED |
+  STA {horizontal_scroll_direction}         ; $1ECAEB |
+  LDA {scroll_x}                            ; $1ECAED |
   SEC                                       ; $1ECAEF |
   SBC $44                                   ; $1ECAF0 |
   BPL code_1ECAF9                           ; $1ECAF2 |
@@ -11587,20 +11627,20 @@ code_1ECB96:
   PHA                                       ; $1ECBA4 |
   LDA #$01                                  ; $1ECBA5 |
   STA $28                                   ; $1ECBA7 |
-  STA $AC                                   ; $1ECBA9 |
+  STA {horizontal_scroll_direction}         ; $1ECBA9 |
   PLA                                       ; $1ECBAB |
   AND #$01                                  ; $1ECBAC |
   BNE code_1ECBB4                           ; $1ECBAE |
   INC $24                                   ; $1ECBB0 |
   DEC $25                                   ; $1ECBB2 |
 code_1ECBB4:
-  LDA $FC                                   ; $1ECBB4 |\
+  LDA {scroll_x}                            ; $1ECBB4 |\
   CLC                                       ; $1ECBB6 | | scroll right by 4
   ADC #$04                                  ; $1ECBB7 | |
-  STA $FC                                   ; $1ECBB9 |/
-  LDA $F9                                   ; $1ECBBB |
+  STA {scroll_x}                            ; $1ECBB9 |/
+  LDA {scroll_x_high}                       ; $1ECBBB |
   ADC #$00                                  ; $1ECBBD |
-  STA $F9                                   ; $1ECBBF |
+  STA {scroll_x_high}                       ; $1ECBBF |
   LDA {x_position_frac}                     ; $1ECBC1 |
   CLC                                       ; $1ECBC4 |
   ADC #$A0                                  ; $1ECBC5 |
@@ -11611,7 +11651,7 @@ code_1ECBB4:
   LDA {x_position_high}                     ; $1ECBD2 |
   ADC #$00                                  ; $1ECBD5 |
   STA {x_position_high}                     ; $1ECBD7 |
-  LDA $FC                                   ; $1ECBDA |
+  LDA {scroll_x}                            ; $1ECBDA |
   SEC                                       ; $1ECBDC |
   SBC $44                                   ; $1ECBDD |
   STA $11                                   ; $1ECBDF |
@@ -11633,7 +11673,7 @@ code_1ECBB4:
 code_1ECBFB:
   JSR code_1ED4E2                           ; $1ECBFB |
 code_1ECBFE:
-  LDA $FC                                   ; $1ECBFE |
+  LDA {scroll_x}                            ; $1ECBFE |
   STA $44                                   ; $1ECC00 |
   LDA #$04                                  ; $1ECC02 |
   STA $9F                                   ; $1ECC04 |
@@ -11658,7 +11698,7 @@ code_1ECC20:
   STA $95                                   ; $1ECC2D |
   JSR async_next_frame                      ; $1ECC2F |\
   INC $95                                   ; $1ECC32 | | async gameloop here
-  LDA $FC                                   ; $1ECC34 | | if screen transition not
+  LDA {scroll_x}                            ; $1ECC34 | | if screen transition not
   BEQ code_1ECC3B                           ; $1ECC36 | | done, keep looping
   JMP code_1ECBB4                           ; $1ECC38 |/
 
@@ -11702,20 +11742,20 @@ code_1ECC49:
   PHA                                       ; $1ECC7E |
   LDA #$02                                  ; $1ECC7F |
   STA $28                                   ; $1ECC81 |
-  STA $AC                                   ; $1ECC83 |
+  STA {horizontal_scroll_direction}         ; $1ECC83 |
   PLA                                       ; $1ECC85 |
   AND #$02                                  ; $1ECC86 |
   BNE code_1ECC8E                           ; $1ECC88 |
   DEC $24                                   ; $1ECC8A |
   INC $25                                   ; $1ECC8C |
 code_1ECC8E:
-  LDA $FC                                   ; $1ECC8E |\
+  LDA {scroll_x}                            ; $1ECC8E |\
   SEC                                       ; $1ECC90 | | scroll left by 4
   SBC #$04                                  ; $1ECC91 | |
-  STA $FC                                   ; $1ECC93 |/
-  LDA $F9                                   ; $1ECC95 |
+  STA {scroll_x}                            ; $1ECC93 |/
+  LDA {scroll_x_high}                       ; $1ECC95 |
   SBC #$00                                  ; $1ECC97 |
-  STA $F9                                   ; $1ECC99 |
+  STA {scroll_x_high}                       ; $1ECC99 |
   LDA {x_position_frac}                     ; $1ECC9B |
   SEC                                       ; $1ECC9E |
   SBC #$80                                  ; $1ECC9F |
@@ -11726,7 +11766,7 @@ code_1ECC8E:
   LDA {x_position_high}                     ; $1ECCAC |
   SBC #$00                                  ; $1ECCAF |
   STA {x_position_high}                     ; $1ECCB1 |
-  LDA $FC                                   ; $1ECCB4 |
+  LDA {scroll_x}                            ; $1ECCB4 |
   SEC                                       ; $1ECCB6 |
   SBC $44                                   ; $1ECCB7 |
   BPL code_1ECCC0                           ; $1ECCB9 |
@@ -11753,7 +11793,7 @@ code_1ECCC0:
 code_1ECCDC:
   JSR code_1ED4E2                           ; $1ECCDC |
 code_1ECCDF:
-  LDA $FC                                   ; $1ECCDF |
+  LDA {scroll_x}                            ; $1ECCDF |
   STA $44                                   ; $1ECCE1 |
   LDA #$04                                  ; $1ECCE3 |
   STA $9F                                   ; $1ECCE5 |
@@ -11772,14 +11812,14 @@ code_1ECCDF:
   STA $95                                   ; $1ECD02 |
   JSR async_next_frame                      ; $1ECD04 |\
   INC $95                                   ; $1ECD07 | | async gameloop here
-  LDA $FC                                   ; $1ECD09 | | if screen transition
+  LDA {scroll_x}                            ; $1ECD09 | | if screen transition
   BNE code_1ECC8E                           ; $1ECD0B |/  not done, keep looping
   STA $35                                   ; $1ECD0D |
 code_1ECD0F:
   RTS                                       ; $1ECD0F | left screen transition done
 
 code_1ECD10:
-  LDA $FC                                   ; $1ECD10 |
+  LDA {scroll_x}                            ; $1ECD10 |
   BNE code_1ECD0F                           ; $1ECD12 |
   LDA #$10                                  ; $1ECD14 |
   CMP {x_position_low}                      ; $1ECD16 |
@@ -11846,10 +11886,10 @@ code_1ECD74:
   INC $2B                                   ; $1ECD8B |
 code_1ECD8D:
   INC $24                                   ; $1ECD8D |
-  INC $F9                                   ; $1ECD8F |
+  INC {scroll_x_high}                       ; $1ECD8F |
   INC {x_position_high}                     ; $1ECD91 |
   LDA #$01                                  ; $1ECD94 |
-  STA $AC                                   ; $1ECD96 |
+  STA {horizontal_scroll_direction}         ; $1ECD96 |
   JMP code_1ECE7C                           ; $1ECD98 |
 
 code_1ECD9B:
@@ -11875,10 +11915,10 @@ code_1ECDBB:
   DEC $2B                                   ; $1ECDBF |
 code_1ECDC1:
   DEC $24                                   ; $1ECDC1 |
-  DEC $F9                                   ; $1ECDC3 |
+  DEC {scroll_x_high}                       ; $1ECDC3 |
   DEC {x_position_high}                     ; $1ECDC5 |
   LDA #$02                                  ; $1ECDC8 |
-  STA $AC                                   ; $1ECDCA |
+  STA {horizontal_scroll_direction}         ; $1ECDCA |
 code_1ECDCC:
   JMP code_1ECE7C                           ; $1ECDCC |
 
@@ -11902,7 +11942,7 @@ code_1ECDED:
   RTS                                       ; $1ECDED |
 
 code_1ECDEE:
-  LDA $FC                                   ; $1ECDEE |
+  LDA {scroll_x}                            ; $1ECDEE |
   BNE code_1ECDED                           ; $1ECDF0 |
   LDA $29                                   ; $1ECDF2 |
   AND #$1F                                  ; $1ECDF4 |
@@ -11963,14 +12003,14 @@ code_1ECE4A:
   STA $2B                                   ; $1ECE5D |
   LDA $12                                   ; $1ECE5F |
   STA $2A                                   ; $1ECE61 |
-  LDA $F9                                   ; $1ECE63 |
+  LDA {scroll_x_high}                       ; $1ECE63 |
   CLC                                       ; $1ECE65 |
   ADC $13                                   ; $1ECE66 |
-  STA $F9                                   ; $1ECE68 |
+  STA {scroll_x_high}                       ; $1ECE68 |
   STA $24                                   ; $1ECE6A |
   STA {x_position_high}                     ; $1ECE6C |
   LDA $02                                   ; $1ECE6F |
-  STA $AC                                   ; $1ECE71 |
+  STA {horizontal_scroll_direction}         ; $1ECE71 |
   LDA #$00                                  ; $1ECE73 |
   JSR code_1FFFB7                           ; $1ECE75 |
   JMP code_1ECE7C                           ; $1ECE78 |
@@ -12005,14 +12045,14 @@ code_1ECEA3:
   LDA $28                                   ; $1ECEA3 |
   AND #$04                                  ; $1ECEA5 |
   BEQ code_1ECED3                           ; $1ECEA7 |
-  LDA $FA                                   ; $1ECEA9 |\
+  LDA {scroll_y}                            ; $1ECEA9 |\
   CLC                                       ; $1ECEAB | | scroll down by 4
   ADC #$04                                  ; $1ECEAC | |
-  STA $FA                                   ; $1ECEAE |/
+  STA {scroll_y}                            ; $1ECEAE |/
   CMP #$F0                                  ; $1ECEB0 |
   BCC code_1ECEB8                           ; $1ECEB2 |
   ADC #$0F                                  ; $1ECEB4 |
-  STA $FA                                   ; $1ECEB6 |
+  STA {scroll_y}                            ; $1ECEB6 |
 code_1ECEB8:
   LDA {y_position_frac}                     ; $1ECEB8 |
   SEC                                       ; $1ECEBB |
@@ -12027,13 +12067,13 @@ code_1ECEB8:
   JMP code_1ECF01                           ; $1ECED0 |
 
 code_1ECED3:
-  LDA $FA                                   ; $1ECED3 |\
+  LDA {scroll_y}                            ; $1ECED3 |\
   SEC                                       ; $1ECED5 | | scroll up by 4
   SBC #$04                                  ; $1ECED6 | |
-  STA $FA                                   ; $1ECED8 |/
+  STA {scroll_y}                            ; $1ECED8 |/
   BCS code_1ECEE0                           ; $1ECEDA |
   SBC #$0F                                  ; $1ECEDC |
-  STA $FA                                   ; $1ECEDE |
+  STA {scroll_y}                            ; $1ECEDE |
 code_1ECEE0:
   LDA $37                                   ; $1ECEE0 |
   BEQ code_1ECEE7                           ; $1ECEE2 |
@@ -12073,7 +12113,7 @@ code_1ECF01:
   PLA                                       ; $1ECF2B |
   STA $11                                   ; $1ECF2C |
   INC $95                                   ; $1ECF2E |
-  LDA $FA                                   ; $1ECF30 |
+  LDA {scroll_y}                            ; $1ECF30 |
   STA $45                                   ; $1ECF32 |
   BEQ code_1ECF39                           ; $1ECF34 |\ if screen transition not
   JMP code_1ECEA3                           ; $1ECF36 |/ done, keep looping
@@ -12130,7 +12170,7 @@ code_1ECF93:
   RTS                                       ; $1ECF93 |
 
 code_1ECF94:
-  LDA $FA                                   ; $1ECF94 |
+  LDA {scroll_y}                            ; $1ECF94 |
   SEC                                       ; $1ECF96 |
   SBC $45                                   ; $1ECF97 |
   BPL code_1ECFA0                           ; $1ECF99 |
@@ -12199,7 +12239,7 @@ code_1ECFF2:
   BNE code_1ED04D                           ; $1ED001 |
   LDA $A9E2,x                               ; $1ED003 |
   STA $24                                   ; $1ED006 |
-  STA $F9                                   ; $1ED008 |
+  STA {scroll_x_high}                       ; $1ED008 |
   STA {x_position_high}                     ; $1ED00A |
   LDY $A9E3,x                               ; $1ED00D |
   LDA $29                                   ; $1ED010 |
@@ -12207,7 +12247,7 @@ code_1ECFF2:
   CMP $A9E3,x                               ; $1ED014 |
   BCC code_1ED028                           ; $1ED017 |
   LDA #$02                                  ; $1ED019 |
-  STA $AC                                   ; $1ED01B |
+  STA {horizontal_scroll_direction}         ; $1ED01B |
   LDA $A950,y                               ; $1ED01D |
   AND #$1F                                  ; $1ED020 |
   STA $2B                                   ; $1ED022 |
@@ -12218,7 +12258,7 @@ code_1ED028:
   STA $2B                                   ; $1ED02A |
   LDA #$01                                  ; $1ED02C |
 code_1ED02E:
-  STA $AC                                   ; $1ED02E |
+  STA {horizontal_scroll_direction}         ; $1ED02E |
   LDA $A950,y                               ; $1ED030 |
   PHA                                       ; $1ED033 |
   AND #$1F                                  ; $1ED034 |
@@ -12287,10 +12327,10 @@ code_1ED09B:
   LDY #$02                                  ; $1ED09B |
 code_1ED09D:
   LDA $00                                   ; $1ED09D |
-  STA $05F0,y                               ; $1ED09F |
+  STA {palette_animation_id},y              ; $1ED09F |
   LDA #$00                                  ; $1ED0A2 |
-  STA $05F8,y                               ; $1ED0A4 |
-  STA $05F4,y                               ; $1ED0A7 |
+  STA {palette_animation_timer},y           ; $1ED0A4 |
+  STA {palette_animation_frame},y           ; $1ED0A7 |
   DEC $00                                   ; $1ED0AA |
   DEY                                       ; $1ED0AC |
   BPL code_1ED09D                           ; $1ED0AD |
@@ -12388,7 +12428,7 @@ code_1ED16B:
   STA $00                                   ; $1ED17B |
   CMP #$0E                                  ; $1ED17D |
   BNE code_1ED18A                           ; $1ED17F |
-  LDY $F9                                   ; $1ED181 |
+  LDY {scroll_x_high}                       ; $1ED181 |
   LDA $D793,y                               ; $1ED183 |
   STA $00                                   ; $1ED186 |
   STA $27                                   ; $1ED188 |
@@ -12518,7 +12558,7 @@ code_1ED311:
   JSR async_next_frame                      ; $1ED323 |
   JSR code_1EC2D1                           ; $1ED326 |
   JSR code_1FF3F2                           ; $1ED329 |
-  LDA $F9                                   ; $1ED32C |
+  LDA {scroll_x_high}                       ; $1ED32C |
   STA $24                                   ; $1ED32E |
   STA {x_position_high}                     ; $1ED330 |
   LDY $26                                   ; $1ED333 |
@@ -12535,7 +12575,7 @@ code_1ED33A:
   LDA $FF                                   ; $1ED34B |
   STA $2000                                 ; $1ED34D |
   LDA $24                                   ; $1ED350 |
-  CMP $F9                                   ; $1ED352 |
+  CMP {scroll_x_high}                       ; $1ED352 |
   BNE code_1ED364                           ; $1ED354 |
   INC $25                                   ; $1ED356 |
   LDA $25                                   ; $1ED358 |
@@ -12551,32 +12591,32 @@ code_1ED364:
   LDY #$0F                                  ; $1ED36B |
 code_1ED36D:
   LDA $A988,y                               ; $1ED36D |
-  STA $0620,y                               ; $1ED370 |
+  STA {palette_original},y                  ; $1ED370 |
   LDA $D4B2,y                               ; $1ED373 |
   STA $0630,y                               ; $1ED376 |
   CPY #$04                                  ; $1ED379 |
   BCS code_1ED38B                           ; $1ED37B |
   LDA $A998,y                               ; $1ED37D |
-  STA $05F0,y                               ; $1ED380 |
+  STA {palette_animation_id},y              ; $1ED380 |
   LDA #$00                                  ; $1ED383 |
-  STA $05F4,y                               ; $1ED385 |
-  STA $05F8,y                               ; $1ED388 |
+  STA {palette_animation_frame},y           ; $1ED385 |
+  STA {palette_animation_timer},y           ; $1ED388 |
 code_1ED38B:
   DEY                                       ; $1ED38B |
   BPL code_1ED36D                           ; $1ED38C |
-  LDA $0620                                 ; $1ED38E |
+  LDA {palette_original}                    ; $1ED38E |
   STA $0630                                 ; $1ED391 |
   LDA $A980                                 ; $1ED394 |
-  STA $EA                                   ; $1ED397 |
+  STA {background_chr_bank_top}             ; $1ED397 |
   LDA $A981                                 ; $1ED399 |
-  STA $EB                                   ; $1ED39C |
-  LDY $F9                                   ; $1ED39E |
+  STA {background_chr_bank_bottom}          ; $1ED39C |
+  LDY {scroll_x_high}                       ; $1ED39E |
   LDA $AC00,y                               ; $1ED3A0 |
-  STA $AD                                   ; $1ED3A3 |
-  STA $AE                                   ; $1ED3A5 |
+  STA {next_spawn_index}                    ; $1ED3A3 |
+  STA {prev_spawn_index}                    ; $1ED3A5 |
   LDA #$01                                  ; $1ED3A7 |
   STA $28                                   ; $1ED3A9 |
-  STA $AC                                   ; $1ED3AB |
+  STA {horizontal_scroll_direction}         ; $1ED3AB |
   LDA #$4C                                  ; $1ED3AD |
   STA {x_speed_frac}                        ; $1ED3AF |
   LDA #$01                                  ; $1ED3B2 |
@@ -12600,7 +12640,7 @@ code_1ED38B:
   LDA #$01                                  ; $1ED3D9 |
   BNE code_1ED3E3                           ; $1ED3DB |
 code_1ED3DD:
-  LDA $F9                                   ; $1ED3DD |
+  LDA {scroll_x_high}                       ; $1ED3DD |
   STA $24                                   ; $1ED3DF |
   LDA #$00                                  ; $1ED3E1 |
 code_1ED3E3:
@@ -12630,9 +12670,9 @@ code_1ED3F0:
   STA $0632                                 ; $1ED417 |
   LDA $854D,y                               ; $1ED41A |
   STA $0633                                 ; $1ED41D |
-  LDA $FC                                   ; $1ED420 |
+  LDA {scroll_x}                            ; $1ED420 |
   STA $44                                   ; $1ED422 |
-  LDA $FA                                   ; $1ED424 |
+  LDA {scroll_y}                            ; $1ED424 |
   STA $45                                   ; $1ED426 |
   LDA {y_position_low}                      ; $1ED428 |
   STA $3E                                   ; $1ED42B |
@@ -12647,7 +12687,7 @@ code_1ED3F0:
   LDA $26                                   ; $1ED441 |
   CMP #$0E                                  ; $1ED443 |
   BNE code_1ED450                           ; $1ED445 |
-  LDA $F9                                   ; $1ED447 |
+  LDA {scroll_x_high}                       ; $1ED447 |
   CMP #$03                                  ; $1ED449 |
   BNE code_1ED450                           ; $1ED44B |
   JSR $8000                                 ; $1ED44D |
@@ -13009,7 +13049,7 @@ code_1ED72D:
   ASL                                       ; $1ED736 |
   ORA $02                                   ; $1ED737 |
   TAY                                       ; $1ED739 |
-  LDA $F2B2,y                               ; $1ED73A |
+  LDA bitmask_table,y                       ; $1ED73A |
   STA $E6                                   ; $1ED73D |
   LDA $47                                   ; $1ED73F |
   AND #$01                                  ; $1ED741 |
@@ -13226,7 +13266,7 @@ code_1ED8C7:
   ASL                                       ; $1ED8CC |
   ORA $10                                   ; $1ED8CD |
   TAY                                       ; $1ED8CF |
-  LDA $F2B2,y                               ; $1ED8D0 |
+  LDA bitmask_table,y                       ; $1ED8D0 |
   STA $00                                   ; $1ED8D3 |
   LDA {x_position_high},x                   ; $1ED8D5 |
   AND #$01                                  ; $1ED8D8 |
@@ -13243,12 +13283,12 @@ code_1ED8C7:
 code_1ED8EB:
   LDA $46                                   ; $1ED8EB |
   BEQ code_1ED934                           ; $1ED8ED |
-  LDA $F9                                   ; $1ED8EF |
+  LDA {scroll_x_high}                       ; $1ED8EF |
   AND #$01                                  ; $1ED8F1 |
   TAY                                       ; $1ED8F3 |
   LDA $F2C2,y                               ; $1ED8F4 |
   STA $00                                   ; $1ED8F7 |
-  LDA $FC                                   ; $1ED8F9 |
+  LDA {scroll_x}                            ; $1ED8F9 |
   LSR                                       ; $1ED8FB |
   LSR                                       ; $1ED8FC |
   LSR                                       ; $1ED8FD |
@@ -13602,7 +13642,7 @@ code_1EDB6C:
   STA $18                                   ; $1EDB80 |
 code_1EDB82:
   LDX $AB                                   ; $1EDB82 |
-  LDA $05F0,x                               ; $1EDB84 |
+  LDA {palette_animation_id},x              ; $1EDB84 |
   BPL code_1EDB8F                           ; $1EDB87 |
   AND #$7F                                  ; $1EDB89 |
   TAY                                       ; $1EDB8B |
@@ -13612,53 +13652,53 @@ code_1EDB8F:
   BPL code_1EDB82                           ; $1EDB91 |
   LDA $01                                   ; $1EDB93 |
   STA $18                                   ; $1EDB95 |
-  LDA $05D0                                 ; $1EDB97 |
+  LDA {chr_animation_id}                    ; $1EDB97 |
   BPL code_1EDBD0                           ; $1EDB9A |
   AND #$7F                                  ; $1EDB9C |
   TAX                                       ; $1EDB9E |
   LDY $DDB3,x                               ; $1EDB9F |
-  LDA $05D2                                 ; $1EDBA2 |
-  INC $05D2                                 ; $1EDBA5 |
+  LDA {chr_animation_timer}                 ; $1EDBA2 |
+  INC {chr_animation_timer}                 ; $1EDBA5 |
   CMP $DDBC,y                               ; $1EDBA8 |
   BNE code_1EDBD0                           ; $1EDBAB |
   LDA #$00                                  ; $1EDBAD |
-  STA $05D2                                 ; $1EDBAF |
-  LDA $05D1                                 ; $1EDBB2 |
-  INC $05D1                                 ; $1EDBB5 |
+  STA {chr_animation_timer}                 ; $1EDBAF |
+  LDA {chr_animation_frame}                 ; $1EDBB2 |
+  INC {chr_animation_frame}                 ; $1EDBB5 |
   CMP $DDBB,y                               ; $1EDBB8 |
   BNE code_1EDBC2                           ; $1EDBBB |
   LDA #$00                                  ; $1EDBBD |
-  STA $05D1                                 ; $1EDBBF |
+  STA {chr_animation_frame}                 ; $1EDBBF |
 code_1EDBC2:
   LDX $DDBD,y                               ; $1EDBC2 |
   TYA                                       ; $1EDBC5 |
   CLC                                       ; $1EDBC6 |
-  ADC $05D1                                 ; $1EDBC7 |
+  ADC {chr_animation_frame}                 ; $1EDBC7 |
   TAY                                       ; $1EDBCA |
   LDA $DDBE,y                               ; $1EDBCB |
-  STA $EA,x                                 ; $1EDBCE |
+  STA {background_chr_bank_top},x           ; $1EDBCE |
 code_1EDBD0:
   RTS                                       ; $1EDBD0 |
 
 code_1EDBD1:
   LDA $DD01,y                               ; $1EDBD1 |
   TAY                                       ; $1EDBD4 |
-  LDA $05F8,x                               ; $1EDBD5 |
-  INC $05F8,x                               ; $1EDBD8 |
+  LDA {palette_animation_timer},x           ; $1EDBD5 |
+  INC {palette_animation_timer},x           ; $1EDBD8 |
   CMP $DD22,y                               ; $1EDBDB |
   BNE code_1EDC1F                           ; $1EDBDE |
   LDA #$00                                  ; $1EDBE0 |
-  STA $05F8,x                               ; $1EDBE2 |
-  LDA $05F4,x                               ; $1EDBE5 |
-  INC $05F4,x                               ; $1EDBE8 |
+  STA {palette_animation_timer},x           ; $1EDBE2 |
+  LDA {palette_animation_frame},x           ; $1EDBE5 |
+  INC {palette_animation_frame},x           ; $1EDBE8 |
   CMP $DD21,y                               ; $1EDBEB |
   BNE code_1EDBF5                           ; $1EDBEE |
   LDA #$00                                  ; $1EDBF0 |
-  STA $05F4,x                               ; $1EDBF2 |
+  STA {palette_animation_frame},x           ; $1EDBF2 |
 code_1EDBF5:
   TYA                                       ; $1EDBF5 |
   CLC                                       ; $1EDBF6 |
-  ADC $05F4,x                               ; $1EDBF7 |
+  ADC {palette_animation_frame},x           ; $1EDBF7 |
   TAX                                       ; $1EDBFA |
   LDA $DD23,x                               ; $1EDBFB |
   BEQ code_1EDC20                           ; $1EDBFE |
@@ -13685,7 +13725,7 @@ code_1EDC1F:
 
 code_1EDC20:
   LDX $AB                                   ; $1EDC20 |
-  STA $05F0,x                               ; $1EDC22 |
+  STA {palette_animation_id},x              ; $1EDC22 |
   RTS                                       ; $1EDC25 |
 
   db $00, $00, $00, $06, $1B, $0B, $16, $1B ; $1EDC26 |
@@ -13760,7 +13800,7 @@ code_1EDC20:
   LDA #$01                                  ; $1EDDFC | |
   JSR init_subsystem                        ; $1EDDFE |/
   LDA #$00                                  ; $1EDE01 |
-  STA $F9                                   ; $1EDE03 |
+  STA {scroll_x_high}                       ; $1EDE03 |
   STA $29                                   ; $1EDE05 |
   STA {x_position_low}                      ; $1EDE07 |
   STA {x_position_high}                     ; $1EDE0A |
@@ -13779,7 +13819,7 @@ code_1EDC20:
   STX $16                                   ; $1EDE29 |
   STX $17                                   ; $1EDE2B |
   LDA #$1A                                  ; $1EDE2D |
-  JSR code_1FEA98                           ; $1EDE2F |
+  JSR entity_set_animation                  ; $1EDE2F |
   JSR reset_vertical_speed                  ; $1EDE32 |
   LDA #$01                                  ; $1EDE35 |
   STA {entity_type}                         ; $1EDE37 |
@@ -13856,11 +13896,11 @@ code_1EDEAC:
   LDA $26                                   ; $1EDECA |
   STA $F6                                   ; $1EDECC |
   JSR select_PRG_banks                      ; $1EDECE |
-  JSR $988A                                 ; $1EDED1 |
+  JSR spawn_entry_routine                   ; $1EDED1 |
   JSR code_1EDA31                           ; $1EDED4 |
-  LDA $FC                                   ; $1EDED7 |
+  LDA {scroll_x}                            ; $1EDED7 |
   STA $44                                   ; $1EDED9 |
-  LDA $FA                                   ; $1EDEDB |
+  LDA {scroll_y}                            ; $1EDEDB |
   STA $45                                   ; $1EDEDD |
   LDA {y_position_low}                      ; $1EDEDF |
   STA $3E                                   ; $1EDEE2 |
@@ -13876,7 +13916,7 @@ code_1EDEAC:
 code_1EDEF9:
   LDA $26                                   ; $1EDEF9 |
   BNE code_1EDF1A                           ; $1EDEFB |
-  LDA $FC                                   ; $1EDEFD |
+  LDA {scroll_x}                            ; $1EDEFD |
   LSR                                       ; $1EDEFF |
   AND #$03                                  ; $1EDF00 |
   TAY                                       ; $1EDF02 |
@@ -13893,7 +13933,7 @@ code_1EDEF9:
   TAY                                       ; $1EDF14 |
 code_1EDF15:
   LDA $DF4F,y                               ; $1EDF15 |
-  STA $EA                                   ; $1EDF18 |
+  STA {background_chr_bank_top}             ; $1EDF18 |
 code_1EDF1A:
   LDA #$04                                  ; $1EDF1A |
   STA $9F                                   ; $1EDF1C |
@@ -13991,10 +14031,10 @@ code_1EDFC3:
   STA {entity_display_flags},x              ; $1EDFC8 |
   LDA {x_position_low},x                    ; $1EDFCB |
   SEC                                       ; $1EDFCE |
-  SBC $FC                                   ; $1EDFCF |
+  SBC {scroll_x}                            ; $1EDFCF |
   STA $13                                   ; $1EDFD1 |
   LDA {x_position_high},x                   ; $1EDFD3 |
-  SBC $F9                                   ; $1EDFD6 |
+  SBC {scroll_x_high}                       ; $1EDFD6 |
   BEQ code_1EDFF9                           ; $1EDFD8 |
   LDA {entity_display_flags},x              ; $1EDFDA |
   AND #$08                                  ; $1EDFDD |
@@ -14531,8 +14571,8 @@ code_1FE455:
   LDA #$00                                  ; $1FE464 |
   STA $24                                   ; $1FE466 |
   STA $25                                   ; $1FE468 |
-  STA $AD                                   ; $1FE46A |
-  STA $AE                                   ; $1FE46C |
+  STA {next_spawn_index}                    ; $1FE46A |
+  STA {prev_spawn_index}                    ; $1FE46C |
   LDA #$DD                                  ; $1FE46E |
   STA $94                                   ; $1FE470 |
   LDA #$E8                                  ; $1FE472 |
@@ -14589,13 +14629,13 @@ code_1FE4D4:
   BEQ code_1FE501                           ; $1FE4D8 |
   LDY #$0F                                  ; $1FE4DA |
 code_1FE4DC:
-  LDA $0600,y                               ; $1FE4DC |
-  STA $0620,y                               ; $1FE4DF |
+  LDA {palette_current},y                   ; $1FE4DC |
+  STA {palette_original},y                  ; $1FE4DF |
   LDA $0630,y                               ; $1FE4E2 |
   STA $0610,y                               ; $1FE4E5 |
   DEY                                       ; $1FE4E8 |
   BPL code_1FE4DC                           ; $1FE4E9 |
-  LDA $0600                                 ; $1FE4EB |
+  LDA {palette_current}                     ; $1FE4EB |
   STA $0610                                 ; $1FE4EE |
   STA $0630                                 ; $1FE4F1 |
   STY $18                                   ; $1FE4F4 |
@@ -14643,7 +14683,7 @@ code_1FE52E:
 
 code_1FE537:
   LDY $77                                   ; $1FE537 |
-  LDA $0600,y                               ; $1FE539 |
+  LDA {palette_current},y                   ; $1FE539 |
   STA $10                                   ; $1FE53C |
   LDA $14                                   ; $1FE53E |
   AND #$C0                                  ; $1FE540 |
@@ -14682,15 +14722,15 @@ code_1FE574:
   STA $10                                   ; $1FE57A |
 code_1FE57C:
   LDA $10                                   ; $1FE57C |
-  STA $0600,y                               ; $1FE57E |
-  STA $0620,y                               ; $1FE581 |
+  STA {palette_current},y                   ; $1FE57E |
+  STA {palette_original},y                  ; $1FE581 |
 code_1FE584:
   LDA $77                                   ; $1FE584 |
   STA $00                                   ; $1FE586 |
   LDX #$00                                  ; $1FE588 |
   LDY #$00                                  ; $1FE58A |
 code_1FE58C:
-  LDA $0600,y                               ; $1FE58C |
+  LDA {palette_current},y                   ; $1FE58C |
   PHA                                       ; $1FE58F |
   AND #$F0                                  ; $1FE590 |
   LSR                                       ; $1FE592 |
@@ -14749,10 +14789,10 @@ code_1FE5CF:
   JSR code_1FE68F                           ; $1FE5F3 |
   LDA #$FF                                  ; $1FE5F6 |
   STA $18                                   ; $1FE5F8 |
-  LDA $0600                                 ; $1FE5FA |
+  LDA {palette_current}                     ; $1FE5FA |
   STA $0610                                 ; $1FE5FD |
   LDA #$00                                  ; $1FE600 |
-  STA $05F8                                 ; $1FE602 |
+  STA {palette_animation_timer}             ; $1FE602 |
   STA $05F9                                 ; $1FE605 |
   STA $05FA                                 ; $1FE608 |
   STA $05FB                                 ; $1FE60B |
@@ -15391,7 +15431,11 @@ code_1FEA94:
 code_1FEA97:
   RTS                                       ; $1FEA97 |
 
-code_1FEA98:
+; Sets animation for current entity and resets frame and timer.
+; Parameters:
+; A - animation index
+; X - entity index
+entity_set_animation:
   STA {animation_index},x                   ; $1FEA98 |
   LDA #$00                                  ; $1FEA9B |
   STA {animation_frame},x                   ; $1FEA9D |
@@ -15423,7 +15467,7 @@ code_1FEABD:
   STA {entity_var_e},y                      ; $1FEADC |
   STA {entity_var_f},y                      ; $1FEADF |
   STA {entity_var_g},y                      ; $1FEAE2 |
-  STA {entity_var_h},y                      ; $1FEAE5 |
+  STA {entity_spawn_id},y                   ; $1FEAE5 |
   PLA                                       ; $1FEAE8 |
 code_1FEAE9:
   STA {animation_index},y                   ; $1FEAE9 |
@@ -15878,7 +15922,7 @@ code_1FEE6F:
   RTS                                       ; $1FEE6F |
 
 code_1FEE70:
-  LDA {sprite_flags},y                      ; $1FEE70 |
+  LDA {entity_flags},y                      ; $1FEE70 |
   AND #$3F                                  ; $1FEE73 |
   TAX                                       ; $1FEE75 |
   LDA $F0B1,x                               ; $1FEE76 |
@@ -16044,7 +16088,7 @@ code_1FEF87:
   BPL code_1FEFF7                           ; $1FEF98 |
   AND #$04                                  ; $1FEF9A |
   BNE code_1FEFF7                           ; $1FEF9C |
-  LDA {sprite_flags},x                      ; $1FEF9E |
+  LDA {entity_flags},x                      ; $1FEF9E |
   AND #$3F                                  ; $1FEFA1 |
   TAY                                       ; $1FEFA3 |
   LDA {x_position_low}                      ; $1FEFA4 |
@@ -16161,7 +16205,7 @@ code_1FF068:
 
 code_1FF06D:
   STY $02                                   ; $1FF06D |
-  LDA {sprite_flags},x                      ; $1FF06F |
+  LDA {entity_flags},x                      ; $1FF06F |
   AND #$3F                                  ; $1FF072 |
   TAY                                       ; $1FF074 |
   LDA $F0B1,y                               ; $1FF075 |
@@ -16220,19 +16264,21 @@ code_1FF09E:
   db $04, $02, $00, $04, $06, $06, $06, $FC ; $1FF151 |
   db $01, $10, $11, $12, $11, $10           ; $1FF159 |
 
-code_1FF15F:
-  LDX #$08                                  ; $1FF15F |
+; Checks if there is a free enemy slot (8-23).
+; If yes, carry will be clear, otherwise carry will be set.
+check_free_enemy_slot:
+  LDX #$08                                  ; $1FF15F | Start from slot 8
 code_1FF161:
-  LDA {entity_type},x                       ; $1FF161 |
-  BEQ code_1FF16D                           ; $1FF164 |
-  INX                                       ; $1FF166 |
-  CPX #$18                                  ; $1FF167 |
-  BNE code_1FF161                           ; $1FF169 |
-  SEC                                       ; $1FF16B |
+  LDA {entity_type},x                       ; $1FF161 | \
+  BEQ code_1FF16D                           ; $1FF164 | | Loop through slots 8-23,
+  INX                                       ; $1FF166 | | if any slot has entity type 0, it's free, so we clear carry and exit
+  CPX #$18                                  ; $1FF167 | | If we reached the final slot and nothing has been found, set carry and exit
+  BNE code_1FF161                           ; $1FF169 | |
+  SEC                                       ; $1FF16B | /
   RTS                                       ; $1FF16C |
 
 code_1FF16D:
-  CLC                                       ; $1FF16D |
+  CLC                                       ; $1FF16D | Clear carry, means we found a slot
   RTS                                       ; $1FF16E |
 
 code_1FF16F:
@@ -16414,7 +16460,7 @@ code_1FF297:
   LDA $0438,x                               ; $1FF297 |
   AND #$07                                  ; $1FF29A |
   TAY                                       ; $1FF29C |
-  LDA $F2B2,y                               ; $1FF29D |
+  LDA bitmask_table,y                       ; $1FF29D |
   STA $00                                   ; $1FF2A0 |
   LDA $0438,x                               ; $1FF2A2 |
   LSR                                       ; $1FF2A5 |
@@ -16426,7 +16472,10 @@ code_1FF297:
   STA $0100,y                               ; $1FF2AE |
   RTS                                       ; $1FF2B1 |
 
+;i-th entry is equal to 1<<i
+bitmask_table:
   db $01, $02, $04, $08, $10, $20, $40, $80 ; $1FF2B2 |
+
   db $FE, $FD, $FB, $F7, $EF, $DF, $BF, $7F ; $1FF2BA |
   db $00, $20                               ; $1FF2C2 |
 
@@ -16438,7 +16487,7 @@ code_1FF2C4:
   STA {entity_type},x                       ; $1FF2CE |
   STA {entity_flash_counter},x              ; $1FF2D1 |
   STA {entity_life},x                       ; $1FF2D4 |
-  STA {sprite_flags},x                      ; $1FF2D7 |
+  STA {entity_flags},x                      ; $1FF2D7 |
   STA {entity_var_a},x                      ; $1FF2DA |
   STA {entity_var_b},x                      ; $1FF2DD |
   STA {entity_var_c},x                      ; $1FF2E0 |
@@ -16446,7 +16495,7 @@ code_1FF2C4:
   STA {entity_var_e},x                      ; $1FF2E6 |
   STA {entity_var_f},x                      ; $1FF2E9 |
   STA {entity_var_g},x                      ; $1FF2EC |
-  STA {entity_var_h},x                      ; $1FF2EF |
+  STA {entity_spawn_id},x                   ; $1FF2EF |
   RTS                                       ; $1FF2F2 |
 
 code_1FF2F3:
@@ -16463,7 +16512,7 @@ code_1FF2FE:
   STA {entity_type},y                       ; $1FF308 |
   STA {entity_flash_counter},y              ; $1FF30B |
   STA {entity_life},y                       ; $1FF30E |
-  STA {sprite_flags},y                      ; $1FF311 |
+  STA {entity_flags},y                      ; $1FF311 |
   STA {entity_var_a},y                      ; $1FF314 |
   STA {entity_var_b},y                      ; $1FF317 |
   STA {entity_var_c},y                      ; $1FF31A |
@@ -16471,7 +16520,7 @@ code_1FF2FE:
   STA {entity_var_e},y                      ; $1FF320 |
   STA {entity_var_f},y                      ; $1FF323 |
   STA {entity_var_g},y                      ; $1FF326 |
-  STA {entity_var_h},y                      ; $1FF329 |
+  STA {entity_spawn_id},y                   ; $1FF329 |
 code_1FF32C:
   RTS                                       ; $1FF32C |
 
@@ -16582,7 +16631,7 @@ code_1FF3D4:
 code_1FF3E6:
   DEY                                       ; $1FF3E6 |
   BPL code_1FF3C1                           ; $1FF3E7 |
-  LDA $0600                                 ; $1FF3E9 |
+  LDA {palette_current}                     ; $1FF3E9 |
   STA $0610                                 ; $1FF3EC |
   STY $18                                   ; $1FF3EF |
   RTS                                       ; $1FF3F1 |
@@ -16609,15 +16658,15 @@ code_1FF40A:
   STA $AF                                   ; $1FF415 |
   STA $52                                   ; $1FF417 |
   STA $43                                   ; $1FF419 |
-  STA $FC                                   ; $1FF41B |
+  STA {scroll_x}                            ; $1FF41B |
   STA $FD                                   ; $1FF41D |
-  STA $FA                                   ; $1FF41F |
-  STA $FB                                   ; $1FF421 |
-  STA $05F0                                 ; $1FF423 |
+  STA {scroll_y}                            ; $1FF41F |
+  STA {vert_screen_offset}                  ; $1FF421 |
+  STA {palette_animation_id}                ; $1FF423 |
   STA $05F1                                 ; $1FF426 |
   STA $05F2                                 ; $1FF429 |
   STA $05F3                                 ; $1FF42C |
-  STA $05D0                                 ; $1FF42F |
+  STA {chr_animation_id}                    ; $1FF42F |
   STA $2D                                   ; $1FF432 |
   STA $2E                                   ; $1FF434 |
   STA $2F                                   ; $1FF436 |
@@ -17021,7 +17070,7 @@ RESET:
   STA {entity_type},y                       ; $1FFE43 |
   STA $0400,y                               ; $1FFE46 |
   STA $0500,y                               ; $1FFE49 |
-  STA $0600,y                               ; $1FFE4C |
+  STA {palette_current},y                   ; $1FFE4C |
   STA $0700,y                               ; $1FFE4F |
   DEY                                       ; $1FFE52 |
   BNE .code_1FFE3A                          ; $1FFE53 |

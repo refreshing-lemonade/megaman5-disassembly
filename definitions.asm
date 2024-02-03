@@ -1,5 +1,15 @@
-; No ROM code/data is stored here, this is simply a list of RAM value definitions
+; No ROM code/data is stored here, this is simply a list of common value definitions
 
+;RAM Values
+define horizontal_scroll_direction          $AC
+define next_spawn_index                     $AD
+define prev_spawn_index                     $AE
+define background_chr_bank_top              $EA
+define background_chr_bank_bottom           $EB
+define scroll_x_high                        $F9
+define scroll_y                             $FA
+define vert_screen_offset                   $FB
+define scroll_x                             $FC
 define entity_type                          $0300
 define x_position_frac                      $0318
 define x_position_low                       $0330
@@ -11,7 +21,7 @@ define x_speed_frac                         $03A8
 define x_speed                              $03C0
 define y_speed_frac                         $03D8
 define y_speed                              $03F0
-define sprite_flags                         $0408
+define entity_flags                         $0408
 define entity_direction                     $0420
 define entity_life                          $0450
 define entity_var_a                         $0468
@@ -21,7 +31,7 @@ define entity_var_d                         $04B0
 define entity_var_e                         $04C8
 define entity_var_f                         $04E0
 define entity_var_g                         $04F8
-define entity_var_h                         $0510
+define entity_spawn_id                      $0510
 define entity_display_flags                 $0528
 define animation_frame                      $0540
 define animation_index                      $0558
@@ -29,3 +39,17 @@ define animation_timer                      $0570
 define entity_handler_low                   $0588
 define entity_handler_high                  $05A0
 define entity_flash_counter                 $05B8
+define chr_animation_id                     $05D0
+define chr_animation_frame                  $05D1
+define chr_animation_timer                  $05D2
+define palette_animation_id                 $05F0
+define palette_animation_frame              $05F4
+define palette_animation_timer              $05F8
+define palette_current                      $0600
+define palette_original                     $0620
+
+;ROM Values (multi-bank)
+define level_entity_x_position_high         $AA00
+define level_entity_x_position_low          $AA80
+define level_entity_y_position_low          $AB00
+define level_entity_spawn_id                $AB80
